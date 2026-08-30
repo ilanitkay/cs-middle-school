@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 1: מבוא ל-Python | Python חלק א׳</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      </span>
+      <span class="brand-text">מדעי המחשב<span class="brand-sub">חטיבת ביניים · אילנית קיי</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="תפריט">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <nav class="main-nav">
+      <a href="../index.html">בית</a>
+      <a href="index.html" class="active">פייתון א׳</a>
+    </nav>
+  </div>
+</header>
+
+<main class="chapter-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">בית</a>
+      <span class="sep">/</span>
+      <a href="index.html">Python חלק א׳</a>
+      <span class="sep">/</span>
+      <span>פרק 1</span>
+    </div>
+
+    <div class="chapter-header">
+      <span class="chapter-tag">פרק 1 מתוך 9</span>
+      <h1>מבוא ל-Python</h1>
+      <span class="chapter-time">⏱ כ-2 שעות לימוד</span>
+    </div>
+
+    <div class="goals-box">
+      <h2>מה נלמד בפרק הזה</h2>
+      <ul>
+        <li>להכיר את סביבת העבודה בה כותבים ומריצים קוד Python</li>
+        <li>לכתוב הוראת פלט (print) פשוטה ומורכבת יותר</li>
+        <li>להבין למה חשוב לתעד ולהזיח (indent) קוד בצורה מסודרת</li>
+        <li>לכתוב פונקציה פשוטה בלי פרמטרים, ולזמן (לקרוא ל) אותה</li>
+      </ul>
+    </div>
+
+    <div class="lesson-content">
+      <h2>מה זו בעצם תכנית מחשב?</h2>
+      <p>תכנית מחשב היא רשימת הוראות שהמחשב מבצע אחת אחרי השנייה, מלמעלה למטה. ב-Python כותבים כל הוראה בשורה משלה, ובניגוד לשפות רבות אחרות — אין צורך בסוגריים מסולסלים או נקודה-פסיק בסוף שורה. במקום זאת, Python "מבינה" את מבנה התכנית לפי <strong>הזחה</strong> (הרווח שבתחילת השורה), ולכן חשוב מאוד לשמור על הזחה עקבית.</p>
+
+      <h2>ההוראה print</h2>
+      <p>ההוראה הראשונה שכל מתכנת/ת לומד/ת היא <code>print</code> — היא מדפיסה טקסט או ערך אל המסך.</p>
+      <span class="code-label">דוגמה</span>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-str">"Hello, I'm learning Python!"</span>)
+<span class="tok-fn">print</span>(<span class="tok-str">"Computer Science"</span>)
+<span class="tok-fn">print</span>(<span class="tok-str">"Grade 8"</span>)</code></pre>
+      <p>אפשר להדפיס גם כמה ערכים בהוראת print אחת, כאשר מפרידים ביניהם בפסיק — Python תוסיף רווח בין הערכים באופן אוטומטי:</p>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-str">"Name:"</span>, <span class="tok-str">"Daniel"</span>, <span class="tok-str">"Grade:"</span>, <span class="tok-str">"8B"</span>)
+<span class="tok-com"># Output: Name: Daniel Grade: 8B</span></code></pre>
+
+      <h3>הערות בקוד</h3>
+      <p>שורה שמתחילה בסימן <code>#</code> היא הערה — Python מתעלמת ממנה לגמרי. הערות משמשות אותנו כדי להסביר לעצמנו (ולאחרים) מה הקוד עושה, בלי להשפיע על ריצת התכנית.</p>
+      <pre class="code-block"><code><span class="tok-com"># התכנית הבאה מדפיסה ברכה</span>
+<span class="tok-fn">print</span>(<span class="tok-str">"Good morning!"</span>)</code></pre>
+
+      <figure class="concept-diagram">
+        <svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 z" fill="#8a93a8"/>
+            </marker>
+          </defs>
+          <rect x="40" y="8" width="240" height="42" rx="10" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+          <text x="160" y="34" text-anchor="middle" font-family="Consolas, monospace" font-size="13" fill="#23368f" direction="ltr">print("Step 1")</text>
+
+          <line x1="160" y1="50" x2="160" y2="76" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrow1)"/>
+
+          <rect x="40" y="80" width="240" height="42" rx="10" fill="none" stroke="#c7cbd6" stroke-width="2" stroke-dasharray="5 4"/>
+          <text x="160" y="106" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#5b6478" direction="ltr"># not executed (comment)</text>
+
+          <line x1="160" y1="122" x2="160" y2="148" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrow1)"/>
+
+          <rect x="40" y="152" width="240" height="42" rx="10" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+          <text x="160" y="178" text-anchor="middle" font-family="Consolas, monospace" font-size="13" fill="#23368f" direction="ltr">print("Step 2", "done")</text>
+        </svg>
+        <figcaption>התכנית רצה שורה-שורה מלמעלה למטה — אבל שורת ההערה (#) מדולגת לגמרי ואינה מתבצעת</figcaption>
+      </figure>
+
+      <h2>מבוא לפונקציות</h2>
+      <p>פונקציה היא קבוצת הוראות שאורזים יחד תחת שם אחד, כדי שנוכל להריץ אותן שוב ושוב בקריאה אחת קצרה — במקום להעתיק את אותו קוד כל פעם מחדש. בפרק זה נכיר פונקציה פשוטה: <strong>בלי פרמטרים</strong> (בלי "קלט" לפונקציה) ו<strong>בלי ערך מוחזר</strong>.</p>
+      <p>בניית פונקציה מורכבת משני שלבים: קודם <strong>מגדירים</strong> אותה באמצעות <code>def</code>, ורק אחר כך <strong>מזמנים</strong> (קוראים ל) אותה — כדי שהיא באמת תרוץ.</p>
+      <span class="code-label">דוגמה</span>
+      <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">say_hello</span>():
+    <span class="tok-fn">print</span>(<span class="tok-str">"Welcome to Computer Science class!"</span>)
+
+<span class="tok-com"># עד כאן רק הגדרנו את הפונקציה - היא עדיין לא רצה</span>
+<span class="tok-fn">say_hello</span>()  <span class="tok-com"># עכשיו זימנו אותה, וזה מה שגורם לה לרוץ</span></code></pre>
+      <p>שימו לב לשני דברים חשובים: הנקודתיים (<code>:</code>) בסוף שורת ה-<code>def</code>, וההזחה של השורה שבתוך הפונקציה — כל שורה מוזחת שייכת לגוף הפונקציה.</p>
+    </div>
+
+    <div class="key-terms">
+      <h2>מושגי מפתח</h2>
+      <dl class="term-grid">
+        <div><dt>print</dt><dd>הוראה שמדפיסה טקסט או ערך למסך</dd></div>
+        <div><dt>הזחה (indent)</dt><dd>רווח בתחילת שורה שמסמן ל-Python אילו שורות שייכות יחד</dd></div>
+        <div><dt>הערה (comment)</dt><dd>שורה שמתחילה ב-# ואינה מתבצעת בריצת התכנית</dd></div>
+        <div><dt>פונקציה (function)</dt><dd>קבוצת הוראות ארוזה תחת שם, שניתן להריץ בקריאה אחת</dd></div>
+        <div><dt>def</dt><dd>מילת המפתח שבה מגדירים פונקציה חדשה</dd></div>
+        <div><dt>זימון פונקציה</dt><dd>קריאה לפונקציה בשמה כדי שהיא תרוץ בפועל</dd></div>
+      </dl>
+    </div>
+
+    <div class="tools-box">
+      <h2>🛠️ איפה להריץ את הקוד?</h2>
+      <p>הדרך הכי נוחה לתרגל את הפרק הזה — בלי להתקין שום דבר על המחשב:</p>
+      <div class="tool-links">
+        <a class="tool-link" href="https://trinket.io/python3" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </span>
+          <span><strong>Trinket</strong><span>סביבת פייתון פשוטה בדפדפן, מצוינת גם היא להתחלה מהירה</span></span>
+        </a>
+        <a class="tool-link" href="notebooks/ch1.ipynb" download>
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+          </span>
+          <span><strong>מחברת תרגול ל-Colab</strong><span>הורידו, ופתחו ב-colab.research.google.com (File ← Upload notebook)</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="worksheet">
+      <h2>דף עבודה — תרגול</h2>
+      <p class="worksheet-intro">שאלות מהקל למאתגר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס על המסך כתוצאה מהרצת הקוד הבא? כתבו את הפלט המדויק, שורה אחר שורה.</p>
+        <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-str">"Step 1"</span>)
+<span class="tok-com"># השורה הבאה היא הערה ולא תתבצע</span>
+<span class="tok-com"># print("this should not be printed")</span>
+<span class="tok-fn">print</span>(<span class="tok-str">"Step 2"</span>, <span class="tok-str">"done"</span>)</code></pre>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <p>שתי שורות פלט בלבד — השורה השלישית היא הערה (מתחילה ב-#) ולכן לא מתבצעת:</p>
+            <pre class="code-block"><code>Step 1
+Step 2 done</code></pre>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <p>רוצים להגדיר פונקציה בשם <code>show_menu</code> שמדפיסה "Choose a topic:", ואז לזמן אותה. השלימו את מה שחסר:</p>
+        <pre class="code-block"><code>______ show_menu()<span class="tok-com">:</span>
+    print(<span class="tok-str">"Choose a topic:"</span>)
+
+______</code></pre>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <pre class="code-block"><code><span class="tok-kw">def</span> show_menu():
+    <span class="tok-fn">print</span>(<span class="tok-str">"Choose a topic:"</span>)
+
+show_menu()</code></pre>
+            <p>שורה ראשונה: מילת המפתח <code>def</code> להגדרת הפונקציה. שורה אחרונה: <strong>זימון</strong> הפונקציה בשמה עם סוגריים — בלי זה הפונקציה לעולם לא תרוץ.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <ol>
+          <li>כתבו תכנית שמדפיסה בשלוש שורות נפרדות: את שמכם, את הכיתה שלכם, ותחביב שאתם אוהבים.</li>
+          <li>כתבו פונקציה בשם <code>my_intro</code> שמדפיסה משפט הצגה עצמית קצר, וזמנו אותה כדי שתרוץ.</li>
+          <li>הוסיפו הערה (עם #) מעל הפונקציה שמסבירה מה היא עושה.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="chapter-nav">
+      <span class="nav-empty"></span>
+      <a href="ch2.html">
+        <span>
+          <span class="nav-label">הפרק הבא</span>
+          תנועה ומבוא לגרפיקה — Turtle
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+
+    <div class="mark-done">
+      <label>
+        <input type="checkbox" data-mark-done="ch1-done">
+        סימנתי שלמדתי את הפרק הזה
+      </label>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>מדעי המחשב לחטיבת הביניים — אילנית קיי</span>
+    <span>מבוסס על תכנית הלימודים של משרד החינוך</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

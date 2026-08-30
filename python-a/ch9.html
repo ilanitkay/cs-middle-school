@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 9: תכנות מונחה אירועים | Python חלק א׳</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      </span>
+      <span class="brand-text">מדעי המחשב<span class="brand-sub">חטיבת ביניים · אילנית קיי</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="תפריט">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <nav class="main-nav">
+      <a href="../index.html">בית</a>
+      <a href="index.html" class="active">פייתון א׳</a>
+    </nav>
+  </div>
+</header>
+
+<main class="chapter-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">בית</a>
+      <span class="sep">/</span>
+      <a href="index.html">Python חלק א׳</a>
+      <span class="sep">/</span>
+      <span>פרק 9</span>
+    </div>
+
+    <div class="chapter-header">
+      <span class="chapter-tag">פרק 9 מתוך 9 · הפרק האחרון בחלק א׳</span>
+      <h1>תכנות מונחה אירועים</h1>
+      <span class="chapter-time">⏱ כ-12 שעות לימוד</span>
+    </div>
+
+    <div class="goals-box">
+      <h2>מה נלמד בפרק הזה</h2>
+      <ul>
+        <li>להכיר את הרעיון של תכנות מונחה אירועים (event-driven)</li>
+        <li>להגיב ללחיצת עכבר על המסך ועל דמות</li>
+        <li>להגיב ללחיצות מקלדת</li>
+        <li>לשלב השהיה (wait) ליצירת אנימציה פשוטה</li>
+      </ul>
+    </div>
+
+    <div class="lesson-content">
+      <h2>מהו תכנות מונחה אירועים?</h2>
+      <p>עד כה כל התכניות שלנו רצו בסדר קבוע מההתחלה לסוף. בתכנות מונחה אירועים התכנית "מחכה" בשקט, ומגיבה רק כשקורה <strong>אירוע</strong> (event) — לחיצת עכבר, לחיצת מקש וכדומה. זהו הבסיס לכתיבת משחקים ויישומים אינטראקטיביים.</p>
+      <p>כדי שתכנית תגיב לאירוע, צריך <strong>לרשום מאזין</strong> (listener): פונקציה שתופעל אוטומטית בכל פעם שהאירוע קורה.</p>
+
+      <h2>תגובה ללחיצת עכבר</h2>
+      <p>הפקודה <code>onclick</code> מקשרת בין אירוע לחיצה לבין פונקציה שתופעל בעקבותיו. הפונקציה שמוגדרת ל-onclick חייבת לקבל שני פרמטרים — קואורדינטות ה-x וה-y של מקום הלחיצה:</p>
+      <span class="code-label">דוגמה — ציור עיגול בכל מקום שלוחצים עליו</span>
+      <pre class="code-block"><code><span class="tok-kw">import</span> turtle
+
+<span class="tok-kw">def</span> <span class="tok-fn">draw_here</span>(x, y):
+    player.penup()
+    player.goto(x, y)
+    player.pendown()
+    player.dot(<span class="tok-num">20</span>)   <span class="tok-com"># מצייר עיגול קטן במיקום הלחיצה</span>
+
+wn = turtle.Screen()
+player = turtle.Turtle()
+wn.onclick(draw_here)   <span class="tok-com"># רישום המאזין למסך</span>
+turtle.mainloop()</code></pre>
+      <p>שימו לב: מעבירים ל-<code>onclick</code> את <strong>שם הפונקציה בלבד</strong>, בלי סוגריים — כי אנחנו לא קוראים לה עכשיו, אלא רק "מודיעים" ל-Turtle איזו פונקציה להפעיל כשהאירוע יקרה בעתיד.</p>
+
+      <figure class="concept-diagram">
+        <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+          <defs>
+            <marker id="arrowEvt" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 z" fill="#8a93a8"/>
+            </marker>
+          </defs>
+
+          <rect x="30" y="10" width="240" height="54" rx="10" fill="#fff2d9" stroke="#d99400" stroke-width="2"/>
+          <text x="150" y="32" text-anchor="middle" font-size="12" fill="#7a5400">🖱️ המשתמש/ת לוחצ/ת</text>
+          <text x="150" y="52" text-anchor="middle" font-size="12" fill="#7a5400">עם העכבר על המסך</text>
+
+          <line x1="150" y1="64" x2="150" y2="90" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrowEvt)"/>
+          <text x="215" y="80" text-anchor="middle" font-size="10" fill="#5b6478" direction="ltr">wn.onclick(draw_here)</text>
+
+          <rect x="30" y="94" width="240" height="54" rx="10" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+          <text x="150" y="116" text-anchor="middle" font-size="12" fill="#23368f">Python קוראת אוטומטית</text>
+          <text x="150" y="136" font-family="Consolas, monospace" text-anchor="middle" font-size="12" fill="#23368f" direction="ltr">draw_here(x, y)</text>
+
+          <line x1="150" y1="148" x2="150" y2="174" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrowEvt)"/>
+
+          <rect x="30" y="178" width="240" height="54" rx="10" fill="#e7f8f1" stroke="#1e9e6b" stroke-width="2"/>
+          <text x="150" y="200" text-anchor="middle" font-size="12" fill="#146c48">גוף הפונקציה מתבצע —</text>
+          <text x="150" y="220" text-anchor="middle" font-size="12" fill="#146c48">מצייר עיגול במיקום הלחיצה</text>
+        </svg>
+        <figcaption>מעגל האירוע: לחיצה מפעילה את המאזין הרשום, וזה מזמן את הפונקציה עם מיקום הלחיצה כפרמטרים</figcaption>
+      </figure>
+
+      <h2>תגובה ללחיצת מקלדת</h2>
+      <p>באופן דומה, <code>onkey</code> מקשר בין לחיצה על מקש מסוים לפונקציה שתרוץ — אך יש גם לקרוא ל-<code>listen()</code> כדי שהמסך "יקשיב" ללחיצות מקלדת:</p>
+      <span class="code-label">דוגמה — הזזת דמות עם המקשים</span>
+      <pre class="code-block"><code><span class="tok-kw">import</span> turtle
+
+<span class="tok-kw">def</span> <span class="tok-fn">move_up</span>():
+    player.forward(<span class="tok-num">20</span>)
+
+wn = turtle.Screen()
+player = turtle.Turtle()
+wn.onkey(move_up, <span class="tok-str">"Up"</span>)   <span class="tok-com"># חץ למעלה יזיז את הדמות</span>
+wn.listen()               <span class="tok-com"># מתחיל להקשיב ללחיצות מקלדת</span>
+turtle.mainloop()</code></pre>
+
+      <h2>אנימציה עם השהיה</h2>
+      <p>כדי ליצור תחושת תנועה, אפשר לשלב לולאה עם <code>time.sleep()</code> — פקודה שמשהה את התכנית למספר שניות נתון בין כל צעד אנימציה:</p>
+      <pre class="code-block"><code><span class="tok-kw">import</span> turtle
+<span class="tok-kw">import</span> time
+
+wn = turtle.Screen()
+player = turtle.Turtle()
+
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">5</span>):
+    player.forward(<span class="tok-num">30</span>)
+    time.sleep(<span class="tok-num">0.5</span>)   <span class="tok-com"># השהיה של חצי שנייה בין תזוזה לתזוזה</span></code></pre>
+    </div>
+
+    <div class="key-terms">
+      <h2>מושגי מפתח</h2>
+      <dl class="term-grid">
+        <div><dt>אירוע (event)</dt><dd>פעולה של המשתמש שהתכנית מגיבה אליה, כמו לחיצה</dd></div>
+        <div><dt>מאזין (listener)</dt><dd>פונקציה שמופעלת אוטומטית כשמתרחש אירוע</dd></div>
+        <div><dt>onclick</dt><dd>רושם פונקציה שתופעל בלחיצת עכבר</dd></div>
+        <div><dt>onkey / listen</dt><dd>רושמים פונקציה שתופעל בלחיצת מקש, ומפעילים האזנה למקלדת</dd></div>
+        <div><dt>time.sleep()</dt><dd>משהה את התכנית למספר שניות נתון — משמש ליצירת אנימציה</dd></div>
+      </dl>
+    </div>
+
+    <div class="tools-box">
+      <h2>🛠️ איפה להריץ את הקוד?</h2>
+      <p>הפרק הזה משלב Turtle עם אירועים, ולכן חלון תצוגה הכרחי:</p>
+      <div class="tool-links">
+        <a class="tool-link" href="https://trinket.io/features/turtle_graphics" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </span>
+          <span><strong>Trinket</strong><span>הכי מתאים לפרק הזה — לחיצות עכבר ומקלדת עובדות ישירות בדפדפן</span></span>
+        </a>
+        <a class="tool-link" href="notebooks/ch9.ipynb" download>
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+          </span>
+          <span><strong>מחברת תרגול ל-Colab</strong><span>הורידו ופתחו ב-colab.research.google.com — לתיעוד התכנון ותרגול חלקי הקוד שאינם גרפיים</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="worksheet">
+      <h2>דף עבודה — תרגול</h2>
+      <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <p>רוצים שהדמות תזוז ימינה כל פעם שלוחצים על מקש הרווח (Space). השלימו את החסר:</p>
+        <pre class="code-block"><code><span class="tok-kw">import</span> turtle
+
+<span class="tok-kw">def</span> <span class="tok-fn">move_right</span>():
+    player.forward(<span class="tok-num">20</span>)
+
+wn = turtle.Screen()
+player = turtle.Turtle()
+wn.______(move_right, <span class="tok-str">"space"</span>)
+wn.______()
+turtle.mainloop()</code></pre>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <pre class="code-block"><code>wn.onkey(move_right, <span class="tok-str">"space"</span>)
+wn.listen()</code></pre>
+            <p><code>onkey</code> רושמת את המאזין למקש הספציפי, ו-<code>listen()</code> היא זו שגורמת למסך להתחיל להקשיב בפועל ללחיצות מקלדת.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-trace">חשבו וענו</span></div>
+        <p>רוצים לתכנן משחק שבו לוחצים על הדמות עצמה (לא על כל המסך) כדי "לפגוע" בה, וכל לחיצה מקטינה ניקוד. איזה סוג אירוע יש לרשום — על ה-<code>Screen</code> או על ה-<code>Turtle</code>? הסבירו.</p>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <p>יש לרשום את ה-<code>onclick</code> על אובייקט ה-<strong>Turtle</strong> עצמו (למשל <code>player.onclick(hit)</code>), ולא על ה-Screen. כך הפונקציה תופעל רק כשלוחצים ממש על הדמות, ולא בכל מקום על המסך.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <ol>
+          <li>כתבו תכנית שמציירת ריבוע בכל מקום שלוחצים עליו עם העכבר, כאשר גודל הריבוע גדל ב-5 בכל לחיצה.</li>
+          <li>כתבו תכנית שמזיזה את הדמות עם ארבעת המקשים (למעלה, למטה, ימינה, שמאלה).</li>
+          <li>אתגר: שלבו לחיצת עכבר עם צבעים לסירוגין — לחיצה ראשונה מציירת באדום, השנייה בכחול, וכן הלאה (רמז: השתמשו במונה מפרק 7 עם בדיקת זוגיות).</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="ch8.html">
+        <span>
+          <span class="nav-label">הפרק הקודם</span>
+          פונקציות עם פרמטרים
+        </span>
+      </a>
+      <a href="index.html">
+        <span>
+          <span class="nav-label">סיימתם את החלק!</span>
+          חזרה לרשימת הפרקים
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+
+    <div class="mark-done">
+      <label>
+        <input type="checkbox" data-mark-done="ch9-done">
+        סימנתי שלמדתי את הפרק הזה
+      </label>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>מדעי המחשב לחטיבת הביניים — אילנית קיי</span>
+    <span>מבוסס על תכנית הלימודים של משרד החינוך</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

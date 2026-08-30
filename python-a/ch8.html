@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 8: פונקציות עם פרמטרים | Python חלק א׳</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      </span>
+      <span class="brand-text">מדעי המחשב<span class="brand-sub">חטיבת ביניים · אילנית קיי</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="תפריט">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <nav class="main-nav">
+      <a href="../index.html">בית</a>
+      <a href="index.html" class="active">פייתון א׳</a>
+    </nav>
+  </div>
+</header>
+
+<main class="chapter-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">בית</a>
+      <span class="sep">/</span>
+      <a href="index.html">Python חלק א׳</a>
+      <span class="sep">/</span>
+      <span>פרק 8</span>
+    </div>
+
+    <div class="chapter-header">
+      <span class="chapter-tag">פרק 8 מתוך 9</span>
+      <h1>פונקציות עם פרמטרים</h1>
+      <span class="chapter-time">⏱ כ-8 שעות לימוד</span>
+    </div>
+
+    <div class="goals-box">
+      <h2>מה נלמד בפרק הזה</h2>
+      <ul>
+        <li>לכתוב פונקציה שמקבלת פרמטר/ים ולזמן אותה עם ערכים שונים</li>
+        <li>להבין את ההבדל בין משתנה מקומי למשתנה גלובלי</li>
+        <li>להשתמש במילת המפתח global כשצריך</li>
+        <li>לשלב Turtle עם פונקציות שמקבלות פרמטרים</li>
+      </ul>
+    </div>
+
+    <div class="lesson-content">
+      <h2>למה בכלל צריך פרמטרים?</h2>
+      <p>בפרק 1 הכרנו פונקציה בלי פרמטרים — היא תמיד עושה בדיוק אותו דבר בכל קריאה. <strong>פרמטר</strong> הוא "משבצת קלט" שמאפשרת לפונקציה לקבל מידע מבחוץ ולהתנהג אחרת בהתאם, בלי לשכפל קוד.</p>
+      <span class="code-label">דוגמה — פונקציה שמברכת אדם ספציפי</span>
+      <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">greet</span>(name):
+    <span class="tok-fn">print</span>(<span class="tok-str">"Hello,"</span>, name, <span class="tok-str">"!"</span>)
+
+<span class="tok-fn">greet</span>(<span class="tok-str">"Emma"</span>)   <span class="tok-com"># Hello, Emma !</span>
+<span class="tok-fn">greet</span>(<span class="tok-str">"Alex"</span>)   <span class="tok-com"># Hello, Alex !</span></code></pre>
+      <figure class="concept-diagram">
+        <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" font-family="Consolas, monospace">
+          <defs>
+            <marker id="arrowFn" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 z" fill="#8a93a8"/>
+            </marker>
+          </defs>
+
+          <rect x="70" y="10" width="180" height="38" rx="10" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+          <text x="160" y="34" text-anchor="middle" font-size="13" fill="#23368f" direction="ltr">greet("Emma")</text>
+
+          <line x1="160" y1="48" x2="160" y2="72" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrowFn)"/>
+
+          <rect x="25" y="76" width="270" height="94" rx="10" fill="#fff" stroke="#3454d1" stroke-width="2" stroke-dasharray="5 4"/>
+          <text x="160" y="100" text-anchor="middle" font-size="13" fill="#1e2433" direction="ltr">def greet(<tspan fill="#d99400" font-weight="700">name</tspan>):</text>
+          <text x="160" y="122" text-anchor="middle" font-size="11" fill="#5b6478">name מקבל את הערך "Emma"</text>
+          <text x="160" y="150" text-anchor="middle" font-size="13" fill="#1e2433" direction="ltr">print("Hello,", <tspan fill="#d99400" font-weight="700">name</tspan>, "!")</text>
+
+          <line x1="160" y1="170" x2="160" y2="194" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrowFn)"/>
+
+          <rect x="80" y="198" width="160" height="30" rx="8" fill="#e7f8f1" stroke="#1e9e6b" stroke-width="2"/>
+          <text x="160" y="218" text-anchor="middle" font-size="12" fill="#146c48" direction="ltr">Hello, Emma !</text>
+        </svg>
+        <figcaption>הערך "Emma" שהועבר בקריאה זורם לתוך הפרמטר name, ומשם משמש בתוך גוף הפונקציה</figcaption>
+      </figure>
+
+      <p>אפשר להעביר גם כמה פרמטרים, מופרדים בפסיקים — הסדר חשוב! הערך הראשון בקריאה יישלח לפרמטר הראשון בהגדרה, וכן הלאה.</p>
+      <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">add</span>(a, b):
+    <span class="tok-fn">print</span>(a + b)
+
+<span class="tok-fn">add</span>(<span class="tok-num">3</span>, <span class="tok-num">5</span>)   <span class="tok-com"># 8</span></code></pre>
+
+      <h2>משתנה מקומי לעומת גלובלי</h2>
+      <p>משתנה שנוצר <strong>בתוך</strong> פונקציה נקרא <strong>משתנה מקומי</strong> — הוא קיים רק בזמן ריצת הפונקציה, ולא ניתן לגשת אליו מחוצה לה. משתנה שהוגדר <strong>מחוץ</strong> לכל הפונקציות נקרא <strong>משתנה גלובלי</strong>, ואפשר לקרוא את ערכו מכל מקום בתכנית.</p>
+      <p>אם רוצים ש<strong>פונקציה תשנה</strong> משתנה גלובלי (ולא רק לקרוא את ערכו), צריך להצהיר על כך בתוך הפונקציה במילת המפתח <code>global</code>:</p>
+      <span class="code-label">דוגמה</span>
+      <pre class="code-block"><code>score = <span class="tok-num">0</span>  <span class="tok-com"># משתנה גלובלי</span>
+
+<span class="tok-kw">def</span> <span class="tok-fn">add_point</span>():
+    <span class="tok-kw">global</span> score
+    score = score + <span class="tok-num">1</span>
+
+<span class="tok-fn">add_point</span>()
+<span class="tok-fn">add_point</span>()
+<span class="tok-fn">print</span>(score)  <span class="tok-com"># 2</span></code></pre>
+      <p>בלי השורה <code>global score</code>, Python הייתה יוצרת בטעות משתנה <em>מקומי חדש</em> בשם score בתוך הפונקציה, וה-score הגלובלי היה נשאר 0 — טעות נפוצה מאוד.</p>
+
+      <h2>פונקציות עם פרמטרים ו-Turtle</h2>
+      <p>שילוב שימושי מאוד: פונקציה שמציירת צורה, ומקבלת כפרמטר את הגודל שלה — כך אפשר לצייר את אותה צורה בגדלים שונים בלי לשכפל קוד:</p>
+      <pre class="code-block"><code><span class="tok-kw">import</span> turtle
+
+wn = turtle.Screen()
+player = turtle.Turtle()
+
+<span class="tok-kw">def</span> <span class="tok-fn">draw_square</span>(size):
+    <span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">4</span>):
+        player.forward(size)
+        player.left(<span class="tok-num">90</span>)
+
+<span class="tok-fn">draw_square</span>(<span class="tok-num">50</span>)
+<span class="tok-fn">draw_square</span>(<span class="tok-num">100</span>)
+turtle.mainloop()</code></pre>
+    </div>
+
+    <div class="key-terms">
+      <h2>מושגי מפתח</h2>
+      <dl class="term-grid">
+        <div><dt>פרמטר</dt><dd>משתנה בהגדרת הפונקציה שמקבל ערך בזמן הקריאה</dd></div>
+        <div><dt>משתנה מקומי</dt><dd>משתנה שנוצר בתוך פונקציה, וקיים רק בתוכה</dd></div>
+        <div><dt>משתנה גלובלי</dt><dd>משתנה שמוגדר מחוץ לפונקציות, נגיש מכל מקום בתכנית</dd></div>
+        <div><dt>global</dt><dd>מילת מפתח שמאפשרת לפונקציה לשנות משתנה גלובלי</dd></div>
+      </dl>
+    </div>
+
+    <div class="tools-box">
+      <h2>🛠️ איפה להריץ את הקוד?</h2>
+      <p>מומלץ לתרגל את הפרק הזה בענן — בלי להתקין שום דבר:</p>
+      <div class="tool-links">
+        <a class="tool-link" href="https://trinket.io/python3" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </span>
+          <span><strong>Trinket</strong><span>סביבת פייתון פשוטה בדפדפן, מצוינת גם היא להתחלה מהירה</span></span>
+        </a>
+        <a class="tool-link" href="notebooks/ch8.ipynb" download>
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+          </span>
+          <span><strong>מחברת תרגול ל-Colab</strong><span>הורידו, ופתחו ב-colab.research.google.com (File ← Upload notebook)</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="worksheet">
+      <h2>דף עבודה — תרגול</h2>
+      <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס בכל שורה כתוצאה מהרצת הקוד הבא?</p>
+        <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">describe</span>(name, age):
+    <span class="tok-fn">print</span>(name, <span class="tok-str">"is"</span>, age)
+
+<span class="tok-fn">describe</span>(<span class="tok-str">"Tom"</span>, <span class="tok-num">14</span>)
+<span class="tok-fn">describe</span>(<span class="tok-num">13</span>, <span class="tok-str">"Maya"</span>)</code></pre>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <pre class="code-block"><code>Tom is 14
+13 is Maya</code></pre>
+            <p>שימו לב לקריאה השנייה: הפרמטרים מועברים <strong>לפי סדר</strong>, לא לפי משמעות — לכן 13 יישלח ל-name ו-"מאיה" יישלח ל-age, מה שיוצר פלט משונה. זו תזכורת לחשיבות סדר הפרמטרים.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-trace">מצאו את הטעות</span></div>
+        <p>הקוד הבא נועד לספור כמה פעמים נקראה הפונקציה, אבל ה-counter נשאר תמיד 0. מהי הטעות?</p>
+        <pre class="code-block"><code>counter = <span class="tok-num">0</span>
+
+<span class="tok-kw">def</span> <span class="tok-fn">log_call</span>():
+    counter = counter + <span class="tok-num">1</span>
+
+<span class="tok-fn">log_call</span>()
+<span class="tok-fn">log_call</span>()
+<span class="tok-fn">print</span>(counter)</code></pre>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <p>בלי <code>global counter</code> בתוך הפונקציה, Python יוצרת משתנה <strong>מקומי</strong> חדש בשם counter בתוך <code>log_call</code> — וזה בכלל גורם לשגיאת ריצה (ניסיון לקרוא ל-counter המקומי לפני שהוגדר). התיקון: להוסיף <code>global counter</code> כשורה הראשונה בתוך הפונקציה.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <ol>
+          <li>כתבו פונקציה בשם <code>is_even</code> שמקבלת מספר, ומדפיסה אם הוא זוגי או אי-זוגי.</li>
+          <li>כתבו פונקציה בשם <code>average</code> שמקבלת שני מספרים, ומדפיסה את הממוצע ביניהם.</li>
+          <li>כתבו משתנה גלובלי בשם <code>attempts</code> המתחיל מ-0, ופונקציה שמעלה אותו ב-1 בכל קריאה (השתמשו ב-global). זמנו אותה 3 פעמים והדפיסו את הערך הסופי.</li>
+        </ol>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-write">פרויקט קטן — תפריט מחשבון</span></div>
+        <p>כתבו 4 פונקציות: <code>add(a, b)</code>, <code>subtract(a, b)</code>, <code>multiply(a, b)</code>, <code>divide(a, b)</code> — כל אחת מקבלת שני מספרים ומדפיסה את התוצאה. אחר כך כתבו תכנית שמציגה למשתמש/ת תפריט (1=חיבור, 2=חיסור, 3=כפל, 4=חילוק), קולטת שני מספרים ובחירה, וקוראת לפונקציה המתאימה.</p>
+        <details class="answer">
+          <summary>הצג פתרון אפשרי</summary>
+          <div class="answer-body">
+            <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">add</span>(a, b):
+    <span class="tok-fn">print</span>(<span class="tok-str">"Result:"</span>, a + b)
+
+<span class="tok-kw">def</span> <span class="tok-fn">subtract</span>(a, b):
+    <span class="tok-fn">print</span>(<span class="tok-str">"Result:"</span>, a - b)
+
+<span class="tok-kw">def</span> <span class="tok-fn">multiply</span>(a, b):
+    <span class="tok-fn">print</span>(<span class="tok-str">"Result:"</span>, a * b)
+
+<span class="tok-kw">def</span> <span class="tok-fn">divide</span>(a, b):
+    <span class="tok-fn">print</span>(<span class="tok-str">"Result:"</span>, a / b)
+
+<span class="tok-fn">print</span>(<span class="tok-str">"1. Add"</span>)
+<span class="tok-fn">print</span>(<span class="tok-str">"2. Subtract"</span>)
+<span class="tok-fn">print</span>(<span class="tok-str">"3. Multiply"</span>)
+<span class="tok-fn">print</span>(<span class="tok-str">"4. Divide"</span>)
+
+choice = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Choose an option (1-4): "</span>))
+num1 = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"First number: "</span>))
+num2 = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Second number: "</span>))
+
+<span class="tok-kw">if</span> choice == <span class="tok-num">1</span>:
+    <span class="tok-fn">add</span>(num1, num2)
+<span class="tok-kw">elif</span> choice == <span class="tok-num">2</span>:
+    <span class="tok-fn">subtract</span>(num1, num2)
+<span class="tok-kw">elif</span> choice == <span class="tok-num">3</span>:
+    <span class="tok-fn">multiply</span>(num1, num2)
+<span class="tok-kw">elif</span> choice == <span class="tok-num">4</span>:
+    <span class="tok-fn">divide</span>(num1, num2)</code></pre>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="ch7.html">
+        <span>
+          <span class="nav-label">הפרק הקודם</span>
+          בעיות אלגוריתמיות
+        </span>
+      </a>
+      <a href="ch9.html">
+        <span>
+          <span class="nav-label">הפרק הבא</span>
+          תכנות מונחה אירועים
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+
+    <div class="mark-done">
+      <label>
+        <input type="checkbox" data-mark-done="ch8-done">
+        סימנתי שלמדתי את הפרק הזה
+      </label>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>מדעי המחשב לחטיבת הביניים — אילנית קיי</span>
+    <span>מבוסס על תכנית הלימודים של משרד החינוך</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

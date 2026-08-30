@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 2: תנועה ומבוא לגרפיקה | Python חלק א׳</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      </span>
+      <span class="brand-text">מדעי המחשב<span class="brand-sub">חטיבת ביניים · אילנית קיי</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="תפריט">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <nav class="main-nav">
+      <a href="../index.html">בית</a>
+      <a href="index.html" class="active">פייתון א׳</a>
+    </nav>
+  </div>
+</header>
+
+<main class="chapter-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">בית</a>
+      <span class="sep">/</span>
+      <a href="index.html">Python חלק א׳</a>
+      <span class="sep">/</span>
+      <span>פרק 2</span>
+    </div>
+
+    <div class="chapter-header">
+      <span class="chapter-tag">פרק 2 מתוך 9</span>
+      <h1>תנועה ומבוא לגרפיקה — Turtle</h1>
+      <span class="chapter-time">⏱ כ-6 שעות לימוד</span>
+    </div>
+
+    <div class="goals-box">
+      <h2>מה נלמד בפרק הזה</h2>
+      <ul>
+        <li>לייבא ולהפעיל את ספריית הגרפיקה Turtle</li>
+        <li>ליצור משטח עבודה (מסך) ודמות (צב) שמציירת עליו</li>
+        <li>לזמן פקודות תנועה: קדימה, פנייה בזווית, הרמת/הורדת העט</li>
+        <li>לשלב פקודות תנועה בתוך לולאה כדי לצייר צורות</li>
+      </ul>
+    </div>
+
+    <div class="lesson-content">
+      <h2>מהי ספריית Turtle?</h2>
+      <p>Turtle היא ספרייה מובנית ב-Python שמדמה "צב" עם עט הצמוד אליו: כל תזוזה של הצב משאירה קו על המסך. זו דרך מצוינת להתחיל עם גרפיקה, כי אפשר "לחשוב" כמו הצב — לאן פונים, כמה צעדים הולכים.</p>
+
+      <h3>יצירת משטח עבודה ודמות</h3>
+      <pre class="code-block"><code><span class="tok-kw">import</span> turtle
+
+wn = turtle.Screen()      <span class="tok-com"># יצירת חלון (משטח ציור)</span>
+player = turtle.Turtle()  <span class="tok-com"># יצירת הצב שיצייר</span>
+player.shape(<span class="tok-str">"turtle"</span>)     <span class="tok-com"># עיצוב הדמות כצורת צב</span></code></pre>
+
+      <h3>פקודות תנועה בסיסיות</h3>
+      <p>הפקודות הנפוצות ביותר: <code>forward(n)</code> מזיזה את הצב n צעדים קדימה, <code>left(angle)</code> ו-<code>right(angle)</code> מסובבות אותו בזווית נתונה (במעלות).</p>
+      <pre class="code-block"><code>player.forward(<span class="tok-num">100</span>)  <span class="tok-com"># 100 צעדים קדימה</span>
+player.left(<span class="tok-num">90</span>)     <span class="tok-com"># סיבוב שמאלה ב-90 מעלות</span>
+player.forward(<span class="tok-num">50</span>)
+turtle.mainloop()      <span class="tok-com"># משאיר את חלון הציור פתוח</span></code></pre>
+
+      <h2>ציור צורות באמצעות לולאה</h2>
+      <p>הכוח האמיתי של Turtle מתגלה כשמשלבים אותה עם לולאת <code>for</code> (נכיר לעומק בפרק 5). כדי לצייר ריבוע, למשל, פשוט חוזרים 4 פעמים על "התקדם וסובב 90 מעלות":</p>
+      <span class="code-label">דוגמה — ציור ריבוע</span>
+      <pre class="code-block"><code><span class="tok-kw">import</span> turtle
+
+wn = turtle.Screen()
+player = turtle.Turtle()
+player.shape(<span class="tok-str">"turtle"</span>)
+
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">4</span>):
+    player.forward(<span class="tok-num">80</span>)
+    player.left(<span class="tok-num">90</span>)
+
+turtle.mainloop()</code></pre>
+      <p>שימו לב: כדי לצייר מצולע משוכלל בעל n צלעות, זווית הפנייה בכל פעם היא <code>360 / n</code> מעלות — כי סכום כל הפניות חייב להשלים מעגל שלם.</p>
+
+      <h3>שינוי מאפייני הדמות</h3>
+      <p>אפשר גם לשלוט על איך הצב נראה ומתנהג: <code>penup()</code> ו-<code>pendown()</code> מרימים/מורידים את העט (מזיזים בלי לצייר), <code>hideturtle()</code> מסתירה את סמל הצב, ו-<code>color("red")</code> קובעת צבע קו.</p>
+    </div>
+
+    <div class="key-terms">
+      <h2>מושגי מפתח</h2>
+      <dl class="term-grid">
+        <div><dt>Screen</dt><dd>אובייקט שמייצג את חלון הציור</dd></div>
+        <div><dt>Turtle</dt><dd>אובייקט שמייצג את הדמות המציירת</dd></div>
+        <div><dt>forward / left / right</dt><dd>פקודות תנועה: התקדמות וסיבוב בזווית</dd></div>
+        <div><dt>penup / pendown</dt><dd>הרמה/הורדה של העט — קובעת אם התזוזה תצייר קו</dd></div>
+      </dl>
+    </div>
+
+    <div class="tools-box">
+      <h2>🛠️ איפה להריץ את הקוד?</h2>
+      <p>גרפיקת Turtle צריכה חלון תצוגה, ולכן היא לא תמיד רצה בכל סביבה מקוונת. שני כלים מומלצים:</p>
+      <div class="tool-links">
+        <a class="tool-link" href="https://trinket.io/features/turtle_graphics" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </span>
+          <span><strong>Trinket</strong><span>סביבת Turtle ישירות בדפדפן, בלי התקנה — הכי נוח לתרגול הפרק הזה</span></span>
+        </a>
+        <a class="tool-link" href="notebooks/ch2.ipynb" download>
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+          </span>
+          <span><strong>מחברת תרגול ל-Colab</strong><span>הורידו ופתחו ב-colab.research.google.com — שימו לב ש-Turtle לא תמיד מוצג שם, Trinket עדיף לפרק הזה</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="worksheet">
+      <h2>דף עבודה — תרגול</h2>
+      <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר, מהקל למאתגר. נסו לענות לפני שאתם בודקים את התשובה.</p>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>לפניכם קטע קוד. בלי להריץ אותו — תארו במילים שלכם איזו צורה תצייר הדמות, וכמה פעמים תתבצע כל אחת מהלולאות.</p>
+        <pre class="code-block"><code><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">3</span>):
+    player.forward(<span class="tok-num">70</span>)
+    player.left(<span class="tok-num">120</span>)</code></pre>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <p>הלולאה תתבצע 3 פעמים. בכל פעם הצב מתקדם 70 צעדים ופונה שמאלה ב-120 מעלות. מכיוון ש-3 × 120 = 360 מעלות (מעגל שלם), הצב יחזור בדיוק לנקודת ההתחלה ולכיוון ההתחלתי — כלומר תצויר <strong>משולש שווה-צלעות</strong>.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-shape">מה יצייר הצב?</span></div>
+        <p>קטע הקוד הבא רץ מנקודת ההתחלה. איזו מהצורות שלפניכם תתקבל על המסך? הקיפו את התשובה הנכונה.</p>
+        <pre class="code-block"><code>size = <span class="tok-num">80</span>
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">4</span>):
+    <span class="tok-kw">for</span> j <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">4</span>):
+        player.forward(size)
+        player.left(<span class="tok-num">90</span>)
+    size = size - <span class="tok-num">20</span></code></pre>
+        <div class="shape-grid">
+          <div class="shape-card">
+            <svg viewBox="0 0 120 120"><polyline points="20,100 20,20 100,20 100,100 20,100" fill="none" stroke="#3454d1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="shape-label">א</div>
+          </div>
+          <div class="shape-card">
+            <svg viewBox="0 0 120 120" fill="none" stroke="#3454d1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20,100 20,20 100,20 100,100 20,100"/>
+              <polyline points="20,100 20,40 80,40 80,100 20,100"/>
+              <polyline points="20,100 20,60 60,60 60,100 20,100"/>
+              <polyline points="20,100 20,80 40,80 40,100 20,100"/>
+            </svg>
+            <div class="shape-label">ב</div>
+          </div>
+          <div class="shape-card">
+            <svg viewBox="0 0 120 120" fill="none" stroke="#3454d1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="10,100 10,70 30,70 30,100"/>
+              <polyline points="45,100 45,70 65,70 65,100"/>
+              <polyline points="80,100 80,70 100,70 100,100"/>
+            </svg>
+            <div class="shape-label">ג</div>
+          </div>
+          <div class="shape-card">
+            <svg viewBox="0 0 120 120" fill="none" stroke="#3454d1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="10,110 10,80 40,80 40,50 70,50 70,20 100,20"/>
+            </svg>
+            <div class="shape-label">ד</div>
+          </div>
+        </div>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <p>התשובה הנכונה היא <strong>ב</strong>. הלולאה הפנימית מציירת ריבוע שלם (4 צלעות, פנייה של 90 מעלות בכל פעם — בדיוק כמו בשאלה 1 הפרק), ובסיום כל ריבוע גודל הצלע קטן ב-20. מכיוון שהצב חוזר בכל פעם לאותה נקודת התחלה ולאותו כיוון (סיבוב מלא של 360 מעלות), נוצרים 4 ריבועים "מקוננים" הנפתחים מאותה פינה.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <p>רוצים לצייר מצולע משוכלל בעל <strong>8</strong> צלעות. השלימו את הערך החסר בזווית הפנייה:</p>
+        <pre class="code-block"><code><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">8</span>):
+    player.forward(<span class="tok-num">50</span>)
+    player.left(______)</code></pre>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <p><code>360 / 8</code> שהם <strong>45</strong> מעלות. הכלל: כדי לצייר מצולע משוכלל בעל n צלעות, זווית הפנייה בכל צעד היא 360/n מעלות — כי סכום כל הפניות חייב להשלים סיבוב מלא.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תוכנית שמציירת "מדרגות" של 5 שלבים (כמו בצורה ד׳ שבשאלה 2, אך עם 5 שלבים במקום 3). נסו קודם בעצמכם, ורק אז בדקו את התשובה המוצעת.</p>
+        <details class="answer">
+          <summary>הצג פתרון אפשרי</summary>
+          <div class="answer-body">
+            <pre class="code-block"><code><span class="tok-kw">import</span> turtle
+
+wn = turtle.Screen()
+player = turtle.Turtle()
+
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">5</span>):
+    player.forward(<span class="tok-num">30</span>)
+    player.left(<span class="tok-num">90</span>)
+    player.forward(<span class="tok-num">30</span>)
+    player.right(<span class="tok-num">90</span>)
+
+turtle.mainloop()</code></pre>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-write">אתגר</span></div>
+        <ol>
+          <li>כתבו תכנית שמציירת משולש שווה-צלעות (רמז: לכל פנייה יש להשתמש בזווית 360/3 מעלות).</li>
+          <li>שנו את התכנית כך שתצייר מצולע בעל 6 צלעות.</li>
+          <li>הוסיפו <code>penup()</code> באמצע התכנית ונסו להזיז את הצב למקום חדש בלי לצייר קו, ואז המשיכו לצייר עם <code>pendown()</code>.</li>
+        </ol>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">6</span><span class="wq-type type-write">פרויקט קטן — ציירו בית</span></div>
+        <p>נסו לצייר בית פשוט: ריבוע לגוף הבית, ומשולש לגג מעליו. רמז — אחרי שהריבוע מוכן, סובבו את הצב לזווית המתאימה כדי "לטפס" לפינה העליונה ולהתחיל לצייר את הגג משם.</p>
+        <details class="answer">
+          <summary>הצג פתרון אפשרי</summary>
+          <div class="answer-body">
+            <pre class="code-block"><code><span class="tok-kw">import</span> turtle
+
+wn = turtle.Screen()
+player = turtle.Turtle()
+
+<span class="tok-com"># גוף הבית - ריבוע</span>
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">4</span>):
+    player.forward(<span class="tok-num">100</span>)
+    player.left(<span class="tok-num">90</span>)
+
+<span class="tok-com"># טיפוס לפינה העליונה של הריבוע</span>
+player.forward(<span class="tok-num">100</span>)
+player.left(<span class="tok-num">30</span>)
+
+<span class="tok-com"># הגג - משולש</span>
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">3</span>):
+    player.forward(<span class="tok-num">100</span>)
+    player.left(<span class="tok-num">120</span>)
+
+turtle.mainloop()</code></pre>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="ch1.html">
+        <span>
+          <span class="nav-label">הפרק הקודם</span>
+          מבוא ל-Python
+        </span>
+      </a>
+      <a href="ch3.html">
+        <span>
+          <span class="nav-label">הפרק הבא</span>
+          משתנים, קלט/פלט וחישובים
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+
+    <div class="mark-done">
+      <label>
+        <input type="checkbox" data-mark-done="ch2-done">
+        סימנתי שלמדתי את הפרק הזה
+      </label>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>מדעי המחשב לחטיבת הביניים — אילנית קיי</span>
+    <span>מבוסס על תכנית הלימודים של משרד החינוך</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

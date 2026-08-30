@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 7: בעיות אלגוריתמיות | Python חלק א׳</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      </span>
+      <span class="brand-text">מדעי המחשב<span class="brand-sub">חטיבת ביניים · אילנית קיי</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="תפריט">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <nav class="main-nav">
+      <a href="../index.html">בית</a>
+      <a href="index.html" class="active">פייתון א׳</a>
+    </nav>
+  </div>
+</header>
+
+<main class="chapter-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">בית</a>
+      <span class="sep">/</span>
+      <a href="index.html">Python חלק א׳</a>
+      <span class="sep">/</span>
+      <span>פרק 7</span>
+    </div>
+
+    <div class="chapter-header">
+      <span class="chapter-tag">פרק 7 מתוך 9</span>
+      <h1>בעיות אלגוריתמיות</h1>
+      <span class="chapter-time">⏱ כ-6 שעות לימוד</span>
+    </div>
+
+    <div class="goals-box">
+      <h2>מה נלמד בפרק הזה</h2>
+      <ul>
+        <li>להשתמש בתבנית מונה (counter) כדי לספור כמה פעמים משהו קרה</li>
+        <li>להשתמש בתבנית צובר (accumulator) כבר מוכרת, גם לצרכים מתקדמים יותר</li>
+        <li>ליצור ולהשתמש במספרים אקראיים בעזרת הספרייה random</li>
+        <li>למצוא ערך מינימלי/מקסימלי מתוך סדרת קלטים</li>
+      </ul>
+    </div>
+
+    <div class="lesson-content">
+      <figure class="concept-diagram">
+        <svg viewBox="0 0 380 110" xmlns="http://www.w3.org/2000/svg" font-family="Consolas, monospace">
+          <defs>
+            <marker id="arrowAcc" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 z" fill="#8a93a8"/>
+            </marker>
+          </defs>
+
+          <circle cx="30" cy="55" r="26" fill="#f1f2f6" stroke="#5b6478" stroke-width="2"/>
+          <text x="30" y="60" text-anchor="middle" font-size="14" fill="#1e2433">0</text>
+
+          <line x1="58" y1="55" x2="102" y2="55" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrowAcc)"/>
+          <text x="80" y="42" text-anchor="middle" font-size="12" font-weight="700" fill="#1e9e6b">+5</text>
+
+          <circle cx="130" cy="55" r="26" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+          <text x="130" y="60" text-anchor="middle" font-size="14" fill="#23368f">5</text>
+
+          <line x1="158" y1="55" x2="202" y2="55" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrowAcc)"/>
+          <text x="180" y="42" text-anchor="middle" font-size="12" font-weight="700" fill="#1e9e6b">+3</text>
+
+          <circle cx="230" cy="55" r="26" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+          <text x="230" y="60" text-anchor="middle" font-size="14" fill="#23368f">8</text>
+
+          <line x1="258" y1="55" x2="302" y2="55" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrowAcc)"/>
+          <text x="280" y="42" text-anchor="middle" font-size="12" font-weight="700" fill="#1e9e6b">+7</text>
+
+          <circle cx="330" cy="55" r="26" fill="#e7f8f1" stroke="#1e9e6b" stroke-width="2"/>
+          <text x="330" y="60" text-anchor="middle" font-size="14" fill="#146c48">15</text>
+
+          <text x="190" y="100" text-anchor="middle" font-size="11" fill="#5b6478">total מתחיל מ-0, ובכל סיבוב מצטרף אליו ערך חדש</text>
+        </svg>
+        <figcaption>כך "צובר" total בונה את הסכום שלב אחר שלב לאורך הלולאה, עבור הקלטים 5, 3, 7</figcaption>
+      </figure>
+
+      <h2>תבנית המונה (Counter)</h2>
+      <p>מונה הוא משתנה שסופר כמה פעמים תנאי מסוים התקיים — הוא מאותחל ל-0 לפני הלולאה, ובכל פעם שהתנאי מתקיים מוסיפים לו 1 (ולא את הערך עצמו, כמו בצובר).</p>
+      <span class="code-label">דוגמה — כמה ציונים היו מעל 80</span>
+      <pre class="code-block"><code>count = <span class="tok-num">0</span>
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">10</span>):
+    grade = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Grade: "</span>))
+    <span class="tok-kw">if</span> grade &gt; <span class="tok-num">80</span>:
+        count = count + <span class="tok-num">1</span>
+<span class="tok-fn">print</span>(<span class="tok-str">"Number of grades above 80:"</span>, count)</code></pre>
+
+      <h2>צובר ומונה יחד</h2>
+      <p>שילוב נפוץ מאוד: לצבור סכום ובמקביל לספור כמה ערכים נצברו, כדי לחשב בסוף ממוצע:</p>
+      <pre class="code-block"><code>total = <span class="tok-num">0</span>
+count = <span class="tok-num">0</span>
+grade = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Grade (negative number to finish): "</span>))
+<span class="tok-kw">while</span> grade &gt;= <span class="tok-num">0</span>:
+    total = total + grade
+    count = count + <span class="tok-num">1</span>
+    grade = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Grade (negative number to finish): "</span>))
+<span class="tok-kw">if</span> count &gt; <span class="tok-num">0</span>:
+    <span class="tok-fn">print</span>(<span class="tok-str">"Average:"</span>, total / count)</code></pre>
+      <p>שימו לב לבדיקה <code>if count &gt; 0</code> בסוף — היא מונעת חלוקה באפס, למקרה שהמשתמש לא הכניס אף ציון.</p>
+
+      <h2>מספרים אקראיים</h2>
+      <p>כדי ליצור מספר אקראי, יש לייבא את הספרייה <code>random</code> ולהשתמש בפונקציה <code>randint(a, b)</code>, שמחזירה מספר שלם אקראי בטווח מ-a עד b <strong>כולל שני הקצוות</strong>.</p>
+      <pre class="code-block"><code><span class="tok-kw">import</span> random
+
+dice = random.randint(<span class="tok-num">1</span>, <span class="tok-num">6</span>)   <span class="tok-com"># הטלת קובייה - מספר בין 1 ל-6</span>
+<span class="tok-fn">print</span>(<span class="tok-str">"Result:"</span>, dice)</code></pre>
+      <p>מספרים אקראיים שימושיים מאוד למשחקים, הגרלות ותרגילים — ומשולבים היטב עם לולאות: לדוגמה, סימולציה של הטלת קובייה 100 פעמים וספירת התוצאות.</p>
+
+      <h2>מציאת מינימום / מקסימום</h2>
+      <p>תבנית נפוצה נוספת: לעבור על סדרת ערכים ולמצוא את הגדול/הקטן ביותר מביניהם. הרעיון: שומרים "שיא זמני" במשתנה, ומעדכנים אותו בכל פעם שמוצאים ערך גדול (או קטן) ממנו.</p>
+      <pre class="code-block"><code>biggest = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"First number: "</span>))
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">9</span>):
+    num = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Number: "</span>))
+    <span class="tok-kw">if</span> num &gt; biggest:
+        biggest = num
+<span class="tok-fn">print</span>(<span class="tok-str">"Largest:"</span>, biggest)</code></pre>
+      <p>שימו לב שאתחלנו את <code>biggest</code> עם הקלט <strong>הראשון</strong> ולא עם 0 — כי אם כל המספרים שליליים, אתחול ל-0 היה נותן תשובה שגויה.</p>
+    </div>
+
+    <div class="key-terms">
+      <h2>מושגי מפתח</h2>
+      <dl class="term-grid">
+        <div><dt>מונה (counter)</dt><dd>משתנה שסופר כמה פעמים תנאי התקיים, בד"כ +1 בכל פעם</dd></div>
+        <div><dt>צובר (accumulator)</dt><dd>משתנה שצובר סכום של ערכים לאורך לולאה</dd></div>
+        <div><dt>random.randint(a, b)</dt><dd>מחזירה מספר שלם אקראי בטווח a עד b כולל</dd></div>
+        <div><dt>שיא זמני</dt><dd>משתנה ששומר את הערך המקסימלי/מינימלי שנמצא עד כה</dd></div>
+      </dl>
+    </div>
+
+    <div class="tools-box">
+      <h2>🛠️ איפה להריץ את הקוד?</h2>
+      <p>מומלץ לתרגל את הפרק הזה בענן — בלי להתקין שום דבר:</p>
+      <div class="tool-links">
+        <a class="tool-link" href="https://trinket.io/python3" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </span>
+          <span><strong>Trinket</strong><span>סביבת פייתון פשוטה בדפדפן, מצוינת גם היא להתחלה מהירה</span></span>
+        </a>
+        <a class="tool-link" href="notebooks/ch7.ipynb" download>
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+          </span>
+          <span><strong>מחברת תרגול ל-Colab</strong><span>הורידו, ופתחו ב-colab.research.google.com (File ← Upload notebook)</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="worksheet">
+      <h2>דף עבודה — תרגול</h2>
+      <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-trace">מצאו את הטעות</span></div>
+        <p>הפעולה הבאה נועדה לקלוט 5 מספרים ולהדפיס את סכומם, אבל נפלה בה טעות לוגית. מהי הטעות, וכיצד יש לתקנה?</p>
+        <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">sum_numbers</span>():
+    total = <span class="tok-num">0</span>
+    <span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">5</span>):
+        num = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Number: "</span>))
+        total = num
+    <span class="tok-fn">print</span>(total)</code></pre>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <p>השורה <code>total = num</code> מחליפה בכל פעם את הערך הקודם ב-total במקום <strong>לצבור</strong> אליו — כך שבסוף total מכיל רק את המספר האחרון שהוכנס. התיקון: <code>total = total + num</code> (זו בדיוק תבנית הצובר).</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <p>פעולה שקולטת ציונים עד שמוזן מספר שלילי, וסופרת כמה ציונים היו מעל 90. השלימו את החסר:</p>
+        <pre class="code-block"><code>count = <span class="tok-num">0</span>
+grade = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Grade (negative to finish): "</span>))
+<span class="tok-kw">while</span> grade ______ <span class="tok-num">0</span>:
+    <span class="tok-kw">if</span> grade &gt; <span class="tok-num">90</span>:
+        count = count ______ <span class="tok-num">1</span>
+    grade = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Grade (negative to finish): "</span>))
+<span class="tok-fn">print</span>(<span class="tok-str">"Number of grades above 90:"</span>, count)</code></pre>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <p>התנאי בלולאה: <code>grade &gt;= 0</code> (להמשיך כל עוד הציון לא שלילי). עדכון המונה: <code>count = count + 1</code>.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <ol>
+          <li>כתבו תכנית שמדמה 20 הטלות קובייה, וסופרת כמה פעמים יצא המספר 6.</li>
+          <li>כתבו תכנית שקולטת 8 מספרים, ומדפיסה את הקטן ביותר מביניהם.</li>
+          <li>שלבו מונה וצובר: קלטו 10 מספרים, וחשבו את ממוצע המספרים החיוביים בלבד (כולל ספירה נכונה שלהם).</li>
+        </ol>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-write">פרויקט קטן — משחק ניחוש</span></div>
+        <p>כתבו משחק "נחשו את המספר": המחשב בוחר מספר אקראי בין 1 ל-20 (עם <code>random.randint</code>), והשחקן/ית מנסה לנחש. בכל ניחוש שגוי, התכנית תדפיס "too high" או "too low" בהתאם. המשחק נגמר כשמנחשים נכון — והתכנית תדפיס גם כמה ניסיונות היו נדרשים (השתמשו במונה).</p>
+        <details class="answer">
+          <summary>הצג פתרון אפשרי</summary>
+          <div class="answer-body">
+            <pre class="code-block"><code><span class="tok-kw">import</span> random
+
+secret = random.randint(<span class="tok-num">1</span>, <span class="tok-num">20</span>)
+attempts = <span class="tok-num">0</span>
+guess = <span class="tok-num">0</span>
+
+<span class="tok-kw">while</span> guess != secret:
+    guess = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Guess a number (1-20): "</span>))
+    attempts = attempts + <span class="tok-num">1</span>
+    <span class="tok-kw">if</span> guess &lt; secret:
+        <span class="tok-fn">print</span>(<span class="tok-str">"too low"</span>)
+    <span class="tok-kw">elif</span> guess &gt; secret:
+        <span class="tok-fn">print</span>(<span class="tok-str">"too high"</span>)
+
+<span class="tok-fn">print</span>(<span class="tok-str">"Correct! Attempts:"</span>, attempts)</code></pre>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="ch6.html">
+        <span>
+          <span class="nav-label">הפרק הקודם</span>
+          מחרוזות (str)
+        </span>
+      </a>
+      <a href="ch8.html">
+        <span>
+          <span class="nav-label">הפרק הבא</span>
+          פונקציות עם פרמטרים
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+
+    <div class="mark-done">
+      <label>
+        <input type="checkbox" data-mark-done="ch7-done">
+        סימנתי שלמדתי את הפרק הזה
+      </label>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>מדעי המחשב לחטיבת הביניים — אילנית קיי</span>
+    <span>מבוסס על תכנית הלימודים של משרד החינוך</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

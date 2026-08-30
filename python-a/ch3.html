@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 3: משתנים, קלט/פלט וחישובים | Python חלק א׳</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      </span>
+      <span class="brand-text">מדעי המחשב<span class="brand-sub">חטיבת ביניים · אילנית קיי</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="תפריט">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <nav class="main-nav">
+      <a href="../index.html">בית</a>
+      <a href="index.html" class="active">פייתון א׳</a>
+    </nav>
+  </div>
+</header>
+
+<main class="chapter-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">בית</a>
+      <span class="sep">/</span>
+      <a href="index.html">Python חלק א׳</a>
+      <span class="sep">/</span>
+      <span>פרק 3</span>
+    </div>
+
+    <div class="chapter-header">
+      <span class="chapter-tag">פרק 3 מתוך 9</span>
+      <h1>משתנים, קלט/פלט וחישובים</h1>
+      <span class="chapter-time">⏱ כ-4 שעות לימוד</span>
+    </div>
+
+    <div class="goals-box">
+      <h2>מה נלמד בפרק הזה</h2>
+      <ul>
+        <li>להגדיר משתנה ולהבין מהו טיפוס נתונים</li>
+        <li>לקלוט קלט מהמשתמש באמצעות input ולהמיר אותו לטיפוס הנכון</li>
+        <li>לבצע חישובים מתמטיים, כולל חילוק שלם (//) ושארית חלוקה (%)</li>
+        <li>להכיר את כללי הבחירה של שמות משתנים ואת המילים השמורות בשפה</li>
+      </ul>
+    </div>
+
+    <div class="lesson-content">
+      <h2>מהו משתנה?</h2>
+      <p>משתנה הוא "תיבה" עם שם, שבה שומרים ערך לשימוש מאוחר יותר בתכנית. יוצרים משתנה פשוט על ידי השמה (סימן =):</p>
+      <pre class="code-block"><code>name = <span class="tok-str">"Emma"</span>
+age = <span class="tok-num">13</span>
+height = <span class="tok-num">1.6</span></code></pre>
+      <p>ב-Python אין צורך להצהיר מראש מהו טיפוס המשתנה — הוא נקבע אוטומטית לפי הערך שמשמים לתוכו: <code>str</code> למחרוזת (טקסט), <code>int</code> למספר שלם, <code>float</code> למספר עשרוני, ו-<code>bool</code> לערכי אמת/שקר.</p>
+
+      <figure class="concept-diagram">
+        <svg viewBox="0 0 340 165" xmlns="http://www.w3.org/2000/svg" font-family="Consolas, monospace">
+          <text x="60" y="18" text-anchor="middle" font-size="13" font-weight="700" fill="#1e2433">name</text>
+          <line x1="60" y1="24" x2="60" y2="42" stroke="#8a93a8" stroke-width="2"/>
+          <rect x="15" y="44" width="90" height="46" rx="10" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+          <text x="60" y="73" text-anchor="middle" font-size="14" fill="#23368f" direction="ltr">"Emma"</text>
+          <rect x="30" y="98" width="60" height="22" rx="11" fill="#ffb703"/>
+          <text x="60" y="113" text-anchor="middle" font-size="11" font-weight="700" fill="#3a2a00">str</text>
+
+          <text x="170" y="18" text-anchor="middle" font-size="13" font-weight="700" fill="#1e2433">age</text>
+          <line x1="170" y1="24" x2="170" y2="42" stroke="#8a93a8" stroke-width="2"/>
+          <rect x="125" y="44" width="90" height="46" rx="10" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+          <text x="170" y="73" text-anchor="middle" font-size="14" fill="#23368f">13</text>
+          <rect x="140" y="98" width="60" height="22" rx="11" fill="#ffb703"/>
+          <text x="170" y="113" text-anchor="middle" font-size="11" font-weight="700" fill="#3a2a00">int</text>
+
+          <text x="280" y="18" text-anchor="middle" font-size="13" font-weight="700" fill="#1e2433">height</text>
+          <line x1="280" y1="24" x2="280" y2="42" stroke="#8a93a8" stroke-width="2"/>
+          <rect x="235" y="44" width="90" height="46" rx="10" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+          <text x="280" y="73" text-anchor="middle" font-size="14" fill="#23368f">1.6</text>
+          <rect x="250" y="98" width="60" height="22" rx="11" fill="#ffb703"/>
+          <text x="280" y="113" text-anchor="middle" font-size="11" font-weight="700" fill="#3a2a00">float</text>
+
+          <text x="170" y="150" text-anchor="middle" font-size="12" fill="#5b6478">כל משתנה הוא "קופסה" עם שם, שמחזיקה ערך מטיפוס מסוים</text>
+        </svg>
+        <figcaption>כל משתנה הוא תווית שמצביעה על קופסה בזיכרון — הקופסה מחזיקה ערך, וסוג הערך קובע את טיפוס הנתונים</figcaption>
+      </figure>
+
+      <h3>כללים לשמות משתנים</h3>
+      <p>מקובל לכתוב שמות משתנים באותיות קטנות, ולהפריד בין מילים בקו תחתון, למשל <code>student_grade</code>.</p>
+
+      <div class="rules-grid">
+        <div class="rule-box allow">
+          <h4>✅ מה מותר בשם משתנה</h4>
+          <ul>
+            <li><strong>אותיות אנגליות:</strong> גדולות או קטנות (A-Z, a-z)</li>
+            <li><strong>ספרות:</strong> 0-9 (אבל לא בתחילת השם!)</li>
+            <li><strong>קו תחתון:</strong> <code>_</code> — יכול להיות בכל מקום, כולל בתחילת השם</li>
+          </ul>
+        </div>
+        <div class="rule-box deny">
+          <h4>❌ מה אסור בשם משתנה</h4>
+          <ul>
+            <li><strong>להתחיל בספרה</strong> — למשל <code>2num</code> אסור</li>
+            <li><strong>רווחים או תווים מיוחדים</strong> — כמו <code>-</code> <code>!</code> <code>?</code></li>
+            <li><strong>מילה שמורה</strong> — למשל <code>for</code>, <code>if</code>, <code>while</code>, <code>and</code>, <code>or</code>, <code>not</code>, <code>def</code>, <code>class</code>, <code>import</code>, <code>True</code>, <code>False</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>קליטת קלט מהמשתמש</h2>
+      <p>ההוראה <code>input()</code> עוצרת את התכנית וממתינה שהמשתמש יקליד משהו במקלדת. חשוב לדעת: <code>input()</code> תמיד מחזירה <strong>מחרוזת</strong> — גם אם המשתמש הקליד מספר! לכן כדי לקבל מספר שלם צריך לעטוף ב-<code>int()</code>, ולמספר עשרוני ב-<code>float()</code>.</p>
+      <pre class="code-block"><code>name = <span class="tok-fn">input</span>(<span class="tok-str">"What is your name? "</span>)
+age = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"How old are you? "</span>))
+<span class="tok-fn">print</span>(<span class="tok-str">"Hello"</span>, name, <span class="tok-str">", next year you'll be"</span>, age + <span class="tok-num">1</span>)</code></pre>
+
+      <h2>אופרטורים מתמטיים</h2>
+      <p>מלבד ‎+ ‎- ‎* ‎/ הרגילים, בפייתון יש שני אופרטורים שכדאי להכיר טוב, כי הם מופיעים המון בבחינות ובתרגילים:</p>
+      <ul>
+        <li><code>//</code> — <strong>חילוק שלם</strong>: מחזיר רק את החלק השלם של תוצאת החילוק (מעגל כלפי מטה).</li>
+        <li><code>%</code> — <strong>מודולו (שארית חלוקה)</strong>: מחזיר את השארית שנשארת מהחילוק.</li>
+      </ul>
+      <span class="code-label">דוגמה</span>
+      <pre class="code-block"><code>number = <span class="tok-num">17</span>
+<span class="tok-fn">print</span>(number // <span class="tok-num">5</span>)   <span class="tok-com"># 3  (החלק השלם של 17/5)</span>
+<span class="tok-fn">print</span>(number % <span class="tok-num">5</span>)    <span class="tok-com"># 2  (מה שנשאר מ-17 אחרי 3 חמישיות)</span></code></pre>
+
+      <p>כדי להבין <em>איך בדיוק</em> מגיעים לתוצאות האלה, כדאי לחשוב על זה כמו חילוק "בעמודה" מבית הספר — עם שלם ושארית:</p>
+
+      <figure class="concept-diagram">
+        <svg viewBox="0 0 380 110" xmlns="http://www.w3.org/2000/svg" font-family="Consolas, monospace">
+          <text x="25" y="48" text-anchor="middle" font-size="18" fill="#1e2433">17</text>
+          <text x="55" y="48" text-anchor="middle" font-size="18" fill="#1e2433">=</text>
+
+          <rect x="75" y="20" width="110" height="46" rx="10" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+          <text x="130" y="48" text-anchor="middle" font-size="16" fill="#23368f" direction="ltr">5 × 3</text>
+
+          <text x="200" y="48" text-anchor="middle" font-size="18" fill="#1e2433">+</text>
+
+          <rect x="220" y="20" width="60" height="46" rx="10" fill="#e7f8f1" stroke="#1e9e6b" stroke-width="2"/>
+          <text x="250" y="48" text-anchor="middle" font-size="16" fill="#146c48">2</text>
+
+          <text x="130" y="90" text-anchor="middle" font-size="12" fill="#3454d1" direction="ltr">17 // 5 = 3</text>
+          <text x="250" y="90" text-anchor="middle" font-size="12" fill="#1e9e6b" direction="ltr">17 % 5 = 2</text>
+        </svg>
+        <figcaption>17 מתחלק ל-3 חמישיות שלמות (5×3=15), ונשארות 2 יחידות — זו בדיוק השארית שמחזיר %</figcaption>
+      </figure>
+
+      <p><strong>שיטת חישוב מהירה בעצמכם (בלי מחשבון):</strong> כדי לחשב <code>23 % 4</code> — חפשו את הכפולה הגדולה ביותר של 4 שעדיין לא עוברת את 23 (זו 4×5=20), הפחיתו אותה מהמספר המקורי: 23−20=<strong>3</strong>. זו התשובה. נסו כעת בעצמכם: כמה שווה <code>29 % 6</code>? (הכפולה הגדולה ביותר של 6 שלא עוברת את 29 היא 6×4=24, ולכן 29−24=5).</p>
+
+      <p>טריק נפוץ מאוד: אפשר להשתמש ב-// וב-% כדי לפרק מספר לספרותיו. למשל, כדי לקבל את ספרת האחדות של מספר תלת-ספרתי נשתמש ב-<code>number % 10</code>, ואת שתי הספרות הראשונות נקבל עם <code>number // 10</code>.</p>
+    </div>
+
+    <div class="key-terms">
+      <h2>מושגי מפתח</h2>
+      <dl class="term-grid">
+        <div><dt>משתנה (variable)</dt><dd>מקום בזיכרון עם שם, ששומר ערך לשימוש בתכנית</dd></div>
+        <div><dt>טיפוס נתונים</dt><dd>סוג הערך שבמשתנה: int, float, str, bool</dd></div>
+        <div><dt>input()</dt><dd>הוראה שקולטת קלט טקסטואלי מהמשתמש</dd></div>
+        <div><dt>// (חילוק שלם)</dt><dd>מחזיר את החלק השלם בלבד של תוצאת חילוק</dd></div>
+        <div><dt>% (מודולו)</dt><dd>מחזיר את שארית החלוקה</dd></div>
+        <div><dt>מילה שמורה</dt><dd>מילה ששייכת לשפה עצמה ולא ניתן להשתמש בה כשם משתנה</dd></div>
+      </dl>
+    </div>
+
+    <div class="tools-box">
+      <h2>🛠️ איפה להריץ את הקוד?</h2>
+      <p>מומלץ לתרגל את הפרק הזה בענן — בלי להתקין שום דבר:</p>
+      <div class="tool-links">
+        <a class="tool-link" href="https://trinket.io/python3" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </span>
+          <span><strong>Trinket</strong><span>סביבת פייתון פשוטה בדפדפן, מצוינת גם היא להתחלה מהירה</span></span>
+        </a>
+        <a class="tool-link" href="notebooks/ch3.ipynb" download>
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+          </span>
+          <span><strong>מחברת תרגול ל-Colab</strong><span>הורידו, ופתחו ב-colab.research.google.com (File ← Upload notebook)</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="worksheet">
+      <h2>דף עבודה — תרגול</h2>
+      <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>לכל קטע קוד בטבלה, כתבו מהו הפלט המתקבל.</p>
+        <table class="trace-table">
+          <tr><th>סעיף</th><th>קוד</th><th>הפלט המתקבל</th></tr>
+          <tr>
+            <td>1</td>
+            <td class="q-code"><code>a = 8<br>b = a + 4<br>a = b - 2<br>print("a=", a, "b=", b)</code></td>
+            <td class="q-answer">________</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td class="q-code"><code>num = 4567<br>print(num // 100)<br>print(num % 100)</code></td>
+            <td class="q-answer">________</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td class="q-code"><code>num = 306<br>print(num // 10 % 10)</code></td>
+            <td class="q-answer">________</td>
+          </tr>
+        </table>
+        <details class="answer">
+          <summary>הצג תשובות</summary>
+          <div class="answer-body">
+            <p><strong>1.</strong> a= 10  b= 12 (שימו לב: a מתעדכן ל-b <em>אחרי</em> ש-b כבר חושב מ-a הישן — לכן a=8 → b=12 → a=12-2=10)<br>
+            <strong>2.</strong> num // 100 = 45, num % 100 = 67<br>
+            <strong>3.</strong> num // 10 = 30 (חילוק שלם), ואז 30 % 10 = 0 — כלומר זו ספרת העשרות של 306</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <p>רוצים לקלוט מהמשתמש שני מספרים שלמים ולהדפיס את סכומם. השלימו את החסר:</p>
+        <pre class="code-block"><code>num1 = ______(<span class="tok-fn">input</span>(<span class="tok-str">"Enter first number: "</span>))
+num2 = <span class="tok-fn">int</span>(______(<span class="tok-str">"Enter second number: "</span>))
+<span class="tok-fn">print</span>(<span class="tok-str">"Sum:"</span>, num1 ___ num2)</code></pre>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <pre class="code-block"><code>num1 = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Enter first number: "</span>))
+num2 = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Enter second number: "</span>))
+<span class="tok-fn">print</span>(<span class="tok-str">"Sum:"</span>, num1 + num2)</code></pre>
+            <p>חשוב לעטוף את <code>input()</code> ב-<code>int()</code> — אחרת נקבל מחרוזות, ו-<code>+</code> על מחרוזות ישרשר אותן במקום לחבר אותן מתמטית.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <ol>
+          <li>כתבו תכנית שקולטת שני מספרים שלמים מהמשתמש, ומדפיסה את הסכום, ההפרש והמכפלה שלהם.</li>
+          <li>כתבו תכנית שקולטת מספר תלת-ספרתי, ומדפיסה בנפרד את ספרת המאות, ספרת העשרות וספרת האחדות שלו (רמז: שלבו // ו-%).</li>
+          <li>קלטו מחיר מוצר וכמות פריטים, וחשבו את הסכום הכולל לתשלום.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="ch2.html">
+        <span>
+          <span class="nav-label">הפרק הקודם</span>
+          תנועה ומבוא לגרפיקה — Turtle
+        </span>
+      </a>
+      <a href="ch4.html">
+        <span>
+          <span class="nav-label">הפרק הבא</span>
+          ביצוע מותנה — if / elif / else
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+
+    <div class="mark-done">
+      <label>
+        <input type="checkbox" data-mark-done="ch3-done">
+        סימנתי שלמדתי את הפרק הזה
+      </label>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>מדעי המחשב לחטיבת הביניים — אילנית קיי</span>
+    <span>מבוסס על תכנית הלימודים של משרד החינוך</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
