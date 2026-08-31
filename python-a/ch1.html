@@ -48,6 +48,7 @@
         <li>להכיר את סביבת העבודה בה כותבים ומריצים קוד Python</li>
         <li>לכתוב הוראת פלט (print) פשוטה ומורכבת יותר</li>
         <li>להבין למה חשוב לתעד ולהזיח (indent) קוד בצורה מסודרת</li>
+        <li>לבצע פעולות חשבוניות בסיסיות (+, -, *, /) ולהכיר את סדר הפעולות</li>
         <li>לכתוב פונקציה פשוטה בלי פרמטרים, ולזמן (לקרוא ל) אותה</li>
       </ul>
     </div>
@@ -94,6 +95,23 @@
         <figcaption>התכנית רצה שורה-שורה מלמעלה למטה — אבל שורת ההערה (#) מדולגת לגמרי ואינה מתבצעת</figcaption>
       </figure>
 
+      <h2>פעולות חשבוניות בסיסיות</h2>
+      <p>Python יודעת לבצע חישובים ישירות על מספרים, בלי שצריך שום דבר נוסף — אפשר פשוט לכתוב את החישוב בתוך <code>print</code>:</p>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-num">3</span> + <span class="tok-num">4</span>)   <span class="tok-com"># חיבור - 7</span>
+<span class="tok-fn">print</span>(<span class="tok-num">10</span> - <span class="tok-num">3</span>)  <span class="tok-com"># חיסור - 7</span>
+<span class="tok-fn">print</span>(<span class="tok-num">6</span> * <span class="tok-num">5</span>)   <span class="tok-com"># כפל - 30</span>
+<span class="tok-fn">print</span>(<span class="tok-num">10</span> / <span class="tok-num">4</span>)  <span class="tok-com"># חילוק - 2.5</span></code></pre>
+      <p>שימו לב: סימן החילוק ב-Python הוא <code>/</code> (ולא <code>:</code> כמו בכתיב בבית ספר) — והתוצאה שלו תמיד מספר עשרוני (<code>float</code>), גם אם החלוקה יוצאת "עגולה":</p>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-num">10</span> / <span class="tok-num">2</span>)  <span class="tok-com"># 5.0, ולא 5</span></code></pre>
+
+      <h3>סדר פעולות</h3>
+      <p>Python פועלת לפי אותם כללי סדר פעולות שמכירים מהמתמטיקה: קודם כפל וחילוק, ורק אחר כך חיבור וחיסור. כדי לשנות את הסדר — בדיוק כמו במתמטיקה — משתמשים בסוגריים:</p>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-num">3</span> + <span class="tok-num">4</span> * <span class="tok-num">2</span>)    <span class="tok-com"># 11  (קודם 4*2=8, ואז 3+8)</span>
+<span class="tok-fn">print</span>((<span class="tok-num">3</span> + <span class="tok-num">4</span>) * <span class="tok-num">2</span>)  <span class="tok-com"># 14  (הסוגריים מחשבים קודם: 3+4=7, ואז 7*2)</span></code></pre>
+      <p>אפשר גם לשלב כמה פעולות בהוראת print אחת, כולל טקסט לצד החישוב:</p>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-str">"The result is:"</span>, <span class="tok-num">5</span> + <span class="tok-num">3</span> * <span class="tok-num">2</span>)
+<span class="tok-com"># Output: The result is: 11</span></code></pre>
+
       <h2>מבוא לפונקציות</h2>
       <p>פונקציה היא קבוצת הוראות שאורזים יחד תחת שם אחד, כדי שנוכל להריץ אותן שוב ושוב בקריאה אחת קצרה — במקום להעתיק את אותו קוד כל פעם מחדש. בפרק זה נכיר פונקציה פשוטה: <strong>בלי פרמטרים</strong> (בלי "קלט" לפונקציה) ו<strong>בלי ערך מוחזר</strong>.</p>
       <p>בניית פונקציה מורכבת משני שלבים: קודם <strong>מגדירים</strong> אותה באמצעות <code>def</code>, ורק אחר כך <strong>מזמנים</strong> (קוראים ל) אותה — כדי שהיא באמת תרוץ.</p>
@@ -112,6 +130,8 @@
         <div><dt>print</dt><dd>הוראה שמדפיסה טקסט או ערך למסך</dd></div>
         <div><dt>הזחה (indent)</dt><dd>רווח בתחילת שורה שמסמן ל-Python אילו שורות שייכות יחד</dd></div>
         <div><dt>הערה (comment)</dt><dd>שורה שמתחילה ב-# ואינה מתבצעת בריצת התכנית</dd></div>
+        <div><dt>+ - * /</dt><dd>אופרטורים חשבוניים: חיבור, חיסור, כפל וחילוק</dd></div>
+        <div><dt>סדר פעולות</dt><dd>כפל וחילוק מחושבים לפני חיבור וחיסור, אלא אם יש סוגריים</dd></div>
         <div><dt>פונקציה (function)</dt><dd>קבוצת הוראות ארוזה תחת שם, שניתן להריץ בקריאה אחת</dd></div>
         <div><dt>def</dt><dd>מילת המפתח שבה מגדירים פונקציה חדשה</dd></div>
         <div><dt>זימון פונקציה</dt><dd>קריאה לפונקציה בשמה כדי שהיא תרוץ בפועל</dd></div>
@@ -178,9 +198,31 @@ show_menu()</code></pre>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-trace">חשבו את התוצאה</span></div>
+        <p>בלי להריץ — מה תדפיס כל שורה? שימו לב לסדר הפעולות ולסוגריים.</p>
+        <table class="trace-table">
+          <tr><th>סעיף</th><th>קוד</th><th>הפלט</th></tr>
+          <tr><td>1</td><td class="q-code"><code>print(2 + 3 * 4)</code></td><td class="q-answer">________</td></tr>
+          <tr><td>2</td><td class="q-code"><code>print((2 + 3) * 4)</code></td><td class="q-answer">________</td></tr>
+          <tr><td>3</td><td class="q-code"><code>print(20 / 5)</code></td><td class="q-answer">________</td></tr>
+          <tr><td>4</td><td class="q-code"><code>print(2 * 3 + 4 * 5)</code></td><td class="q-answer">________</td></tr>
+        </table>
+        <details class="answer">
+          <summary>הצג תשובות</summary>
+          <div class="answer-body">
+            <p><strong>1.</strong> 14  (קודם 3*4=12, ואז 2+12)<br>
+            <strong>2.</strong> 20  (הסוגריים קודם: 2+3=5, ואז 5*4)<br>
+            <strong>3.</strong> 4.0  (חילוק תמיד מחזיר מספר עשרוני, גם כשהתוצאה "עגולה")<br>
+            <strong>4.</strong> 26  (קודם שתי הכפלות: 2*3=6 ו-4*5=20, ואז 6+20)</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-write">כתבו תוכנית</span></div>
         <ol>
           <li>כתבו תכנית שמדפיסה בשלוש שורות נפרדות: את שמכם, את הכיתה שלכם, ותחביב שאתם אוהבים.</li>
+          <li>כתבו תכנית שמדפיסה את תוצאת החישוב <code>(15 + 9) / 3</code>, ולידה מדפיסה גם את תוצאת <code>15 + 9 / 3</code> — והשוו בין השתיים. למה הן שונות?</li>
           <li>כתבו פונקציה בשם <code>my_intro</code> שמדפיסה משפט הצגה עצמית קצר, וזמנו אותה כדי שתרוץ.</li>
           <li>הוסיפו הערה (עם #) מעל הפונקציה שמסבירה מה היא עושה.</li>
         </ol>
