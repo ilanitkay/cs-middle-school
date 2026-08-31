@@ -49,6 +49,7 @@
         <li>לכתוב הוראת פלט (print) פשוטה ומורכבת יותר</li>
         <li>להבין למה חשוב לתעד ולהזיח (indent) קוד בצורה מסודרת</li>
         <li>לבצע את כל הפעולות החשבוניות (+, -, *, /, //, %, **) ולהכיר את סדר הפעולות</li>
+        <li>ליישם את כללי החיבור, החיסור, הכפל והחילוק על מספרים מכוונים (חיוביים ושליליים)</li>
         <li>לכתוב פונקציה פשוטה בלי פרמטרים, ולזמן (לקרוא ל) אותה</li>
       </ul>
     </div>
@@ -119,6 +120,22 @@
       <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-str">"The result is:"</span>, <span class="tok-num">5</span> + <span class="tok-num">3</span> * <span class="tok-num">2</span>)
 <span class="tok-com"># Output: The result is: 11</span></code></pre>
 
+      <h3>חישובים עם מספרים מכוונים (חיוביים ושליליים)</h3>
+      <p>Python מיישמת בדיוק את אותם כללי סימנים שלמדתם במתמטיקה על מספרים מכוונים. מספר שלילי כותבים עם מינוס לפניו, ואת הכללים אפשר לבדוק ישירות בתוך print:</p>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(-<span class="tok-num">5</span> + <span class="tok-num">3</span>)     <span class="tok-com"># -2  (חיבור מספרים מכוונים)</span>
+<span class="tok-fn">print</span>(-<span class="tok-num">5</span> - <span class="tok-num">3</span>)     <span class="tok-com"># -8  (חיסור - כמו חיבור המספר הנגדי)</span>
+<span class="tok-fn">print</span>(-<span class="tok-num">5</span> - (-<span class="tok-num">3</span>))  <span class="tok-com"># -2  (מינוס כפול מינוס = פלוס)</span>
+<span class="tok-fn">print</span>(-<span class="tok-num">4</span> * <span class="tok-num">3</span>)     <span class="tok-com"># -12  (שלילי כפול חיובי = שלילי)</span>
+<span class="tok-fn">print</span>(-<span class="tok-num">4</span> * -<span class="tok-num">3</span>)    <span class="tok-com"># 12   (שלילי כפול שלילי = חיובי)</span></code></pre>
+      <p>תזכורת מהיר לכללי הסימנים בכפל ובחילוק (בדיוק כמו במתמטיקה):</p>
+      <ul>
+        <li>סימנים <strong>זהים</strong> (שני חיוביים או שני שליליים) → התוצאה <strong>חיובית</strong></li>
+        <li>סימנים <strong>שונים</strong> (אחד חיובי ואחד שלילי) → התוצאה <strong>שלילית</strong></li>
+      </ul>
+      <p>וגם סדר הפעולות ממשיך לחול, גם כשיש מספרים שליליים בתמונה — לכן חשוב מאוד להשתמש בסוגריים כדי לא להתבלבל בין "מינוס כפעולת חיסור" לבין "מינוס כסימן של מספר":</p>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(-<span class="tok-num">3</span> + <span class="tok-num">4</span> * -<span class="tok-num">2</span>)     <span class="tok-com"># -11  (קודם 4*-2=-8, ואז -3+(-8))</span>
+<span class="tok-fn">print</span>((-<span class="tok-num">3</span> + <span class="tok-num">4</span>) * -<span class="tok-num">2</span>)   <span class="tok-com"># -2   (הסוגריים קודם: -3+4=1, ואז 1*-2)</span></code></pre>
+
       <h2>מבוא לפונקציות</h2>
       <p>פונקציה היא קבוצת הוראות שאורזים יחד תחת שם אחד, כדי שנוכל להריץ אותן שוב ושוב בקריאה אחת קצרה — במקום להעתיק את אותו קוד כל פעם מחדש. בפרק זה נכיר פונקציה פשוטה: <strong>בלי פרמטרים</strong> (בלי "קלט" לפונקציה) ו<strong>בלי ערך מוחזר</strong>.</p>
       <p>בניית פונקציה מורכבת משני שלבים: קודם <strong>מגדירים</strong> אותה באמצעות <code>def</code>, ורק אחר כך <strong>מזמנים</strong> (קוראים ל) אותה — כדי שהיא באמת תרוץ.</p>
@@ -142,6 +159,7 @@
         <div><dt>% (מודולו)</dt><dd>מחזיר את שארית החלוקה</dd></div>
         <div><dt>** (חזקה)</dt><dd>מעלה מספר בחזקה</dd></div>
         <div><dt>סדר פעולות</dt><dd>כפל וחילוק מחושבים לפני חיבור וחיסור, אלא אם יש סוגריים</dd></div>
+        <div><dt>מספר מכוון</dt><dd>מספר חיובי או שלילי; סימנים זהים בכפל/חילוק נותנים תוצאה חיובית, סימנים שונים נותנים תוצאה שלילית</dd></div>
         <div><dt>פונקציה (function)</dt><dd>קבוצת הוראות ארוזה תחת שם, שניתן להריץ בקריאה אחת</dd></div>
         <div><dt>def</dt><dd>מילת המפתח שבה מגדירים פונקציה חדשה</dd></div>
         <div><dt>זימון פונקציה</dt><dd>קריאה לפונקציה בשמה כדי שהיא תרוץ בפועל</dd></div>
@@ -216,6 +234,11 @@ show_menu()</code></pre>
           <tr><td>2</td><td class="q-code"><code>print((2 + 3) * 4)</code></td><td class="q-answer">________</td></tr>
           <tr><td>3</td><td class="q-code"><code>print(20 / 5)</code></td><td class="q-answer">________</td></tr>
           <tr><td>4</td><td class="q-code"><code>print(2 * 3 + 4 * 5)</code></td><td class="q-answer">________</td></tr>
+          <tr><td>5</td><td class="q-code"><code>print(-8 + 3)</code></td><td class="q-answer">________</td></tr>
+          <tr><td>6</td><td class="q-code"><code>print(-8 - (-3))</code></td><td class="q-answer">________</td></tr>
+          <tr><td>7</td><td class="q-code"><code>print(-4 * -5)</code></td><td class="q-answer">________</td></tr>
+          <tr><td>8</td><td class="q-code"><code>print(-6 * 2 + 10)</code></td><td class="q-answer">________</td></tr>
+          <tr><td>9</td><td class="q-code"><code>print(-6 * (2 + 10))</code></td><td class="q-answer">________</td></tr>
         </table>
         <details class="answer">
           <summary>הצג תשובות</summary>
@@ -223,7 +246,12 @@ show_menu()</code></pre>
             <p><strong>1.</strong> 14  (קודם 3*4=12, ואז 2+12)<br>
             <strong>2.</strong> 20  (הסוגריים קודם: 2+3=5, ואז 5*4)<br>
             <strong>3.</strong> 4.0  (חילוק תמיד מחזיר מספר עשרוני, גם כשהתוצאה "עגולה")<br>
-            <strong>4.</strong> 26  (קודם שתי הכפלות: 2*3=6 ו-4*5=20, ואז 6+20)</p>
+            <strong>4.</strong> 26  (קודם שתי הכפלות: 2*3=6 ו-4*5=20, ואז 6+20)<br>
+            <strong>5.</strong> -5  (סימנים שונים בחיבור - התוצאה שלילית, כי 8 גדול מ-3)<br>
+            <strong>6.</strong> -5  (מינוס כפול מינוס = פלוס, אז זה כמו -8 + 3)<br>
+            <strong>7.</strong> 20  (סימנים זהים בכפל - התוצאה חיובית)<br>
+            <strong>8.</strong> -2  (קודם -6*2=-12, ואז -12+10)<br>
+            <strong>9.</strong> -72  (הסוגריים קודם: 2+10=12, ואז -6*12)</p>
           </div>
         </details>
       </div>

@@ -159,6 +159,17 @@ age = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span cl
       <p><strong>שיטת חישוב מהירה בעצמכם (בלי מחשבון):</strong> כדי לחשב <code>23 % 4</code> — חפשו את הכפולה הגדולה ביותר של 4 שעדיין לא עוברת את 23 (זו 4×5=20), הפחיתו אותה מהמספר המקורי: 23−20=<strong>3</strong>. זו התשובה. נסו כעת בעצמכם: כמה שווה <code>29 % 6</code>? (הכפולה הגדולה ביותר של 6 שלא עוברת את 29 היא 6×4=24, ולכן 29−24=5).</p>
 
       <p>טריק נפוץ מאוד: אפשר להשתמש ב-// וב-% כדי לפרק מספר לספרותיו. למשל, כדי לקבל את ספרת האחדות של מספר תלת-ספרתי נשתמש ב-<code>number % 10</code>, ואת שתי הספרות הראשונות נקבל עם <code>number // 10</code>.</p>
+
+      <h3>חילוק עם בדיקה</h3>
+      <p>בדיוק כמו שלומדים במתמטיקה לבצע "בדיקת חילוק" (מחלק × מנה + שארית = המספר המקורי), אפשר לגרום ל-Python לבצע את הבדיקה הזו בעצמה — וכך גם לוודא שהבנו נכון את // ו-%:</p>
+      <pre class="code-block"><code>number = <span class="tok-num">23</span>
+divisor = <span class="tok-num">4</span>
+quotient = number // divisor
+remainder = number % divisor
+check = divisor * quotient + remainder
+<span class="tok-fn">print</span>(<span class="tok-str">"quotient:"</span>, quotient, <span class="tok-str">"remainder:"</span>, remainder)
+<span class="tok-fn">print</span>(<span class="tok-str">"check:"</span>, check)  <span class="tok-com"># אמור לצאת שוב 23 - זו הבדיקה!</span></code></pre>
+      <p>אם <code>check</code> יוצא שווה למספר המקורי — סימן שהחישוב נכון. זו בדיוק אותה בדיקה שעושים "בעמודה" בכתב, רק שכאן Python עושה את זה במקומנו.</p>
     </div>
 
     <div class="key-terms">
@@ -256,6 +267,7 @@ num2 = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span c
           <li>כתבו תכנית שקולטת שני מספרים שלמים מהמשתמש, ומדפיסה את הסכום, ההפרש והמכפלה שלהם.</li>
           <li>כתבו תכנית שקולטת מספר תלת-ספרתי, ומדפיסה בנפרד את ספרת המאות, ספרת העשרות וספרת האחדות שלו (רמז: שלבו // ו-%).</li>
           <li>קלטו מחיר מוצר וכמות פריטים, וחשבו את הסכום הכולל לתשלום.</li>
+          <li>כתבו תכנית שקולטת שני מספרים שלמים — מספר לחלוקה ומחלק — מחשבת מנה ושארית, ומבצעת <strong>בדיקת חילוק</strong>: מכפילה את המחלק במנה ומוסיפה את השארית. התכנית תדפיס "התוצאה נכונה" אם הבדיקה שווה למספר המקורי, ואחרת "משהו השתבש".</li>
         </ol>
       </div>
     </div>
