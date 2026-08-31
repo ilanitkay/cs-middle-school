@@ -49,6 +49,7 @@
         <li>לחתוך חלק ממחרוזת בעזרת slicing</li>
         <li>להשתמש באופרטורים + ו-* ובאופרטור השייכות in</li>
         <li>להכיר פעולות מובנות שימושיות: len, find, upper/lower, replace ועוד</li>
+        <li>להמיר בין תו לקוד ASCII שלו (ord, chr), ולפצל/לחבר מחרוזות (split, join)</li>
       </ul>
     </div>
 
@@ -130,6 +131,24 @@ s.endswith(<span class="tok-str">"n"</span>)      <span class="tok-com"># True</
 <span class="tok-kw">for</span> letter <span class="tok-kw">in</span> <span class="tok-str">"hello"</span>:
     result = letter + result
 <span class="tok-fn">print</span>(result)  <span class="tok-com"># olleh</span></code></pre>
+      <p>לפעמים דווקא נוח לרוץ על <strong>האינדקסים</strong> של המחרוזת ולא על התווים עצמם — למשל כשצריך לדעת גם את המיקום של כל תו. לשם כך משלבים <code>range</code> עם <code>len</code>:</p>
+      <pre class="code-block"><code>word = <span class="tok-str">"cat"</span>
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-fn">len</span>(word)):
+    <span class="tok-fn">print</span>(i, word[i])
+<span class="tok-com"># 0 c</span>
+<span class="tok-com"># 1 a</span>
+<span class="tok-com"># 2 t</span></code></pre>
+
+      <h3>עוד פעולות שימושיות: ord, chr, split, join</h3>
+      <p><code>ord</code> ו-<code>chr</code> ממירות בין תו לבין הקוד המספרי (ASCII) שלו, ופועלות הפוך זו מזו:</p>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-fn">ord</span>(<span class="tok-str">"a"</span>))   <span class="tok-com"># 97  (הקוד המספרי של התו a)</span>
+<span class="tok-fn">print</span>(<span class="tok-fn">chr</span>(<span class="tok-num">97</span>))   <span class="tok-com"># a   (התו שמתאים לקוד 97)</span></code></pre>
+      <p><code>split</code> מפצלת מחרוזת לחלקים לפי תו הפרדה נתון (התוצאה היא <strong>רשימה</strong> — נושא שנרחיב עליו בהמשך הלימודים), ו-<code>join</code> עושה בדיוק ההפך — מחברת חלקים כאלה לתוך מחרוזת אחת, עם מפריד קבוע ביניהם:</p>
+      <pre class="code-block"><code>sentence = <span class="tok-str">"Hello there world"</span>
+<span class="tok-fn">print</span>(sentence.split(<span class="tok-str">" "</span>))   <span class="tok-com"># ['Hello', 'there', 'world']</span>
+
+separator = <span class="tok-str">"-"</span>
+<span class="tok-fn">print</span>(separator.join(<span class="tok-str">"cat"</span>))   <span class="tok-com"># c-a-t</span></code></pre>
     </div>
 
     <div class="key-terms">
@@ -140,6 +159,8 @@ s.endswith(<span class="tok-str">"n"</span>)      <span class="tok-com"># True</
         <div><dt>len()</dt><dd>מחזירה את אורך המחרוזת</dd></div>
         <div><dt>find()</dt><dd>מחזירה את מיקום ההופעה הראשונה של תת-מחרוזת, או 1-</dd></div>
         <div><dt>in</dt><dd>בודק אם תו/מחרוזת נמצאים בתוך מחרוזת אחרת</dd></div>
+        <div><dt>ord() / chr()</dt><dd>ממירות בין תו לקוד ה-ASCII שלו, וחזרה</dd></div>
+        <div><dt>split() / join()</dt><dd>מפצלת מחרוזת לרשימה לפי מפריד, ומחברת רשימה חזרה למחרוזת</dd></div>
       </dl>
     </div>
 
