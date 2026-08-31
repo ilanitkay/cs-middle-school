@@ -209,43 +209,76 @@ show_menu()</code></pre>
 
       <div class="wq">
         <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-trace">חשבו את התוצאה</span></div>
-        <p>בלי להריץ — מה תדפיס כל שורה? שימו לב לסדר הפעולות ולסוגריים.</p>
-        <table class="trace-table">
-          <tr><th>סעיף</th><th>קוד</th><th>הפלט</th></tr>
-          <tr><td>1</td><td class="q-code"><code>print(2 + 3 * 4)</code></td><td class="q-answer">________</td></tr>
-          <tr><td>2</td><td class="q-code"><code>print((2 + 3) * 4)</code></td><td class="q-answer">________</td></tr>
-          <tr><td>3</td><td class="q-code"><code>print(20 / 5)</code></td><td class="q-answer">________</td></tr>
-          <tr><td>4</td><td class="q-code"><code>print(2 * 3 + 4 * 5)</code></td><td class="q-answer">________</td></tr>
-          <tr><td>5</td><td class="q-code"><code>print(2 + 3 * 4 - 1)</code></td><td class="q-answer">________</td></tr>
-          <tr><td>6</td><td class="q-code"><code>print((2 + 3) * (4 - 1))</code></td><td class="q-answer">________</td></tr>
-          <tr><td>7</td><td class="q-code"><code>print(10 + 10 / 2)</code></td><td class="q-answer">________</td></tr>
-          <tr><td>8</td><td class="q-code"><code>print(2 ** 3 + 1)</code></td><td class="q-answer">________</td></tr>
-          <tr><td>9</td><td class="q-code"><code>print(20 - 2 * 3 ** 2)</code></td><td class="q-answer">________</td></tr>
-        </table>
-        <details class="answer">
-          <summary>הצג תשובות</summary>
-          <div class="answer-body">
-            <p><strong>1.</strong> 14  (קודם 3*4=12, ואז 2+12)<br>
-            <strong>2.</strong> 20  (הסוגריים קודם: 2+3=5, ואז 5*4)<br>
-            <strong>3.</strong> 4.0  (חילוק תמיד מחזיר מספר עשרוני, גם כשהתוצאה "עגולה")<br>
-            <strong>4.</strong> 26  (קודם שתי הכפלות: 2*3=6 ו-4*5=20, ואז 6+20)<br>
-            <strong>5.</strong> 13  (קודם 3*4=12, ואז 2+12-1)<br>
-            <strong>6.</strong> 15  (שני הסוגריים קודם: 2+3=5 ו-4-1=3, ואז 5*3)<br>
-            <strong>7.</strong> 15.0  (קודם 10/2=5.0, ואז 10+5.0)<br>
-            <strong>8.</strong> 9  (קודם החזקה 2**3=8, ואז 8+1)<br>
-            <strong>9.</strong> 2  (חזקה לפני כפל: 3**2=9, ואז 2*9=18, ואז 20-18)</p>
-          </div>
-        </details>
+        <p>בלי להריץ — מה ידפיס <code>print(2 + 3 * 4)</code>? שימו לב לסדר הפעולות.</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>14  (קודם 3*4=12, ואז 2+12)</p></div></details>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-write">כתבו תוכנית</span></div>
-        <ol>
-          <li>כתבו תכנית שמדפיסה בשלוש שורות נפרדות: את שמכם, את הכיתה שלכם, ותחביב שאתם אוהבים.</li>
-          <li>כתבו תכנית שמדפיסה את תוצאת החישוב <code>(15 + 9) / 3</code>, ולידה מדפיסה גם את תוצאת <code>15 + 9 / 3</code> — והשוו בין השתיים. למה הן שונות?</li>
-          <li>כתבו פונקציה בשם <code>my_intro</code> שמדפיסה משפט הצגה עצמית קצר, וזמנו אותה כדי שתרוץ.</li>
-          <li>הוסיפו הערה (עם #) מעל הפונקציה שמסבירה מה היא עושה.</li>
-        </ol>
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-trace">חשבו את התוצאה</span></div>
+        <p>מה ידפיס <code>print((2 + 3) * 4)</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>20  (הסוגריים קודם: 2+3=5, ואז 5*4)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-trace">חשבו את התוצאה</span></div>
+        <p>מה ידפיס <code>print(20 / 5)</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>4.0  (חילוק תמיד מחזיר מספר עשרוני, גם כשהתוצאה "עגולה")</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">6</span><span class="wq-type type-trace">חשבו את התוצאה</span></div>
+        <p>מה ידפיס <code>print(2 * 3 + 4 * 5)</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>26  (קודם שתי הכפלות: 2*3=6 ו-4*5=20, ואז 6+20)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">7</span><span class="wq-type type-trace">חשבו את התוצאה</span></div>
+        <p>מה ידפיס <code>print(2 + 3 * 4 - 1)</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>13  (קודם 3*4=12, ואז 2+12-1)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">8</span><span class="wq-type type-trace">חשבו את התוצאה</span></div>
+        <p>מה ידפיס <code>print((2 + 3) * (4 - 1))</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>15  (שני הסוגריים קודם: 2+3=5 ו-4-1=3, ואז 5*3)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">9</span><span class="wq-type type-trace">חשבו את התוצאה</span></div>
+        <p>מה ידפיס <code>print(10 + 10 / 2)</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>15.0  (קודם 10/2=5.0, ואז 10+5.0)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">10</span><span class="wq-type type-trace">חשבו את התוצאה</span></div>
+        <p>מה ידפיס <code>print(2 ** 3 + 1)</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>9  (קודם החזקה 2**3=8, ואז 8+1)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">11</span><span class="wq-type type-trace">חשבו את התוצאה</span></div>
+        <p>מה ידפיס <code>print(20 - 2 * 3 ** 2)</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>2  (חזקה לפני כפל: 3**2=9, ואז 2*9=18, ואז 20-18)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">12</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שמדפיסה בשלוש שורות נפרדות: את שמכם, את הכיתה שלכם, ותחביב שאתם אוהבים.</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">13</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שמדפיסה את תוצאת החישוב <code>(15 + 9) / 3</code>, ולידה מדפיסה גם את תוצאת <code>15 + 9 / 3</code> — והשוו בין השתיים. למה הן שונות?</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">14</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו פונקציה בשם <code>my_intro</code> שמדפיסה משפט הצגה עצמית קצר, וזמנו אותה כדי שתרוץ.</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">15</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>הוסיפו הערה (עם #) מעל הפונקציה מהתרגיל הקודם, שמסבירה מה היא עושה.</p>
       </div>
     </div>
 
