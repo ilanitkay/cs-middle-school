@@ -135,7 +135,13 @@ age = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span cl
 <span class="tok-fn">print</span>(number // <span class="tok-num">5</span>)   <span class="tok-com"># 3  (החלק השלם של 17/5)</span>
 <span class="tok-fn">print</span>(number % <span class="tok-num">5</span>)    <span class="tok-com"># 2  (מה שנשאר מ-17 אחרי 3 חמישיות)</span></code></pre>
 
-      <p>כדי להבין <em>איך בדיוק</em> מגיעים לתוצאות האלה, כדאי לחשוב על זה כמו חילוק "בעמודה" מבית הספר — עם שלם ושארית:</p>
+      <p>כדי להבין <em>איך בדיוק</em> מגיעים לתוצאה של <code>%</code>, הדרך הכי פשוטה היא לחשוב על זה כתרגיל <strong>חיסור חוזר</strong>: מחסירים 5 שוב ושוב, כל עוד אפשר בלי לרדת מתחת לאפס — ומה שנשאר בסוף הוא התשובה:</p>
+      <pre class="code-block"><code>17 - <span class="tok-num">5</span> = <span class="tok-num">12</span>   <span class="tok-com"># עוד אפשר להחסיר</span>
+12 - <span class="tok-num">5</span> = <span class="tok-num">7</span>    <span class="tok-com"># עוד אפשר להחסיר</span>
+ 7 - <span class="tok-num">5</span> = <span class="tok-num">2</span>    <span class="tok-com"># 2 קטן מ-5, אי אפשר להחסיר שוב - עוצרים כאן!</span></code></pre>
+      <p>הצלחנו להחסיר 5 בדיוק <strong>3 פעמים</strong> (זה בדיוק מה ש-<code>17 // 5</code> מחזירה), ומה שנשאר בסוף הוא <strong>2</strong> (זה בדיוק מה ש-<code>17 % 5</code> מחזירה) — כי לא נשאר מספיק כדי להחסיר עוד 5 שלמה.</p>
+
+      <p>אותו רעיון אפשר גם לראות כחילוק "בעמודה" מבית הספר — עם שלם ושארית:</p>
 
       <figure class="concept-diagram">
         <svg viewBox="0 0 380 110" xmlns="http://www.w3.org/2000/svg" font-family="Consolas, monospace">
