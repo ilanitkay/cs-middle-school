@@ -63,7 +63,7 @@ wn = turtle.Screen()      <span class="tok-com"># יצירת חלון (משטח 
 player = turtle.Turtle()  <span class="tok-com"># יצירת הצב שיצייר</span>
 player.shape(<span class="tok-str">"turtle"</span>)     <span class="tok-com"># עיצוב הדמות כצורת צב</span></code></pre>
 
-      <p>כברירת מחדל <code>turtle.Screen()</code> פותחת חלון בגודל סטנדרטי שממלא חלק ניכר ממסך המחשב, והצב מתחיל תמיד <strong>במרכז החלון בדיוק</strong>, פונה ימינה. אפשר לשלוט על גודל החלון ועל הצבעים שלו:</p>
+      <p>בדיוק כמו שבסקראץ' יש למשטח הציור גודל קבוע — גם ב-Turtle יש גודל ברירת מחדל למשטח הציור: <strong>400×300 פיקסלים</strong>. הצב מתחיל תמיד <strong>במרכז המשטח בדיוק</strong>, פונה ימינה. אפשר לשנות את הגודל הזה, וגם לקבוע צבעים:</p>
       <pre class="code-block"><code>wn.setup(width=<span class="tok-num">600</span>, height=<span class="tok-num">400</span>)  <span class="tok-com"># קובע גודל מדויק לחלון, בפיקסלים</span>
 wn.bgcolor(<span class="tok-str">"lightblue"</span>)             <span class="tok-com"># צבע הרקע של החלון</span>
 player.color(<span class="tok-str">"red"</span>)                 <span class="tok-com"># צבע הצב והקו שהוא מצייר</span></code></pre>
@@ -71,6 +71,7 @@ player.color(<span class="tok-str">"red"</span>)                 <span class="to
       <figure class="concept-diagram">
         <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
           <rect x="20" y="10" width="300" height="180" rx="8" fill="#eaf6ff" stroke="#3454d1" stroke-width="2"/>
+          <text x="170" y="204" text-anchor="middle" font-size="10" fill="#8a93a8" direction="ltr">400 × 300 (ברירת מחדל)</text>
           <line x1="170" y1="10" x2="170" y2="190" stroke="#b7c6e6" stroke-width="1.5" stroke-dasharray="4 3"/>
           <line x1="20" y1="100" x2="320" y2="100" stroke="#b7c6e6" stroke-width="1.5" stroke-dasharray="4 3"/>
           <text x="176" y="22" font-size="11" fill="#5b6478" direction="ltr">y</text>
