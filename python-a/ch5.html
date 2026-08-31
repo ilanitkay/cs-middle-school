@@ -49,6 +49,7 @@
         <li>לשלוט בטווח הריצה של for באמצעות range</li>
         <li>לבנות תבנית של צבירת סכום בתוך לולאה</li>
         <li>להבין למה עלולה להיווצר לולאה אינסופית, וכיצד להימנע ממנה</li>
+        <li>לבנות "מחולל תרגילים" בעזרת range על מספרים מכוונים (חיוביים ושליליים)</li>
       </ul>
     </div>
 
@@ -156,6 +157,13 @@ num = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span cl
       <p>אפשר להריץ לולאת for ישירות על מחרוזת — בכל סיבוב משתנה הלולאה יקבל תו אחד ממנה, משמאל לימין:</p>
       <pre class="code-block"><code><span class="tok-kw">for</span> letter <span class="tok-kw">in</span> <span class="tok-str">"hello"</span>:
     <span class="tok-fn">print</span>(letter)</code></pre>
+
+      <h2>מחולל תרגילים: לולאה עם מספרים מכוונים</h2>
+      <p><code>range</code> יכולה להתחיל גם ממספר <strong>שלילי</strong> — לא רק מ-0 או ממספר חיובי. אפשר לנצל את זה כדי לגרום ל-Python "לייצר" בעצמה סדרה שלמה של תרגילים בחיבור וחיסור של מספרים מכוונים (חיוביים ושליליים), בדיוק כמו שלומדים במתמטיקה:</p>
+      <pre class="code-block"><code><span class="tok-kw">for</span> num <span class="tok-kw">in</span> <span class="tok-fn">range</span>(-<span class="tok-num">5</span>, <span class="tok-num">6</span>):
+    <span class="tok-fn">print</span>(num, <span class="tok-str">"+ 3 ="</span>, num + <span class="tok-num">3</span>)
+<span class="tok-com"># מדפיס 11 תרגילים: מ- -5+3 ועד 5+3</span></code></pre>
+      <p>הלולאה עוברת על כל המספרים מ-5- עד 5 (11 מספרים), ולכל אחד מהם מחשבת ומדפיסה תרגיל שלם. כך, בכמה שורות קוד בלבד, אפשר לבנות "מחולל תרגילים" שמייצר כמות גדולה של שאלות לתרגול עצמי — בלי לכתוב כל תרגיל בנפרד.</p>
     </div>
 
     <div class="key-terms">
@@ -203,7 +211,7 @@ num = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span cl
 
     <div class="worksheet">
       <h2>דף עבודה — תרגול</h2>
-      <p class="worksheet-count">📝 25 שאלות בפרק זה</p>
+      <p class="worksheet-count">📝 26 שאלות בפרק זה</p>
       <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
 
       <div class="wq">
@@ -245,6 +253,7 @@ num = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span cl
           <li>כתבו את אותה תכנית מהתרגיל הקודם, הפעם באמצעות while במקום for.</li>
           <li>כתבו תכנית שקולטת מספר, ומדפיסה את כל המחלקים שלו (המספרים שמתחלקים בו בלי שארית) מ-1 עד המספר עצמו. למשל עבור הקלט 6 הפלט יהיה: <code>1 2 3 6</code>.</li>
           <li>כתבו תכנית שקולטת מספר, ומדפיסה הודעה האם הוא ראשוני (prime number) — מספר שמתחלק רק ב-1 ובעצמו.</li>
+          <li>כתבו "מחולל תרגילים" בעזרת לולאה: תכנית שמדפיסה 10 תרגילי חיסור בסגנון <code>num - 4 = ?</code>, עבור num בטווח שכולל גם מספרים שליליים (למשל מ-5- עד 4).</li>
         </ol>
       </div>
 
