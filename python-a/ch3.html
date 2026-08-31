@@ -233,19 +233,62 @@ check = divisor * quotient + remainder
             <td class="q-code"><code>num = 306<br>print(num // 10 % 10)</code></td>
             <td class="q-answer">________</td>
           </tr>
+          <tr>
+            <td>4</td>
+            <td class="q-code"><code>x = 5<br>y = 2<br>x = x + y<br>y = x - y<br>print("x=", x, "y=", y)</code></td>
+            <td class="q-answer">________</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td class="q-code"><code>price = 19.9<br>quantity = 3<br>print("Total:", price * quantity)</code></td>
+            <td class="q-answer">________</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td class="q-code"><code>num = 8<br>num = num + 1<br>num = num + 1<br>print(num)</code></td>
+            <td class="q-answer">________</td>
+          </tr>
         </table>
         <details class="answer">
           <summary>הצג תשובות</summary>
           <div class="answer-body">
             <p><strong>1.</strong> a= 10  b= 12 (שימו לב: a מתעדכן ל-b <em>אחרי</em> ש-b כבר חושב מ-a הישן — לכן a=8 → b=12 → a=12-2=10)<br>
             <strong>2.</strong> num // 100 = 45, num % 100 = 67<br>
-            <strong>3.</strong> num // 10 = 30 (חילוק שלם), ואז 30 % 10 = 0 — כלומר זו ספרת העשרות של 306</p>
+            <strong>3.</strong> num // 10 = 30 (חילוק שלם), ואז 30 % 10 = 0 — כלומר זו ספרת העשרות של 306<br>
+            <strong>4.</strong> x= 7  y= 5 (x מתעדכן קודם ל-7, ואז y=7-2=5)<br>
+            <strong>5.</strong> Total: 59.7<br>
+            <strong>6.</strong> 10</p>
           </div>
         </details>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-trace">האם שם המשתנה חוקי?</span></div>
+        <p>לפי הכללים שלמדנו — לכל שם, ציינו האם הוא <strong>חוקי</strong> או <strong>לא חוקי</strong> כשם משתנה ב-Python, ואם לא — למה.</p>
+        <table class="trace-table">
+          <tr><th>סעיף</th><th>שם המשתנה</th><th>חוקי? למה?</th></tr>
+          <tr><td>1</td><td class="q-code"><code>student_name</code></td><td class="q-answer">________</td></tr>
+          <tr><td>2</td><td class="q-code"><code>2nd_grade</code></td><td class="q-answer">________</td></tr>
+          <tr><td>3</td><td class="q-code"><code>_score</code></td><td class="q-answer">________</td></tr>
+          <tr><td>4</td><td class="q-code"><code>total-sum</code></td><td class="q-answer">________</td></tr>
+          <tr><td>5</td><td class="q-code"><code>while</code></td><td class="q-answer">________</td></tr>
+          <tr><td>6</td><td class="q-code"><code>myAge2</code></td><td class="q-answer">________</td></tr>
+        </table>
+        <details class="answer">
+          <summary>הצג תשובות</summary>
+          <div class="answer-body">
+            <p><strong>1.</strong> חוקי.<br>
+            <strong>2.</strong> לא חוקי — מתחיל בספרה.<br>
+            <strong>3.</strong> חוקי — קו תחתון מותר בתחילת השם.<br>
+            <strong>4.</strong> לא חוקי — מקף (-) הוא לא תו מותר בשם משתנה.<br>
+            <strong>5.</strong> לא חוקי — זו מילה שמורה של Python.<br>
+            <strong>6.</strong> חוקי — אותיות גדולות וקטנות וספרות (שלא בהתחלה) מותרות.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
         <p>רוצים לקלוט מהמשתמש שני מספרים שלמים ולהדפיס את סכומם. השלימו את החסר:</p>
         <pre class="code-block"><code>num1 = ______(<span class="tok-fn">input</span>(<span class="tok-str">"Enter first number: "</span>))
 num2 = <span class="tok-fn">int</span>(______(<span class="tok-str">"Enter second number: "</span>))
@@ -262,7 +305,7 @@ num2 = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span c
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-write">כתבו תוכנית</span></div>
         <ol>
           <li>כתבו תכנית שקולטת שני מספרים שלמים מהמשתמש, ומדפיסה את הסכום, ההפרש והמכפלה שלהם.</li>
           <li>כתבו תכנית שקולטת מספר תלת-ספרתי, ומדפיסה בנפרד את ספרת המאות, ספרת העשרות וספרת האחדות שלו (רמז: שלבו // ו-%).</li>

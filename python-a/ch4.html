@@ -203,13 +203,19 @@
           <tr><td>1</td><td class="q-code"><code>a &gt;= b or b == c</code></td><td class="q-answer">________</td></tr>
           <tr><td>2</td><td class="q-code"><code>a % 2 == 0 and b // 4 &gt; c</code></td><td class="q-answer">________</td></tr>
           <tr><td>3</td><td class="q-code"><code>a &lt; 0 or (b == c + 12 and a &gt;= c)</code></td><td class="q-answer">________</td></tr>
+          <tr><td>4</td><td class="q-code"><code>not (a &gt; b)</code></td><td class="q-answer">________</td></tr>
+          <tr><td>5</td><td class="q-code"><code>a != c and b != c</code></td><td class="q-answer">________</td></tr>
+          <tr><td>6</td><td class="q-code"><code>(a &lt; b) == (c &lt; a)</code></td><td class="q-answer">________</td></tr>
         </table>
         <details class="answer">
           <summary>הצג תשובות</summary>
           <div class="answer-body">
             <p><strong>1.</strong> False or False → <strong>False</strong> (8&gt;=12 שקר, 12==0 שקר)<br>
             <strong>2.</strong> True and True → <strong>True</strong> (8%2==0 אמת, 12//4=3 שגדול מ-0)<br>
-            <strong>3.</strong> False or (True and True) → <strong>True</strong> (הסוגריים חושבים ראשונים: 12==0+12 אמת, ו-8&gt;=0 אמת)</p>
+            <strong>3.</strong> False or (True and True) → <strong>True</strong> (הסוגריים חושבים ראשונים: 12==0+12 אמת, ו-8&gt;=0 אמת)<br>
+            <strong>4.</strong> not (False) → <strong>True</strong> (8&gt;12 שקר, ו-not הופך אותו לאמת)<br>
+            <strong>5.</strong> True and True → <strong>True</strong> (8!=0 אמת, 12!=0 אמת)<br>
+            <strong>6.</strong> True == True → <strong>True</strong> (8&lt;12 אמת, 0&lt;8 אמת, ושתי האמיתות שוות)</p>
           </div>
         </details>
       </div>

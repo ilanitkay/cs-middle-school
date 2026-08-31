@@ -198,7 +198,28 @@ grade = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span 
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>לכל קטע קוד, כתבו מה ידפיס.</p>
+        <table class="trace-table">
+          <tr><th>סעיף</th><th>קוד</th><th>הפלט</th></tr>
+          <tr><td>1</td><td class="q-code"><code>count = 0<br>for i in range(5):<br>&nbsp;&nbsp;&nbsp;&nbsp;count = count + 1<br>print(count)</code></td><td class="q-answer">________</td></tr>
+          <tr><td>2</td><td class="q-code"><code>total = 0<br>for num in range(2, 9, 3):<br>&nbsp;&nbsp;&nbsp;&nbsp;total = total + num<br>print(total)</code></td><td class="q-answer">________</td></tr>
+          <tr><td>3</td><td class="q-code"><code>biggest = 4<br>num = 9<br>if num > biggest:<br>&nbsp;&nbsp;&nbsp;&nbsp;biggest = num<br>num = 2<br>if num > biggest:<br>&nbsp;&nbsp;&nbsp;&nbsp;biggest = num<br>print(biggest)</code></td><td class="q-answer">________</td></tr>
+          <tr><td>4</td><td class="q-code"><code>count = 0<br>for num in range(4, 14, 3):<br>&nbsp;&nbsp;&nbsp;&nbsp;if num % 2 == 0:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count = count + 1<br>print(count)</code></td><td class="q-answer">________</td></tr>
+        </table>
+        <details class="answer">
+          <summary>הצג תשובות</summary>
+          <div class="answer-body">
+            <p><strong>1.</strong> 5 (המונה גדל ב-1 בכל אחד מ-5 הסיבובים)<br>
+            <strong>2.</strong> 15 (range(2,9,3) הוא 2, 5, 8 — הסכום 2+5+8)<br>
+            <strong>3.</strong> 9 (השיא מתעדכן פעם אחת, כש-9 גדול מ-4; 2 אינו גדול מ-9 ולכן לא משנה שוב)<br>
+            <strong>4.</strong> 2 (range(4,14,3) הוא 4, 7, 10, 13 — הזוגיים הם 4 ו-10)</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-write">כתבו תוכנית</span></div>
         <ol>
           <li>כתבו תכנית שמדמה 20 הטלות קובייה, וסופרת כמה פעמים יצא המספר 6.</li>
           <li>כתבו תכנית שקולטת 8 מספרים, ומדפיסה את הקטן ביותר מביניהם.</li>
@@ -207,7 +228,7 @@ grade = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span 
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-write">פרויקט קטן — משחק ניחוש</span></div>
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-write">פרויקט קטן — משחק ניחוש</span></div>
         <p>כתבו משחק "נחשו את המספר": המחשב בוחר מספר אקראי בין 1 ל-20 (עם <code>random.randint</code>), והשחקן/ית מנסה לנחש. בכל ניחוש שגוי, התכנית תדפיס "too high" או "too low" בהתאם. המשחק נגמר כשמנחשים נכון — והתכנית תדפיס גם כמה ניסיונות היו נדרשים (השתמשו במונה).</p>
         <details class="answer">
           <summary>הצג פתרון אפשרי</summary>

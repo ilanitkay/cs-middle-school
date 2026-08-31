@@ -257,6 +257,46 @@ turtle.mainloop()</code></pre>
           </div>
         </details>
       </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">7</span><span class="wq-type type-trace">חשבו את זווית הפנייה</span></div>
+        <p>כדי לצייר מצולע משוכלל בעל n צלעות, זווית הפנייה בכל צעד היא 360/n מעלות. חשבו מהי הזווית הנדרשת לכל אחד מהמצולעים הבאים.</p>
+        <table class="trace-table">
+          <tr><th>סעיף</th><th>מספר צלעות (n)</th><th>זווית הפנייה</th></tr>
+          <tr><td>1</td><td class="q-code"><code>3</code> (משולש)</td><td class="q-answer">________</td></tr>
+          <tr><td>2</td><td class="q-code"><code>5</code> (מחומש)</td><td class="q-answer">________</td></tr>
+          <tr><td>3</td><td class="q-code"><code>6</code> (משושה)</td><td class="q-answer">________</td></tr>
+          <tr><td>4</td><td class="q-code"><code>10</code> (מעוקר)</td><td class="q-answer">________</td></tr>
+          <tr><td>5</td><td class="q-code"><code>12</code></td><td class="q-answer">________</td></tr>
+        </table>
+        <details class="answer">
+          <summary>הצג תשובות</summary>
+          <div class="answer-body">
+            <p><strong>1.</strong> 120°<br>
+            <strong>2.</strong> 72°<br>
+            <strong>3.</strong> 60°<br>
+            <strong>4.</strong> 36°<br>
+            <strong>5.</strong> 30°</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">8</span><span class="wq-type type-trace">כמה פעמים תרוץ הלולאה?</span></div>
+        <p>לכל קטע קוד, כתבו כמה פעמים תתבצע הלולאה, וכמה מעלות סה"כ יסתובב הצב.</p>
+        <table class="trace-table">
+          <tr><th>סעיף</th><th>קוד</th><th>מספר חזרות / סה״כ מעלות</th></tr>
+          <tr><td>1</td><td class="q-code"><code>for i in range(5):<br>&nbsp;&nbsp;&nbsp;&nbsp;player.forward(40)<br>&nbsp;&nbsp;&nbsp;&nbsp;player.left(72)</code></td><td class="q-answer">________</td></tr>
+          <tr><td>2</td><td class="q-code"><code>for i in range(4):<br>&nbsp;&nbsp;&nbsp;&nbsp;player.forward(60)<br>&nbsp;&nbsp;&nbsp;&nbsp;player.right(90)</code></td><td class="q-answer">________</td></tr>
+        </table>
+        <details class="answer">
+          <summary>הצג תשובות</summary>
+          <div class="answer-body">
+            <p><strong>1.</strong> 5 חזרות, סה״כ 5×72=360 מעלות — סיבוב מלא (מחומש).<br>
+            <strong>2.</strong> 4 חזרות, סה״כ 4×90=360 מעלות — סיבוב מלא (ריבוע), אך הפעם עם <code>right</code> — כיוון השעון.</p>
+          </div>
+        </details>
+      </div>
     </div>
 
     <div class="chapter-nav">
