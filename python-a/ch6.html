@@ -196,33 +196,48 @@ separator = <span class="tok-str">"-"</span>
 
       <div class="wq">
         <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
-        <p>נתונה המחרוזת <code>title = "Python is fun!"</code>. מה יודפס בכל שורה?</p>
-        <table class="trace-table">
-          <tr><th>סעיף</th><th>קוד</th><th>הפלט</th></tr>
-          <tr><td>1</td><td class="q-code"><code>print(title[3])</code></td><td class="q-answer">________</td></tr>
-          <tr><td>2</td><td class="q-code"><code>print(title[-1])</code></td><td class="q-answer">________</td></tr>
-          <tr><td>3</td><td class="q-code"><code>print(title[::2])</code></td><td class="q-answer">________</td></tr>
-          <tr><td>4</td><td class="q-code"><code>print(len(title))</code></td><td class="q-answer">________</td></tr>
-          <tr><td>5</td><td class="q-code"><code>print(title[0:6])</code></td><td class="q-answer">________</td></tr>
-          <tr><td>6</td><td class="q-code"><code>print(title.find("fun"))</code></td><td class="q-answer">________</td></tr>
-          <tr><td>7</td><td class="q-code"><code>print(title.upper())</code></td><td class="q-answer">________</td></tr>
-        </table>
-        <details class="answer">
-          <summary>הצג תשובות</summary>
-          <div class="answer-body">
-            <p><strong>1.</strong> h (אינדקס 3, התו הרביעי)<br>
-            <strong>2.</strong> ! (התו האחרון)<br>
-            <strong>3.</strong> Pto sfn (כל תו שני, החל מאינדקס 0)<br>
-            <strong>4.</strong> 14<br>
-            <strong>5.</strong> Python (אינדקסים 0 עד 6, לא כולל)<br>
-            <strong>6.</strong> 10 (אינדקס תחילת ההופעה של "fun")<br>
-            <strong>7.</strong> PYTHON IS FUN!</p>
-          </div>
-        </details>
+        <p>נתונה המחרוזת <code>title = "Python is fun!"</code>. מה ידפיס <code>print(title[3])</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>h (אינדקס 3, התו הרביעי)</p></div></details>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>נתונה <code>title = "Python is fun!"</code>. מה ידפיס <code>print(title[-1])</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>! (התו האחרון)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה ידפיס <code>print(title[::2])</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>Pto sfn (כל תו שני, החל מאינדקס 0)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה ידפיס <code>print(len(title))</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>14</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה ידפיס <code>print(title[0:6])</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>Python (אינדקסים 0 עד 6, לא כולל)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">6</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה ידפיס <code>print(title.find("fun"))</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>10 (אינדקס תחילת ההופעה של "fun")</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">7</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה ידפיס <code>print(title.upper())</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>PYTHON IS FUN!</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">8</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
         <p>רוצים לבנות מחרוזת חדשה שבה כל תו מהמחרוזת המקורית חוזר פעמיים — למשל "abc" יהפוך ל-"aabbcc". השלימו:</p>
         <pre class="code-block"><code>original = <span class="tok-str">"abc"</span>
 result = <span class="tok-str">""</span>
@@ -239,12 +254,18 @@ result = <span class="tok-str">""</span>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-write">כתבו תוכנית</span></div>
-        <ol>
-          <li>כתבו תכנית שקולטת מילה, ומדפיסה אותה הפוכה (בעזרת [::-1] או בעזרת לולאה).</li>
-          <li>כתבו תכנית שקולטת שם פרטי, ומדפיסה אותו עם כוכבית בין כל שתי אותיות — למשל "Emma" יהפוך ל-"E*m*m*a".</li>
-          <li>כתבו תכנית שקולטת משפט, ומדפיסה כמה פעמים מופיעה בו האות "א".</li>
-        </ol>
+        <div class="wq-head"><span class="wq-num">9</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שקולטת מילה, ומדפיסה אותה הפוכה (בעזרת [::-1] או בעזרת לולאה).</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">10</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שקולטת שם פרטי, ומדפיסה אותו עם כוכבית בין כל שתי אותיות — למשל "Emma" יהפוך ל-"E*m*m*a".</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">11</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שקולטת משפט, ומדפיסה כמה פעמים מופיעה בו האות "א".</p>
       </div>
     </div>
 

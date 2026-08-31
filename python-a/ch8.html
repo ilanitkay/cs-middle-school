@@ -198,36 +198,67 @@ turtle.mainloop()</code></pre>
 
       <div class="wq">
         <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
-        <p>מה יודפס בכל אחד מקטעי הקוד הבאים?</p>
-        <table class="trace-table">
-          <tr><th>סעיף</th><th>קוד</th><th>הפלט</th></tr>
-          <tr><td>1</td><td class="q-code"><code>def square(num):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(num * num)<br><br>square(5)</code></td><td class="q-answer">________</td></tr>
-          <tr><td>2</td><td class="q-code"><code>def greet(name, times):<br>&nbsp;&nbsp;&nbsp;&nbsp;for i in range(times):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Hi", name)<br><br>greet("Dana", 2)</code></td><td class="q-answer">________</td></tr>
-          <tr><td>3</td><td class="q-code"><code>x = 10<br>def show():<br>&nbsp;&nbsp;&nbsp;&nbsp;print(x)<br><br>show()<br>print(x)</code></td><td class="q-answer">________</td></tr>
-          <tr><td>4</td><td class="q-code"><code>def add_bonus(score):<br>&nbsp;&nbsp;&nbsp;&nbsp;score = score + 10<br>&nbsp;&nbsp;&nbsp;&nbsp;print(score)<br><br>total = 5<br>add_bonus(total)<br>print(total)</code></td><td class="q-answer">________</td></tr>
-        </table>
-        <details class="answer">
-          <summary>הצג תשובות</summary>
-          <div class="answer-body">
-            <p><strong>1.</strong> 25<br>
-            <strong>2.</strong> Hi Dana (פעמיים, בשתי שורות)<br>
-            <strong>3.</strong> 10 ואז 10 (אפשר לקרוא למשתנה גלובלי בלי global, כל עוד לא משנים אותו בתוך הפונקציה)<br>
-            <strong>4.</strong> 15 ואז 5 (הפרמטר score הוא עותק מקומי — שינוי שלו בתוך הפונקציה לא משפיע על המשתנה total שבחוץ)</p>
-          </div>
-        </details>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">square</span>(num):
+    <span class="tok-fn">print</span>(num * num)
+
+<span class="tok-fn">square</span>(<span class="tok-num">5</span>)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>25</p></div></details>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-write">כתבו תוכנית</span></div>
-        <ol>
-          <li>כתבו פונקציה בשם <code>is_even</code> שמקבלת מספר, ומדפיסה אם הוא זוגי או אי-זוגי.</li>
-          <li>כתבו פונקציה בשם <code>average</code> שמקבלת שני מספרים, ומדפיסה את הממוצע ביניהם.</li>
-          <li>כתבו משתנה גלובלי בשם <code>attempts</code> המתחיל מ-0, ופונקציה שמעלה אותו ב-1 בכל קריאה (השתמשו ב-global). זמנו אותה 3 פעמים והדפיסו את הערך הסופי.</li>
-        </ol>
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">greet</span>(name, times):
+    <span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(times):
+        <span class="tok-fn">print</span>(<span class="tok-str">"Hi"</span>, name)
+
+<span class="tok-fn">greet</span>(<span class="tok-str">"Dana"</span>, <span class="tok-num">2</span>)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>Hi Dana (פעמיים, בשתי שורות)</p></div></details>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-write">פרויקט קטן — תפריט מחשבון</span></div>
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code>x = <span class="tok-num">10</span>
+<span class="tok-kw">def</span> <span class="tok-fn">show</span>():
+    <span class="tok-fn">print</span>(x)
+
+<span class="tok-fn">show</span>()
+<span class="tok-fn">print</span>(x)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>10 ואז 10 (אפשר לקרוא למשתנה גלובלי בלי global, כל עוד לא משנים אותו בתוך הפונקציה)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">6</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">add_bonus</span>(score):
+    score = score + <span class="tok-num">10</span>
+    <span class="tok-fn">print</span>(score)
+
+total = <span class="tok-num">5</span>
+<span class="tok-fn">add_bonus</span>(total)
+<span class="tok-fn">print</span>(total)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>15 ואז 5 (הפרמטר score הוא עותק מקומי — שינוי שלו בתוך הפונקציה לא משפיע על המשתנה total שבחוץ)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">7</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו פונקציה בשם <code>is_even</code> שמקבלת מספר, ומדפיסה אם הוא זוגי או אי-זוגי.</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">8</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו פונקציה בשם <code>average</code> שמקבלת שני מספרים, ומדפיסה את הממוצע ביניהם.</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">9</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו משתנה גלובלי בשם <code>attempts</code> המתחיל מ-0, ופונקציה שמעלה אותו ב-1 בכל קריאה (השתמשו ב-global). זמנו אותה 3 פעמים והדפיסו את הערך הסופי.</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">10</span><span class="wq-type type-write">פרויקט קטן — תפריט מחשבון</span></div>
         <p>כתבו 4 פונקציות: <code>add(a, b)</code>, <code>subtract(a, b)</code>, <code>multiply(a, b)</code>, <code>divide(a, b)</code> — כל אחת מקבלת שני מספרים ומדפיסה את התוצאה. אחר כך כתבו תכנית שמציגה למשתמש/ת תפריט (1=חיבור, 2=חיסור, 3=כפל, 4=חילוק), קולטת שני מספרים ובחירה, וקוראת לפונקציה המתאימה.</p>
         <details class="answer">
           <summary>הצג פתרון אפשרי</summary>

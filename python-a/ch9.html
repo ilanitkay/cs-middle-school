@@ -200,29 +200,36 @@ wn.listen()</code></pre>
 
       <div class="wq">
         <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-trace">נכון או לא נכון?</span></div>
-        <p>לכל משפט, ציינו האם הוא נכון או לא נכון, ונמקו בקצרה.</p>
-        <table class="trace-table">
-          <tr><th>סעיף</th><th>משפט</th><th>נכון / לא נכון</th></tr>
-          <tr><td>1</td><td class="q-code">כדי ש-<code>onkey</code> יעבוד, חייבים לקרוא גם ל-<code>wn.listen()</code>.</td><td class="q-answer">________</td></tr>
-          <tr><td>2</td><td class="q-code">גם <code>onclick</code> חייב קריאה נפרדת ל-<code>listen()</code>, בדיוק כמו <code>onkey</code>.</td><td class="q-answer">________</td></tr>
-          <tr><td>3</td><td class="q-code">הפונקציה שרושמים ל-<code>onclick</code> חייבת לקבל שני פרמטרים (x ו-y).</td><td class="q-answer">________</td></tr>
-          <tr><td>4</td><td class="q-code">מעבירים ל-<code>onkey</code> את הפונקציה <strong>עם</strong> סוגריים, למשל <code>move_up()</code>.</td><td class="q-answer">________</td></tr>
-          <tr><td>5</td><td class="q-code"><code>time.sleep(1)</code> משהה את התכנית לשנייה אחת.</td><td class="q-answer">________</td></tr>
-        </table>
-        <details class="answer">
-          <summary>הצג תשובות</summary>
-          <div class="answer-body">
-            <p><strong>1.</strong> נכון.<br>
-            <strong>2.</strong> לא נכון — רק onkey דורש listen(), כי היא זו שמפעילה את "ההקשבה" למקלדת.<br>
-            <strong>3.</strong> נכון — Turtle מזמנת את הפונקציה אוטומטית עם קואורדינטות הלחיצה.<br>
-            <strong>4.</strong> לא נכון — מעבירים את שם הפונקציה בלבד, בלי סוגריים (<code>move_up</code>, לא <code>move_up()</code>), אחרת היא תרוץ מיד במקום להירשם כמאזין.<br>
-            <strong>5.</strong> נכון.</p>
-          </div>
-        </details>
+        <p>כדי ש-<code>onkey</code> יעבוד, חייבים לקרוא גם ל-<code>wn.listen()</code>. נכון או לא נכון?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>נכון.</p></div></details>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-trace">נכון או לא נכון?</span></div>
+        <p>גם <code>onclick</code> חייב קריאה נפרדת ל-<code>listen()</code>, בדיוק כמו <code>onkey</code>. נכון או לא נכון?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>לא נכון — רק onkey דורש listen(), כי היא זו שמפעילה את "ההקשבה" למקלדת.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-trace">נכון או לא נכון?</span></div>
+        <p>הפונקציה שרושמים ל-<code>onclick</code> חייבת לקבל שני פרמטרים (x ו-y). נכון או לא נכון?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>נכון — Turtle מזמנת את הפונקציה אוטומטית עם קואורדינטות הלחיצה.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">6</span><span class="wq-type type-trace">נכון או לא נכון?</span></div>
+        <p>מעבירים ל-<code>onkey</code> את הפונקציה <strong>עם</strong> סוגריים, למשל <code>move_up()</code>. נכון או לא נכון?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>לא נכון — מעבירים את שם הפונקציה בלבד, בלי סוגריים (<code>move_up</code>, לא <code>move_up()</code>), אחרת היא תרוץ מיד במקום להירשם כמאזין.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">7</span><span class="wq-type type-trace">נכון או לא נכון?</span></div>
+        <p><code>time.sleep(1)</code> משהה את התכנית לשנייה אחת. נכון או לא נכון?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>נכון.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">8</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
         <p>רוצים תכנית שמזיזה את הדמות 4 צעדים קדימה, עם השהיה של רבע שנייה בין כל צעד — כדי שהתנועה תיראה הדרגתית. השלימו:</p>
         <pre class="code-block"><code><span class="tok-kw">import</span> turtle
 <span class="tok-kw">import</span> ______
@@ -244,12 +251,18 @@ time.sleep(<span class="tok-num">0.25</span>)</code></pre>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-write">כתבו תוכנית</span></div>
-        <ol>
-          <li>כתבו תכנית שמציירת ריבוע בכל מקום שלוחצים עליו עם העכבר, כאשר גודל הריבוע גדל ב-5 בכל לחיצה.</li>
-          <li>כתבו תכנית שמזיזה את הדמות עם ארבעת המקשים (למעלה, למטה, ימינה, שמאלה).</li>
-          <li>אתגר: שלבו לחיצת עכבר עם צבעים לסירוגין — לחיצה ראשונה מציירת באדום, השנייה בכחול, וכן הלאה (רמז: השתמשו במונה מפרק 7 עם בדיקת זוגיות).</li>
-        </ol>
+        <div class="wq-head"><span class="wq-num">9</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שמציירת ריבוע בכל מקום שלוחצים עליו עם העכבר, כאשר גודל הריבוע גדל ב-5 בכל לחיצה.</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">10</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שמזיזה את הדמות עם ארבעת המקשים (למעלה, למטה, ימינה, שמאלה).</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">11</span><span class="wq-type type-write">אתגר</span></div>
+        <p>שלבו לחיצת עכבר עם צבעים לסירוגין — לחיצה ראשונה מציירת באדום, השנייה בכחול, וכן הלאה (רמז: השתמשו במונה מפרק 7 עם בדיקת זוגיות).</p>
       </div>
     </div>
 
