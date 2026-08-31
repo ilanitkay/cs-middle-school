@@ -193,36 +193,47 @@
 
     <div class="worksheet">
       <h2>דף עבודה — תרגול</h2>
-      <p class="worksheet-count">📝 12 שאלות בפרק זה</p>
+      <p class="worksheet-count">📝 11 שאלות בפרק זה</p>
       <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
 
       <div class="wq">
         <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
-        <p>נתונים המשתנים <code>a = 8</code>, <code>b = 12</code>, <code>c = 0</code>. מה ערכו (True או False) של כל ביטוי בוליאני?</p>
-        <table class="trace-table">
-          <tr><th>סעיף</th><th>ביטוי</th><th>ערך (True/False)</th></tr>
-          <tr><td>1</td><td class="q-code"><code>a &gt;= b or b == c</code></td><td class="q-answer">________</td></tr>
-          <tr><td>2</td><td class="q-code"><code>a % 2 == 0 and b // 4 &gt; c</code></td><td class="q-answer">________</td></tr>
-          <tr><td>3</td><td class="q-code"><code>a &lt; 0 or (b == c + 12 and a &gt;= c)</code></td><td class="q-answer">________</td></tr>
-          <tr><td>4</td><td class="q-code"><code>not (a &gt; b)</code></td><td class="q-answer">________</td></tr>
-          <tr><td>5</td><td class="q-code"><code>a != c and b != c</code></td><td class="q-answer">________</td></tr>
-          <tr><td>6</td><td class="q-code"><code>(a &lt; b) == (c &lt; a)</code></td><td class="q-answer">________</td></tr>
-        </table>
-        <details class="answer">
-          <summary>הצג תשובות</summary>
-          <div class="answer-body">
-            <p><strong>1.</strong> False or False → <strong>False</strong> (8&gt;=12 שקר, 12==0 שקר)<br>
-            <strong>2.</strong> True and True → <strong>True</strong> (8%2==0 אמת, 12//4=3 שגדול מ-0)<br>
-            <strong>3.</strong> False or (True and True) → <strong>True</strong> (הסוגריים חושבים ראשונים: 12==0+12 אמת, ו-8&gt;=0 אמת)<br>
-            <strong>4.</strong> not (False) → <strong>True</strong> (8&gt;12 שקר, ו-not הופך אותו לאמת)<br>
-            <strong>5.</strong> True and True → <strong>True</strong> (8!=0 אמת, 12!=0 אמת)<br>
-            <strong>6.</strong> True == True → <strong>True</strong> (8&lt;12 אמת, 0&lt;8 אמת, ושתי האמיתות שוות)</p>
-          </div>
-        </details>
+        <p>נתונים המשתנים <code>a = 8</code>, <code>b = 12</code>, <code>c = 0</code>. מה ערכו (True או False) של <code>a &gt;= b or b == c</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>False or False → <strong>False</strong> (8&gt;=12 שקר, 12==0 שקר)</p></div></details>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-trace">מצאו את הטעות</span></div>
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>עם אותם משתנים, מה ערכו של <code>a % 2 == 0 and b // 4 &gt; c</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>True and True → <strong>True</strong> (8%2==0 אמת, 12//4=3 שגדול מ-0)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה ערכו של <code>a &lt; 0 or (b == c + 12 and a &gt;= c)</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>False or (True and True) → <strong>True</strong> (הסוגריים חושבים ראשונים: 12==0+12 אמת, ו-8&gt;=0 אמת)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה ערכו של <code>not (a &gt; b)</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>not (False) → <strong>True</strong> (8&gt;12 שקר, ו-not הופך אותו לאמת)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה ערכו של <code>a != c and b != c</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>True and True → <strong>True</strong> (8!=0 אמת, 12!=0 אמת)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">6</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה ערכו של <code>(a &lt; b) == (c &lt; a)</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>True == True → <strong>True</strong> (8&lt;12 אמת, 0&lt;8 אמת, ושתי האמיתות שוות)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">7</span><span class="wq-type type-trace">מצאו את הטעות</span></div>
         <p>קטע הקוד הבא נועד להדפיס "Prize!" רק לתלמיד/ה עם ציון מעל 90. אבל נפלה בו טעות לוגית. מהי הטעות, וכיצד יש לתקנה?</p>
         <pre class="code-block"><code>grade = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Grade: "</span>))
 <span class="tok-kw">if</span> grade &gt; <span class="tok-num">90</span> <span class="tok-kw">or</span> grade &lt;= <span class="tok-num">100</span>:
@@ -239,16 +250,22 @@
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-write">כתבו תוכנית</span></div>
-        <ol>
-          <li>כתבו תכנית שקולטת גיל, ומדפיסה "ילד/ה" עד גיל 12, "נער/ה" מגיל 13 עד 17, ו"בוגר/ת" מגיל 18 ומעלה (השתמשו ב-elif).</li>
-          <li>כתבו תכנית שקולטת שלוש צלעות של משולש, ומדפיסה "שווה-צלעות" אם כולן שוות, אחרת בודקת אם הוא ישר-זווית (סכום ריבועי שתי הצלעות הקטנות שווה לריבוע הגדולה).</li>
-          <li>כתבו תכנית שקולטת מספר ומדפיסה "boom" אם הוא מתחלק ב-7 <em>או</em> מכיל את הספרה 7 — אחרת מדפיסה את המספר עצמו.</li>
-        </ol>
+        <div class="wq-head"><span class="wq-num">8</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שקולטת גיל, ומדפיסה "ילד/ה" עד גיל 12, "נער/ה" מגיל 13 עד 17, ו"בוגר/ת" מגיל 18 ומעלה (השתמשו ב-elif).</p>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-write">כתבו תוכנית — תנאי מורכב אמיתי</span></div>
+        <div class="wq-head"><span class="wq-num">9</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שקולטת שלוש צלעות של משולש, ומדפיסה "שווה-צלעות" אם כולן שוות, אחרת בודקת אם הוא ישר-זווית (סכום ריבועי שתי הצלעות הקטנות שווה לריבוע הגדולה).</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">10</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שקולטת מספר ומדפיסה "boom" אם הוא מתחלק ב-7 <em>או</em> מכיל את הספרה 7 — אחרת מדפיסה את המספר עצמו.</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">11</span><span class="wq-type type-write">כתבו תוכנית — תנאי מורכב אמיתי</span></div>
         <p>כדי להתקבל לקורס טייס אזרחי, על המועמד/ת לעמוד באחת משתי הדרישות הבאות:</p>
         <ul>
           <li>לרכוש לפחות 15 שנות השכלה, <strong>או</strong></li>

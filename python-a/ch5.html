@@ -211,28 +211,27 @@ num = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span cl
 
     <div class="worksheet">
       <h2>דף עבודה — תרגול</h2>
-      <p class="worksheet-count">📝 26 שאלות בפרק זה</p>
+      <p class="worksheet-count">📝 14 שאלות בפרק זה</p>
       <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
 
       <div class="wq">
         <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
-        <p>לכל קטע קוד, כתבו מהו הפלט המתקבל (שימו לב לכיוון הלולאה ולערך העליון שאינו כלול).</p>
-        <table class="trace-table">
-          <tr><th>סעיף</th><th>קוד</th><th>הפלט</th></tr>
-          <tr><td>1</td><td class="q-code"><code>for i in range(3, 12, 3):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(i, end=" ")</code></td><td class="q-answer">________</td></tr>
-          <tr><td>2</td><td class="q-code"><code>for i in range(10, 0, -2):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(i, end=" ")</code></td><td class="q-answer">________</td></tr>
-        </table>
-        <details class="answer">
-          <summary>הצג תשובות</summary>
-          <div class="answer-body">
-            <p><strong>1.</strong> 3 6 9  (מ-3 עד 12 לא כולל, בקפיצות של 3)<br>
-            <strong>2.</strong> 10 8 6 4 2  (לולאה יורדת, מ-10 עד 0 לא כולל, בקפיצות של 2-)</p>
-          </div>
-        </details>
+        <p>מה יודפס? שימו לב לכיוון הלולאה ולערך העליון שאינו כלול.</p>
+        <pre class="code-block"><code><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">3</span>, <span class="tok-num">12</span>, <span class="tok-num">3</span>):
+    <span class="tok-fn">print</span>(i, end=<span class="tok-str">" "</span>)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>3 6 9  (מ-3 עד 12 לא כולל, בקפיצות של 3)</p></div></details>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-trace">מצאו את הטעות</span></div>
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">10</span>, <span class="tok-num">0</span>, -<span class="tok-num">2</span>):
+    <span class="tok-fn">print</span>(i, end=<span class="tok-str">" "</span>)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>10 8 6 4 2  (לולאה יורדת, מ-10 עד 0 לא כולל, בקפיצות של 2-)</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-trace">מצאו את הטעות</span></div>
         <p>קטע הקוד הבא נועד להדפיס את המספרים 1 עד 5, אבל בפועל הוא נתקע ולא נגמר לעולם. מהי הטעות?</p>
         <pre class="code-block"><code>i = <span class="tok-num">1</span>
 <span class="tok-kw">while</span> i &lt;= <span class="tok-num">5</span>:
@@ -246,62 +245,67 @@ num = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span cl
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-write">כתבו תוכנית</span></div>
-        <ol>
-          <li>כתבו תכנית שמדפיסה את כל המספרים המתחלקים ב-5, מ-5 עד 30 (כולל), על אותה שורה.</li>
-          <li>כתבו תכנית שקולטת 10 ציונים בלולאת for, ומדפיסה כמה מהם היו מעל 80.</li>
-          <li>כתבו את אותה תכנית מהתרגיל הקודם, הפעם באמצעות while במקום for.</li>
-          <li>כתבו תכנית שקולטת מספר, ומדפיסה את כל המחלקים שלו (המספרים שמתחלקים בו בלי שארית) מ-1 עד המספר עצמו. למשל עבור הקלט 6 הפלט יהיה: <code>1 2 3 6</code>.</li>
-          <li>כתבו תכנית שקולטת מספר, ומדפיסה הודעה האם הוא ראשוני (prime number) — מספר שמתחלק רק ב-1 ובעצמו.</li>
-          <li>כתבו "מחולל תרגילים" בעזרת לולאה: תכנית שמדפיסה 10 תרגילי חיסור בסגנון <code>num - 4 = ?</code>, עבור num בטווח שכולל גם מספרים שליליים (למשל מ-5- עד 4).</li>
-        </ol>
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שמדפיסה את כל המספרים המתחלקים ב-5, מ-5 עד 30 (כולל), על אותה שורה.</p>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שקולטת 10 ציונים בלולאת for, ומדפיסה כמה מהם היו מעל 80.</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">6</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו את אותה תכנית מהתרגיל הקודם, הפעם באמצעות while במקום for.</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">7</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שקולטת מספר, ומדפיסה את כל המחלקים שלו (המספרים שמתחלקים בו בלי שארית) מ-1 עד המספר עצמו. למשל עבור הקלט 6 הפלט יהיה: <code>1 2 3 6</code>.</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">8</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שקולטת מספר, ומדפיסה הודעה האם הוא ראשוני (prime number) — מספר שמתחלק רק ב-1 ובעצמו.</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">9</span><span class="wq-type type-write">מחולל תרגילים</span></div>
+        <p>כתבו "מחולל תרגילים" בעזרת לולאה: תכנית שמדפיסה 10 תרגילי חיסור בסגנון <code>num - 4 = ?</code>, עבור num בטווח שכולל גם מספרים שליליים (למשל מ-5- עד 4).</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">10</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
         <p class="worksheet-intro" style="margin-bottom:10px">מבוסס על שאלה ממבחן מפמ״ר 2017, כיתות ט׳.</p>
-        <p>לפניכם קטע קוד ראשון, ולידו הפלט שהוא מדפיס. השלימו את קטעי הקוד הבאים כך שיתקבל הפלט הרשום ליד כל אחד מהם:</p>
-        <table class="trace-table">
-          <tr><th>סעיף</th><th>קוד לתשלים</th><th>הפלט הרצוי</th></tr>
-          <tr>
-            <td>דוגמה</td>
-            <td class="q-code"><code>for num in range(4):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(num)</code></td>
-            <td class="q-answer">0<br>1<br>2<br>3</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td class="q-code"><code>for num in ______:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(______)</code></td>
-            <td class="q-answer">10<br>11<br>12<br>13<br>14</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td class="q-code"><code>for num in ______:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(______)</code></td>
-            <td class="q-answer">4<br>3<br>2<br>1</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td class="q-code"><code>for num in ______:<br>&nbsp;&nbsp;&nbsp;&nbsp;______</code></td>
-            <td class="q-answer">0<br>3<br>6<br>9</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td class="q-code"><code>word = "Python"<br>for ch ______:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(______)</code></td>
-            <td class="q-answer">P<br>y<br>t<br>h<br>o<br>n</td>
-          </tr>
-        </table>
-        <details class="answer">
-          <summary>הצג תשובות</summary>
-          <div class="answer-body">
-            <p><strong>1.</strong> <code>for num in range(10, 15): print(num)</code><br>
-            <strong>2.</strong> <code>for num in range(4, 0, -1): print(num)</code><br>
-            <strong>3.</strong> <code>for num in range(0, 10, 3): print(num)</code><br>
-            <strong>4.</strong> <code>for ch in word: print(ch)</code> — לולאת for יכולה לרוץ ישירות על מחרוזת, בלי range בכלל.</p>
-          </div>
-        </details>
+        <p>איזה קוד צריך להשלים כדי לקבל את הפלט: <code>10 11 12 13 14</code> (כל מספר בשורה נפרדת)? הדוגמה: <code>for num in range(4): print(num)</code> מייצרת <code>0 1 2 3</code>.</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><pre class="code-block"><code><span class="tok-kw">for</span> num <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">10</span>, <span class="tok-num">15</span>):
+    <span class="tok-fn">print</span>(num)</code></pre></div></details>
       </div>
 
       <div class="wq">
-        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-trace">טבלת מעקב</span></div>
+        <div class="wq-head"><span class="wq-num">11</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <p>אותו סוג שאלה — איזה קוד נדרש כדי לקבל את הפלט: <code>4 3 2 1</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><pre class="code-block"><code><span class="tok-kw">for</span> num <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">4</span>, <span class="tok-num">0</span>, -<span class="tok-num">1</span>):
+    <span class="tok-fn">print</span>(num)</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">12</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <p>ואיזה קוד נדרש כדי לקבל את הפלט: <code>0 3 6 9</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><pre class="code-block"><code><span class="tok-kw">for</span> num <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">0</span>, <span class="tok-num">10</span>, <span class="tok-num">3</span>):
+    <span class="tok-fn">print</span>(num)</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">13</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <p>לבסוף — עבור <code>word = "Python"</code>, איזה קוד נדרש כדי לקבל את הפלט: כל אות בשורה נפרדת (P, y, t, h, o, n)?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><pre class="code-block"><code>word = <span class="tok-str">"Python"</span>
+<span class="tok-kw">for</span> ch <span class="tok-kw">in</span> word:
+    <span class="tok-fn">print</span>(ch)</code></pre><p>לולאת for יכולה לרוץ ישירות על מחרוזת, בלי range בכלל.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">14</span><span class="wq-type type-trace">טבלת מעקב</span></div>
         <p>עקבו אחר קטע הקוד הבא, ובנו טבלת מעקב עבור הקלט <code>125</code>. מה יהיה הפלט הסופי?</p>
         <pre class="code-block"><code>rnumber = <span class="tok-num">0</span>
 number = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Enter number: "</span>))
