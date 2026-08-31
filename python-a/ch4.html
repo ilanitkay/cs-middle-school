@@ -233,6 +233,28 @@
           <li>כתבו תכנית שקולטת מספר ומדפיסה "boom" אם הוא מתחלק ב-7 <em>או</em> מכיל את הספרה 7 — אחרת מדפיסה את המספר עצמו.</li>
         </ol>
       </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-write">כתבו תוכנית — תנאי מורכב אמיתי</span></div>
+        <p>כדי להתקבל לקורס טייס אזרחי, על המועמד/ת לעמוד באחת משתי הדרישות הבאות:</p>
+        <ul>
+          <li>לרכוש לפחות 15 שנות השכלה, <strong>או</strong></li>
+          <li>לרכוש לפחות 12 שנות השכלה <strong>וגם</strong> לקבל ציון ממוצע גבוה מ-90 בתעודת הבגרות</li>
+        </ul>
+        <p>כתבו תכנית שקולטת את מספר שנות ההשכלה ואת הציון הממוצע, ומדפיסה הודעה האם המועמד/ת התקבל/ה לקורס.</p>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <pre class="code-block"><code>years = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Years of education: "</span>))
+avg_grade = <span class="tok-fn">float</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Average grade: "</span>))
+<span class="tok-kw">if</span> years &gt;= <span class="tok-num">15</span> <span class="tok-kw">or</span> (years &gt;= <span class="tok-num">12</span> <span class="tok-kw">and</span> avg_grade &gt; <span class="tok-num">90</span>):
+    <span class="tok-fn">print</span>(<span class="tok-str">"Accepted"</span>)
+<span class="tok-kw">else</span>:
+    <span class="tok-fn">print</span>(<span class="tok-str">"Not accepted"</span>)</code></pre>
+            <p>שימו לב שהסוגריים סביב <code>(years &gt;= 12 and avg_grade &gt; 90)</code> אינם הכרחיים מבחינת Python (כי and מחושב לפני or ממילא), אבל כדאי לכתוב אותם בכל זאת — הם הופכים את הכוונה של התנאי לברורה מיד למי שקורא את הקוד.</p>
+          </div>
+        </details>
+      </div>
     </div>
 
     <div class="chapter-nav">

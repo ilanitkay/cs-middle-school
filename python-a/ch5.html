@@ -123,6 +123,27 @@ num = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span cl
     num = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Enter a number (0 to finish): "</span>))
 <span class="tok-fn">print</span>(<span class="tok-str">"Total sum:"</span>, total)</code></pre>
 
+      <h3>עצירת לולאה מוקדם — break</h3>
+      <p>הפקודה <code>break</code> עוצרת את הלולאה באמצע ויוצאת ממנה מיד, גם אם תנאי ה-while עדיין מתקיים. שימוש נפוץ: לולאה אינסופית מכוונת (<code>while True</code>) שיוצאים ממנה רק כשמתקיים תנאי מסוים בתוכה — למשל, בקשת סיסמה עד שהוזנה נכון:</p>
+      <pre class="code-block"><code>password = <span class="tok-str">"86420"</span>
+<span class="tok-kw">while</span> <span class="tok-kw">True</span>:
+    user_pass = <span class="tok-fn">input</span>(<span class="tok-str">"Please enter your password: "</span>)
+    <span class="tok-kw">if</span> user_pass == password:
+        <span class="tok-fn">print</span>(<span class="tok-str">"Successful"</span>)
+        <span class="tok-kw">break</span>
+    <span class="tok-fn">print</span>(<span class="tok-str">"Wrong password. Try again"</span>)</code></pre>
+      <p><code>while True</code> יוצרת לולאה שהתנאי שלה תמיד אמת, ולכן ללא <code>break</code> היא לעולם לא הייתה נעצרת — ה-<code>break</code> הוא הדרך היחידה לצאת ממנה.</p>
+
+      <h3>דילוג על סיבוב — continue</h3>
+      <p>הפקודה <code>continue</code> מדלגת על שאר הקוד שבגוף הלולאה, ועוברת ישר לסיבוב הבא — בלי לעצור את הלולאה כולה. שימושי כדי "לפסול" מקרים מסוימים בתוך לולאה:</p>
+      <pre class="code-block"><code>number = <span class="tok-num">0</span>
+<span class="tok-kw">while</span> number &lt;= <span class="tok-num">10</span>:
+    number += <span class="tok-num">1</span>
+    <span class="tok-kw">if</span> number % <span class="tok-num">2</span> == <span class="tok-num">1</span>:
+        <span class="tok-kw">continue</span>
+    <span class="tok-fn">print</span>(number)
+<span class="tok-com"># מדלג על כל מספר אי-זוגי, ומדפיס רק זוגיים: 2 4 6 8 10</span></code></pre>
+
       <h2>תבנית הצבירה (accumulator)</h2>
       <p>אחת התבניות הנפוצות ביותר בתכנות: משתנה "צובר" שמאותחל ל-0 <strong>לפני</strong> הלולאה, ובכל סיבוב מצטרף אליו ערך חדש. אותה תבנית עובדת גם עם for וגם עם while:</p>
       <pre class="code-block"><code>total = <span class="tok-num">0</span>
@@ -144,6 +165,8 @@ num = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span cl
         <div><dt>while</dt><dd>לולאה שרצה כל עוד תנאי נתון מתקיים</dd></div>
         <div><dt>לולאה אינסופית</dt><dd>לולאה שהתנאי שלה אף פעם לא הופך לשקר</dd></div>
         <div><dt>צובר (accumulator)</dt><dd>משתנה שמצטבר לתוכו סכום לאורך הלולאה</dd></div>
+        <div><dt>break</dt><dd>עוצרת את הלולאה מיד ויוצאת ממנה, גם אם התנאי עדיין מתקיים</dd></div>
+        <div><dt>continue</dt><dd>מדלגת על שאר הסיבוב הנוכחי, וממשיכה לסיבוב הבא של הלולאה</dd></div>
       </dl>
     </div>
 
@@ -208,6 +231,74 @@ num = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span cl
           <li>כתבו תכנית שקולטת 10 ציונים בלולאת for, ומדפיסה כמה מהם היו מעל 80.</li>
           <li>כתבו את אותה תכנית מהתרגיל הקודם, הפעם באמצעות while במקום for.</li>
         </ol>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <p class="worksheet-intro" style="margin-bottom:10px">מבוסס על שאלה ממבחן מפמ״ר 2017, כיתות ט׳.</p>
+        <p>לפניכם קטע קוד ראשון, ולידו הפלט שהוא מדפיס. השלימו את קטעי הקוד הבאים כך שיתקבל הפלט הרשום ליד כל אחד מהם:</p>
+        <table class="trace-table">
+          <tr><th>סעיף</th><th>קוד לתשלים</th><th>הפלט הרצוי</th></tr>
+          <tr>
+            <td>דוגמה</td>
+            <td class="q-code"><code>for num in range(4):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(num)</code></td>
+            <td class="q-answer">0<br>1<br>2<br>3</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td class="q-code"><code>for num in ______:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(______)</code></td>
+            <td class="q-answer">10<br>11<br>12<br>13<br>14</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td class="q-code"><code>for num in ______:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(______)</code></td>
+            <td class="q-answer">4<br>3<br>2<br>1</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td class="q-code"><code>for num in ______:<br>&nbsp;&nbsp;&nbsp;&nbsp;______</code></td>
+            <td class="q-answer">0<br>3<br>6<br>9</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td class="q-code"><code>word = "Python"<br>for ch ______:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(______)</code></td>
+            <td class="q-answer">P<br>y<br>t<br>h<br>o<br>n</td>
+          </tr>
+        </table>
+        <details class="answer">
+          <summary>הצג תשובות</summary>
+          <div class="answer-body">
+            <p><strong>1.</strong> <code>for num in range(10, 15): print(num)</code><br>
+            <strong>2.</strong> <code>for num in range(4, 0, -1): print(num)</code><br>
+            <strong>3.</strong> <code>for num in range(0, 10, 3): print(num)</code><br>
+            <strong>4.</strong> <code>for ch in word: print(ch)</code> — לולאת for יכולה לרוץ ישירות על מחרוזת, בלי range בכלל.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-trace">טבלת מעקב</span></div>
+        <p>עקבו אחר קטע הקוד הבא, ובנו טבלת מעקב עבור הקלט <code>125</code>. מה יהיה הפלט הסופי?</p>
+        <pre class="code-block"><code>rnumber = <span class="tok-num">0</span>
+number = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Enter number: "</span>))
+<span class="tok-kw">while</span> number &gt; <span class="tok-num">0</span>:
+    rnumber = rnumber * <span class="tok-num">10</span> + number % <span class="tok-num">10</span>
+    number = <span class="tok-fn">int</span>(number / <span class="tok-num">10</span>)
+<span class="tok-fn">print</span>(rnumber)</code></pre>
+        <table class="trace-table">
+          <tr><th>rnumber</th><th>number</th><th>number &gt; 0 ?</th></tr>
+          <tr><td class="q-answer">0</td><td class="q-answer">125</td><td class="q-answer">________</td></tr>
+          <tr><td class="q-answer">________</td><td class="q-answer">________</td><td class="q-answer">________</td></tr>
+          <tr><td class="q-answer">________</td><td class="q-answer">________</td><td class="q-answer">________</td></tr>
+          <tr><td class="q-answer">________</td><td class="q-answer">________</td><td class="q-answer">________</td></tr>
+        </table>
+        <details class="answer">
+          <summary>הצג תשובה</summary>
+          <div class="answer-body">
+            <p>הטבלה המלאה: (0,125,T) → (5,12,T) → (52,1,T) → (521,0,F) — הלולאה עוצרת. <strong>הפלט: 521</strong>.<br>
+            הרעיון: בכל סיבוב לוקחים את ספרת האחדות של number (עם %10) ומוסיפים אותה בתור הספרה <em>האחרונה</em> של rnumber (על ידי rnumber*10+...) — כך המספר "נבנה מחדש" הפוך.</p>
+          </div>
+        </details>
       </div>
     </div>
 
