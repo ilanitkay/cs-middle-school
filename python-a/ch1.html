@@ -48,7 +48,7 @@
         <li>להכיר את סביבת העבודה בה כותבים ומריצים קוד Python</li>
         <li>לכתוב הוראת פלט (print) פשוטה ומורכבת יותר</li>
         <li>להבין למה חשוב לתעד ולהזיח (indent) קוד בצורה מסודרת</li>
-        <li>לבצע פעולות חשבוניות בסיסיות (+, -, *, /) ולהכיר את סדר הפעולות</li>
+        <li>לבצע את כל הפעולות החשבוניות (+, -, *, /, //, %, **) ולהכיר את סדר הפעולות</li>
         <li>לכתוב פונקציה פשוטה בלי פרמטרים, ולזמן (לקרוא ל) אותה</li>
       </ul>
     </div>
@@ -97,12 +97,19 @@
 
       <h2>פעולות חשבוניות בסיסיות</h2>
       <p>Python יודעת לבצע חישובים ישירות על מספרים, בלי שצריך שום דבר נוסף — אפשר פשוט לכתוב את החישוב בתוך <code>print</code>:</p>
-      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-num">3</span> + <span class="tok-num">4</span>)   <span class="tok-com"># חיבור - 7</span>
-<span class="tok-fn">print</span>(<span class="tok-num">10</span> - <span class="tok-num">3</span>)  <span class="tok-com"># חיסור - 7</span>
-<span class="tok-fn">print</span>(<span class="tok-num">6</span> * <span class="tok-num">5</span>)   <span class="tok-com"># כפל - 30</span>
-<span class="tok-fn">print</span>(<span class="tok-num">10</span> / <span class="tok-num">4</span>)  <span class="tok-com"># חילוק - 2.5</span></code></pre>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-num">3</span> + <span class="tok-num">4</span>)   <span class="tok-com"># 7  (חיבור)</span>
+<span class="tok-fn">print</span>(<span class="tok-num">10</span> - <span class="tok-num">3</span>)  <span class="tok-com"># 7  (חיסור)</span>
+<span class="tok-fn">print</span>(<span class="tok-num">6</span> * <span class="tok-num">5</span>)   <span class="tok-com"># 30  (כפל)</span>
+<span class="tok-fn">print</span>(<span class="tok-num">10</span> / <span class="tok-num">4</span>)  <span class="tok-com"># 2.5  (חילוק)</span></code></pre>
       <p>שימו לב: סימן החילוק ב-Python הוא <code>/</code> (ולא <code>:</code> כמו בכתיב בבית ספר) — והתוצאה שלו תמיד מספר עשרוני (<code>float</code>), גם אם החלוקה יוצאת "עגולה":</p>
       <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-num">10</span> / <span class="tok-num">2</span>)  <span class="tok-com"># 5.0, ולא 5</span></code></pre>
+
+      <h3>עוד שלוש פעולות שכדאי להכיר</h3>
+      <p>מלבד + - * / יש ב-Python עוד שלושה אופרטורים חשבוניים חשובים:</p>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-num">10</span> // <span class="tok-num">3</span>)  <span class="tok-com"># 3  (חילוק שלם - רק החלק השלם של התוצאה, בלי השארית)</span>
+<span class="tok-fn">print</span>(<span class="tok-num">10</span> % <span class="tok-num">3</span>)   <span class="tok-com"># 1  (מודולו - רק השארית שנשארת מהחילוק)</span>
+<span class="tok-fn">print</span>(<span class="tok-num">2</span> ** <span class="tok-num">3</span>)   <span class="tok-com"># 8  (חזקה - 2 בחזקת 3)</span></code></pre>
+      <p><code>//</code> ו-<code>%</code> נמצאים בשימוש כל כך רב (למשל, לבדוק אם מספר זוגי, או לפרק מספר לספרותיו) שנקדיש להם הסבר מלא ותרגול נפרד בפרק 3.</p>
 
       <h3>סדר פעולות</h3>
       <p>Python פועלת לפי אותם כללי סדר פעולות שמכירים מהמתמטיקה: קודם כפל וחילוק, ורק אחר כך חיבור וחיסור. כדי לשנות את הסדר — בדיוק כמו במתמטיקה — משתמשים בסוגריים:</p>
@@ -131,6 +138,9 @@
         <div><dt>הזחה (indent)</dt><dd>רווח בתחילת שורה שמסמן ל-Python אילו שורות שייכות יחד</dd></div>
         <div><dt>הערה (comment)</dt><dd>שורה שמתחילה ב-# ואינה מתבצעת בריצת התכנית</dd></div>
         <div><dt>+ - * /</dt><dd>אופרטורים חשבוניים: חיבור, חיסור, כפל וחילוק</dd></div>
+        <div><dt>// (חילוק שלם)</dt><dd>מחזיר רק את החלק השלם של תוצאת חילוק</dd></div>
+        <div><dt>% (מודולו)</dt><dd>מחזיר את שארית החלוקה</dd></div>
+        <div><dt>** (חזקה)</dt><dd>מעלה מספר בחזקה</dd></div>
         <div><dt>סדר פעולות</dt><dd>כפל וחילוק מחושבים לפני חיבור וחיסור, אלא אם יש סוגריים</dd></div>
         <div><dt>פונקציה (function)</dt><dd>קבוצת הוראות ארוזה תחת שם, שניתן להריץ בקריאה אחת</dd></div>
         <div><dt>def</dt><dd>מילת המפתח שבה מגדירים פונקציה חדשה</dd></div>
