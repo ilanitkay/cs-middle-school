@@ -677,6 +677,11 @@ ul, ol {
   margin-bottom: 6px;
 }
 
+code {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
 pre.code-block {
   background: var(--color-code-bg);
   color: var(--color-code-text);
