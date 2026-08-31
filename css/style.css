@@ -1065,6 +1065,19 @@ pre.code-block code {
   margin: 0 0 22px;
 }
 
+.worksheet-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin: 0 0 14px;
+}
+
 .wq {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
