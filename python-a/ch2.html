@@ -46,7 +46,7 @@
       <h2>מה נלמד בפרק הזה</h2>
       <ul>
         <li>לייבא ולהפעיל את ספריית הגרפיקה Turtle</li>
-        <li>ליצור משטח עבודה (מסך) ודמות (צב) שמציירת עליו</li>
+        <li>ליצור משטח עבודה (מסך) ודמות (צב) שמציירת עליו, ולשלוט בגודלו ובצבעים שלו</li>
         <li>לזמן פקודות תנועה: קדימה, פנייה בזווית, הרמת/הורדת העט</li>
         <li>לשלב פקודות תנועה בתוך לולאה כדי לצייר צורות</li>
       </ul>
@@ -62,6 +62,26 @@
 wn = turtle.Screen()      <span class="tok-com"># יצירת חלון (משטח ציור)</span>
 player = turtle.Turtle()  <span class="tok-com"># יצירת הצב שיצייר</span>
 player.shape(<span class="tok-str">"turtle"</span>)     <span class="tok-com"># עיצוב הדמות כצורת צב</span></code></pre>
+
+      <p>כברירת מחדל <code>turtle.Screen()</code> פותחת חלון בגודל סטנדרטי שממלא חלק ניכר ממסך המחשב, והצב מתחיל תמיד <strong>במרכז החלון בדיוק</strong>, פונה ימינה. אפשר לשלוט על גודל החלון ועל הצבעים שלו:</p>
+      <pre class="code-block"><code>wn.setup(width=<span class="tok-num">600</span>, height=<span class="tok-num">400</span>)  <span class="tok-com"># קובע גודל מדויק לחלון, בפיקסלים</span>
+wn.bgcolor(<span class="tok-str">"lightblue"</span>)             <span class="tok-com"># צבע הרקע של החלון</span>
+player.color(<span class="tok-str">"red"</span>)                 <span class="tok-com"># צבע הצב והקו שהוא מצייר</span></code></pre>
+
+      <figure class="concept-diagram">
+        <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+          <rect x="20" y="10" width="300" height="180" rx="8" fill="#eaf6ff" stroke="#3454d1" stroke-width="2"/>
+          <line x1="170" y1="10" x2="170" y2="190" stroke="#b7c6e6" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <line x1="20" y1="100" x2="320" y2="100" stroke="#b7c6e6" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="176" y="22" font-size="11" fill="#5b6478" direction="ltr">y</text>
+          <text x="304" y="112" font-size="11" fill="#5b6478" direction="ltr">x</text>
+          <polygon points="170,100 178,88 186,100 182,100 182,112 174,112 174,100" fill="#146c48"/>
+          <text x="170" y="132" text-anchor="middle" font-size="11" fill="#146c48" direction="ltr">(0, 0) — כאן הצב מתחיל</text>
+          <polyline points="170,100 250,100 250,60" fill="none" stroke="#c1502e" stroke-width="3" stroke-linecap="round"/>
+          <text x="255" y="55" font-size="11" fill="#c1502e" direction="ltr">forward + left(90)</text>
+        </svg>
+        <figcaption>החלון (Screen) הוא מערכת צירים: (0,0) במרכז בדיוק, x חיובי ימינה, y חיובי למעלה — והצב (המשולש הירוק) תמיד מתחיל שם, פונה ימינה</figcaption>
+      </figure>
 
       <h3>פקודות תנועה בסיסיות</h3>
       <p>הפקודות הנפוצות ביותר: <code>forward(n)</code> מזיזה את הצב n צעדים קדימה, <code>left(angle)</code> ו-<code>right(angle)</code> מסובבות אותו בזווית נתונה (במעלות).</p>
@@ -94,6 +114,8 @@ turtle.mainloop()</code></pre>
       <h2>מושגי מפתח</h2>
       <dl class="term-grid">
         <div><dt>Screen</dt><dd>אובייקט שמייצג את חלון הציור</dd></div>
+        <div><dt>setup(width, height)</dt><dd>קובעת את גודל החלון בפיקסלים</dd></div>
+        <div><dt>bgcolor()</dt><dd>קובעת את צבע הרקע של החלון</dd></div>
         <div><dt>Turtle</dt><dd>אובייקט שמייצג את הדמות המציירת</dd></div>
         <div><dt>forward / left / right</dt><dd>פקודות תנועה: התקדמות וסיבוב בזווית</dd></div>
         <div><dt>penup / pendown</dt><dd>הרמה/הורדה של העט — קובעת אם התזוזה תצייר קו</dd></div>
@@ -121,7 +143,7 @@ turtle.mainloop()</code></pre>
 
     <div class="worksheet">
       <h2>דף עבודה — תרגול</h2>
-      <p class="worksheet-count">📝 15 שאלות בפרק זה</p>
+      <p class="worksheet-count">📝 16 שאלות בפרק זה</p>
       <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר, מהקל למאתגר. נסו לענות לפני שאתם בודקים את התשובה.</p>
 
       <div class="wq">
@@ -311,6 +333,19 @@ turtle.mainloop()</code></pre>
     player.forward(<span class="tok-num">60</span>)
     player.right(<span class="tok-num">90</span>)</code></pre>
         <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>4 חזרות, סה״כ 4×90=360 מעלות — סיבוב מלא (ריבוע), אך הפעם עם <code>right</code> — כיוון השעון.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">16</span><span class="wq-type type-fill">השלימו את הקוד</span></div>
+        <p>רוצים לפתוח חלון בגודל 500 על 300 פיקסלים, עם רקע צהוב, ולצייר בצבע כחול. השלימו:</p>
+        <pre class="code-block"><code>wn = turtle.Screen()
+wn.______(width=<span class="tok-num">500</span>, height=<span class="tok-num">300</span>)
+wn.______(<span class="tok-str">"yellow"</span>)
+player = turtle.Turtle()
+player.______(<span class="tok-str">"blue"</span>)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><pre class="code-block"><code>wn.setup(width=<span class="tok-num">500</span>, height=<span class="tok-num">300</span>)
+wn.bgcolor(<span class="tok-str">"yellow"</span>)
+player.color(<span class="tok-str">"blue"</span>)</code></pre></div></details>
       </div>
     </div>
 
