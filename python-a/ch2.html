@@ -95,14 +95,16 @@ turtle.mainloop()      <span class="tok-com"># משאיר את חלון הציו
           <line x1="170" y1="10" x2="170" y2="190" stroke="#b7c6e6" stroke-width="1.5" stroke-dasharray="4 3"/>
           <line x1="20" y1="100" x2="320" y2="100" stroke="#b7c6e6" stroke-width="1.5" stroke-dasharray="4 3"/>
           <polygon points="164,93 164,107 180,100" fill="#146c48"/>
+          <text x="170" y="122" text-anchor="middle" font-size="10" fill="#146c48" direction="ltr">start</text>
           <polyline points="170,100 250,100 250,60" fill="none" stroke="#c1502e" stroke-width="3" stroke-linecap="round"/>
           <circle cx="250" cy="100" r="3" fill="#c1502e"/>
-          <circle cx="250" cy="60" r="3" fill="#c1502e"/>
+          <polygon points="243,66 257,66 250,50" fill="#146c48"/>
+          <text x="250" y="42" text-anchor="middle" font-size="10" fill="#146c48" direction="ltr">end</text>
           <text x="205" y="93" text-anchor="middle" font-size="10" fill="#c1502e" direction="ltr">forward(100)</text>
-          <text x="256" y="82" font-size="10" fill="#c1502e" direction="ltr">left(90)</text>
-          <text x="256" y="55" font-size="10" fill="#c1502e" direction="ltr">forward(50)</text>
+          <text x="222" y="82" font-size="10" fill="#c1502e" direction="ltr">left(90)</text>
+          <text x="222" y="70" font-size="10" fill="#c1502e" direction="ltr">forward(50)</text>
         </svg>
-        <figcaption>דוגמת תזוזה (הקוד שלמעלה): הצב מתקדם 100 צעדים ימינה — הכיוון ההתחלתי — פונה שמאלה ב-90 מעלות, ומתקדם עוד 50 צעדים כלפי מעלה</figcaption>
+        <figcaption>דוגמת תזוזה (הקוד שלמעלה): הצב <strong>מתחיל</strong> בנקודה הירוקה התחתונה, פונה ימינה — ואחרי forward(100), left(90), forward(50) הוא <strong>מסיים</strong> בנקודה הירוקה העליונה, פונה כלפי מעלה. שני המשולשים הירוקים הם אותו צב, בשתי נקודות זמן שונות — הוא לא חוזר להתחלה</figcaption>
       </figure>
 
       <h2>ציור צורות באמצעות לולאה</h2>
