@@ -58,11 +58,15 @@
       <p>תכנית מחשב היא רשימת הוראות שהמחשב מבצע אחת אחרי השנייה, מלמעלה למטה. ב-Python כותבים כל הוראה בשורה משלה, ובניגוד לשפות רבות אחרות — אין צורך בסוגריים מסולסלים או נקודה-פסיק בסוף שורה. במקום זאת, Python "מבינה" את מבנה התכנית לפי <strong>הזחה</strong> (הרווח שבתחילת השורה), ולכן חשוב מאוד לשמור על הזחה עקבית.</p>
 
       <h2>ההוראה print</h2>
-      <p>ההוראה הראשונה שכל מתכנת/ת לומד/ת היא <code>print</code> — היא מדפיסה טקסט או ערך אל המסך.</p>
+      <p>ההוראה הראשונה שכל מתכנת/ת לומד/ת היא <code>print</code> — היא מדפיסה טקסט או ערך אל המסך. הסוגריים <code>()</code> מסמנים של-print "מפעילים" פקודה, בדיוק כמו בפונקציות מתמטיות שהכרתם — למשל <code>sin(60)</code>.</p>
       <span class="code-label">דוגמה</span>
       <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-str">"Hello, I'm learning Python!"</span>)
 <span class="tok-fn">print</span>(<span class="tok-str">"Computer Science"</span>)
 <span class="tok-fn">print</span>(<span class="tok-str">"Grade 8"</span>)</code></pre>
+      <p>שימו לב: השתמשנו כאן במרכאות <strong>כפולות</strong> (<code>"</code>) כי המשפט מכיל גרש (<code>'</code>) בתוך המילה <code>I'm</code>. Python מקבלת גם מרכאות בודדות וגם כפולות לטקסט — שתי השורות הבאות מדפיסות בדיוק אותו דבר:</p>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-str">'Hello'</span>)
+<span class="tok-fn">print</span>(<span class="tok-str">"Hello"</span>)</code></pre>
+      <p>העיקר להיות עקביים ולא לערבב סוג מרכאות בתוך אותה מחרוזת.</p>
       <p>אפשר להדפיס גם כמה ערכים בהוראת print אחת, כאשר מפרידים ביניהם בפסיק — Python תוסיף רווח בין הערכים באופן אוטומטי:</p>
       <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-str">"Name:"</span>, <span class="tok-str">"Daniel"</span>, <span class="tok-str">"Grade:"</span>, <span class="tok-str">"8B"</span>)
 <span class="tok-com"># Output: Name: Daniel Grade: 8B</span></code></pre>
@@ -94,6 +98,18 @@
         </svg>
         <figcaption>התכנית רצה שורה-שורה מלמעלה למטה — אבל שורת ההערה (#) מדולגת לגמרי ואינה מתבצעת</figcaption>
       </figure>
+
+      <h3>ירידת שורה בתוך הדפסה: \n ו-end</h3>
+      <p>כל הוראת <code>print</code> עוברת אוטומטית לשורה חדשה בסיום שלה — זו ברירת המחדל. אפשר לשלוט בזה בשתי דרכים:</p>
+      <p><code>\n</code> בתוך מחרוזת גורם למעבר שורה <strong>בתוך</strong> אותה הוראת print יחידה:</p>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-str">"Line 1\nLine 2"</span>)
+<span class="tok-com"># Output:</span>
+<span class="tok-com"># Line 1</span>
+<span class="tok-com"># Line 2</span></code></pre>
+      <p>לעומת זאת, הפרמטר <code>end=""</code> עושה בדיוק ההפך — מבטל את מעבר השורה האוטומטי בסוף ה-print, כך שההדפסה הבאה תמשיך <strong>באותה שורה</strong>:</p>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-str">"Hello "</span>, end=<span class="tok-str">""</span>)
+<span class="tok-fn">print</span>(<span class="tok-str">"World"</span>)
+<span class="tok-com"># Output: Hello World   (שורה אחת, לא שתיים)</span></code></pre>
 
       <h2>פעולות חשבוניות בסיסיות</h2>
       <p>Python יודעת לבצע חישובים ישירות על מספרים, בלי שצריך שום דבר נוסף — אפשר פשוט לכתוב את החישוב בתוך <code>print</code>:</p>
@@ -137,12 +153,17 @@
         <div><dt>print</dt><dd>הוראה שמדפיסה טקסט או ערך למסך</dd></div>
         <div><dt>הזחה (indent)</dt><dd>רווח בתחילת שורה שמסמן ל-Python אילו שורות שייכות יחד</dd></div>
         <div><dt>הערה (comment)</dt><dd>שורה שמתחילה ב-# ואינה מתבצעת בריצת התכנית</dd></div>
+        <div><dt>\n</dt><dd>סימן בתוך מחרוזת שגורם למעבר שורה, גם באמצע הוראת print יחידה</dd></div>
+        <div><dt>end=""</dt><dd>פרמטר ב-print שמבטל את מעבר השורה האוטומטי בסוף ההדפסה</dd></div>
+        <div><dt>אופרטור (operator)</dt><dd>סימן שמייצג פעולה, כמו + או * — הסימן עצמו, לא הערכים שעליהם הוא פועל</dd></div>
+        <div><dt>אופרנד (operand)</dt><dd>הערך שעליו מתבצעת הפעולה; ב-<code>3 + 4</code>, המספרים 3 ו-4 הם האופרנדים</dd></div>
+        <div><dt>ביטוי (expression)</dt><dd>צירוף של אופרטור ואופרנדים יחד, שכאשר Python מריצה אותו מתקבלת תוצאה — למשל <code>3 + 4</code> הוא ביטוי שערכו 7</dd></div>
         <div><dt>+ - * /</dt><dd>אופרטורים חשבוניים: חיבור, חיסור, כפל וחילוק</dd></div>
         <div><dt>// (חילוק שלם)</dt><dd>מחזיר רק את החלק השלם של תוצאת חילוק</dd></div>
         <div><dt>% (מודולו)</dt><dd>מחזיר את שארית החלוקה</dd></div>
         <div><dt>** (חזקה)</dt><dd>מעלה מספר בחזקה</dd></div>
         <div><dt>סדר פעולות</dt><dd>כפל וחילוק מחושבים לפני חיבור וחיסור, אלא אם יש סוגריים</dd></div>
-        <div><dt>פונקציה (function) / def</dt><dd>קבוצת הוראות ארוזה תחת שם, שניתן להריץ בקריאה אחת; def היא מילת המפתח שבה מגדירים אותה</dd></div>
+        <div><dt>פונקציה (function) / def</dt><dd><code>def</code> היא מילת המפתח שבה <strong>מגדירים</strong> פונקציה חדשה — פונקציה עצמה היא קבוצת הוראות שאורזים יחד תחת שם אחד, כדי שאפשר יהיה להפעיל (לזמן) אותן שוב ושוב בקריאה קצרה אחת, בלי להעתיק את הקוד מחדש בכל פעם</dd></div>
         <div><dt>זימון פונקציה</dt><dd>קריאה לפונקציה בשמה כדי שהיא תרוץ בפועל</dd></div>
       </dl>
     </div>
@@ -151,11 +172,11 @@
       <h2>🛠️ איפה להריץ את הקוד?</h2>
       <p>הדרך הכי נוחה לתרגל את הפרק הזה — בלי להתקין שום דבר על המחשב:</p>
       <div class="tool-links">
-        <a class="tool-link" href="https://trinket.io/python3" target="_blank" rel="noopener">
+        <a class="tool-link" href="https://onecompiler.com/python" target="_blank" rel="noopener">
           <span class="tool-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
           </span>
-          <span><strong>Trinket</strong><span>סביבת פייתון פשוטה בדפדפן, מצוינת גם היא להתחלה מהירה</span></span>
+          <span><strong>OneCompiler</strong><span>סביבת פייתון פשוטה בדפדפן, בלי הרשמה — מצוינת להתחלה מהירה</span></span>
         </a>
         <a class="tool-link" href="https://colab.research.google.com/github/ilanitkay/cs-middle-school/blob/main/python-a/notebooks/ch1.ipynb" target="_blank" rel="noopener">
           <span class="tool-icon">
@@ -163,12 +184,25 @@
           </span>
           <span><strong>מחברת תרגול ל-Colab</strong><span>נפתחת ישירות ב-Colab, מוכנה להרצה (File ← Upload notebook)</span></span>
         </a>
+        <a class="tool-link" href="https://www.youtube.com/watch?v=y0tbAa0zl14" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+          </span>
+          <span><strong>סרטון קצר: מה היא שפת תכנות (3 דק׳)</strong><span>הסבר תמציתי לפני שמתחילים לכתוב קוד</span></span>
+        </a>
       </div>
+      <p><strong>איך מתחילים עם OneCompiler:</strong></p>
+      <ol class="steps-list">
+        <li>היכנסו לקישור OneCompiler שלמעלה</li>
+        <li>כתבו את הקוד בלשונית <strong>Code</strong></li>
+        <li>לחצו על הכפתור <strong>RUN</strong> כדי להריץ</li>
+        <li>התוצאות יופיעו בלשונית <strong>Output</strong></li>
+      </ol>
     </div>
 
     <div class="worksheet">
       <h2>דף עבודה — תרגול</h2>
-      <p class="worksheet-count">📝 15 שאלות בפרק זה</p>
+      <p class="worksheet-count">📝 16 שאלות בפרק זה</p>
       <p class="worksheet-intro">שאלות מהקל למאתגר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
 
       <div class="wq">
@@ -279,6 +313,17 @@ show_menu()</code></pre>
       <div class="wq">
         <div class="wq-head"><span class="wq-num">15</span><span class="wq-type type-write">כתבו תוכנית</span></div>
         <p>הוסיפו הערה (עם #) מעל הפונקציה מהתרגיל הקודם, שמסבירה מה היא עושה.</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">16</span><span class="wq-type type-write">אתגר — כרטיס ביקור</span></div>
+        <p>כתבו תכנית שמדפיסה כרטיס ביקור אישי: שם מלא, כיתה, ושם בית הספר — כל פרט בשורה נפרדת, בתוך מסגרת של כוכביות (*) מלמעלה ומלמטה. <strong>מותר להשתמש בהוראת print אחת בלבד!</strong> רמז: השתמשו ב-<code>\n</code> כדי לעבור לשורה חדשה בתוך אותה הוראת print.</p>
+        <details class="answer">
+          <summary>הצג פתרון אפשרי</summary>
+          <div class="answer-body">
+            <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-str">"*************************\nMy name is Daniel Cohen\nI learn in 8th grade\nMy school's name is Makif A\n*************************"</span>)</code></pre>
+          </div>
+        </details>
       </div>
     </div>
 

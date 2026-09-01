@@ -88,6 +88,32 @@ height = <span class="tok-num">1.6</span></code></pre>
         <figcaption>כל משתנה הוא תווית שמצביעה על קופסה בזיכרון — הקופסה מחזיקה ערך, וסוג הערך קובע את טיפוס הנתונים</figcaption>
       </figure>
 
+      <h3>דוגמה מלאה: כל הטיפוסים יחד</h3>
+      <pre class="code-block"><code>name = <span class="tok-str">"Rachel"</span>
+age = <span class="tok-num">16</span>
+height = <span class="tok-num">1.65</span>
+is_student = <span class="tok-kw">True</span>
+
+<span class="tok-fn">print</span>(<span class="tok-str">"Hello"</span>, name)
+<span class="tok-fn">print</span>(<span class="tok-str">"You are"</span>, age, <span class="tok-str">"years old"</span>)
+<span class="tok-fn">print</span>(<span class="tok-str">"Your height:"</span>, height, <span class="tok-str">"meters"</span>)
+<span class="tok-fn">print</span>(<span class="tok-str">"Student:"</span>, is_student)</code></pre>
+      <p>שימו לב לטיפוס האחרון, <code>is_student</code> — ערך מסוג <code>bool</code> יכול להיות רק <code>True</code> או <code>False</code> (עם אות ראשונה גדולה, בלי מרכאות — עם מרכאות זה היה נחשב טקסט ולא ערך בוליאני).</p>
+
+      <h3>השמה מרובה והחלפת ערכים</h3>
+      <p>אפשר להשים ערכים לכמה משתנים בשורת הוראה אחת בלבד, כשמפרידים ביניהם בפסיקים בשני הצדדים:</p>
+      <pre class="code-block"><code>a, b, c = <span class="tok-num">5</span>, <span class="tok-num">10</span>, <span class="tok-num">15</span>
+<span class="tok-fn">print</span>(<span class="tok-str">"a="</span>, a, <span class="tok-str">"b="</span>, b, <span class="tok-str">"c="</span>, c)
+<span class="tok-com"># Output: a= 5 b= 10 c= 15</span></code></pre>
+      <p>הטריק הזה מאפשר גם דבר שנראה בלתי אפשרי בהתחלה: <strong>להחליף</strong> בין הערכים של שני משתנים, בלי צורך במשתנה עזר זמני:</p>
+      <pre class="code-block"><code>a, b = <span class="tok-num">10</span>, <span class="tok-num">20</span>
+<span class="tok-fn">print</span>(<span class="tok-str">"before:"</span>, a, b)
+a, b = b, a   <span class="tok-com"># החלפה!</span>
+<span class="tok-fn">print</span>(<span class="tok-str">"after:"</span>, a, b)
+<span class="tok-com"># Output: before: 10 20</span>
+<span class="tok-com">#         after: 20 10</span></code></pre>
+      <p>Python מחשבת קודם את כל הצד הימני (<code>b, a</code>) ורק אז משימה אותו למשתנים בצד שמאל — לכן זה עובד גם בלי משתנה עזר.</p>
+
       <h3>כללים לשמות משתנים</h3>
       <p>מקובל לכתוב שמות משתנים באותיות קטנות, ולהפריד בין מילים בקו תחתון, למשל <code>student_grade</code>.</p>
 
@@ -176,6 +202,25 @@ check = divisor * quotient + remainder
 <span class="tok-fn">print</span>(<span class="tok-str">"quotient:"</span>, quotient, <span class="tok-str">"remainder:"</span>, remainder)
 <span class="tok-fn">print</span>(<span class="tok-str">"check:"</span>, check)  <span class="tok-com"># אמור לצאת שוב 23 - זו הבדיקה!</span></code></pre>
       <p>אם <code>check</code> יוצא שווה למספר המקורי — סימן שהחישוב נכון. זו בדיוק אותה בדיקה שעושים "בעמודה" בכתב, רק שכאן Python עושה את זה במקומנו.</p>
+
+      <h2>פונקציות מתמטיות שימושיות</h2>
+      <p>מלבד האופרטורים החשבוניים, ל-Python יש כמה פונקציות מובנות שימושיות לעבודה עם מספרים:</p>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-fn">abs</span>(-<span class="tok-num">5</span>))        <span class="tok-com"># 5   (ערך מוחלט - המרחק מאפס, תמיד חיובי)</span>
+<span class="tok-fn">print</span>(<span class="tok-fn">min</span>(<span class="tok-num">5</span>, <span class="tok-num">3</span>, <span class="tok-num">8</span>))     <span class="tok-com"># 3   (הקטן מבין הערכים)</span>
+<span class="tok-fn">print</span>(<span class="tok-fn">max</span>(<span class="tok-num">5</span>, <span class="tok-num">3</span>, <span class="tok-num">8</span>))     <span class="tok-com"># 8   (הגדול מבין הערכים)</span></code></pre>
+      <p>שורש ריבועי (<code>sqrt</code>) לא מובנה ישירות ב-Python — הוא נמצא בספרייה בשם <code>math</code>, שצריך לייבא בתחילת התכנית עם <code>import math</code>:</p>
+      <pre class="code-block"><code><span class="tok-kw">import</span> math
+<span class="tok-fn">print</span>(math.sqrt(<span class="tok-num">16</span>))   <span class="tok-com"># 4.0</span></code></pre>
+
+      <h3>דוגמה: משפט פיתגורס</h3>
+      <p>אפשר לשלב את מה שלמדנו כדי לחשב את אורך היתר במשולש ישר-זווית, לפי <code>c = √(a² + b²)</code>:</p>
+      <pre class="code-block"><code><span class="tok-kw">import</span> math
+
+a = <span class="tok-fn">float</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Enter side a: "</span>))
+b = <span class="tok-fn">float</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Enter side b: "</span>))
+c = math.sqrt(a ** <span class="tok-num">2</span> + b ** <span class="tok-num">2</span>)
+<span class="tok-fn">print</span>(<span class="tok-str">"The hypotenuse is:"</span>, c)
+<span class="tok-com"># אם a=3 ו-b=4, התוצאה תהיה 5.0</span></code></pre>
     </div>
 
     <div class="key-terms">
@@ -187,6 +232,9 @@ check = divisor * quotient + remainder
         <div><dt>// (חילוק שלם)</dt><dd>מחזיר את החלק השלם בלבד של תוצאת חילוק</dd></div>
         <div><dt>% (מודולו)</dt><dd>מחזיר את שארית החלוקה</dd></div>
         <div><dt>מילה שמורה</dt><dd>מילה ששייכת לשפה עצמה ולא ניתן להשתמש בה כשם משתנה</dd></div>
+        <div><dt>השמה מרובה</dt><dd>השמת ערכים לכמה משתנים בשורה אחת, למשל <code>a, b = 1, 2</code></dd></div>
+        <div><dt>min() / max() / abs()</dt><dd>פונקציות מובנות: הקטן ביותר, הגדול ביותר, והערך המוחלט מבין ערכים נתונים</dd></div>
+        <div><dt>math.sqrt()</dt><dd>שורש ריבועי; דורשת <code>import math</code> בתחילת התכנית</dd></div>
       </dl>
     </div>
 
@@ -194,11 +242,11 @@ check = divisor * quotient + remainder
       <h2>🛠️ איפה להריץ את הקוד?</h2>
       <p>מומלץ לתרגל את הפרק הזה בענן — בלי להתקין שום דבר:</p>
       <div class="tool-links">
-        <a class="tool-link" href="https://trinket.io/python3" target="_blank" rel="noopener">
+        <a class="tool-link" href="https://onecompiler.com/python" target="_blank" rel="noopener">
           <span class="tool-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
           </span>
-          <span><strong>Trinket</strong><span>סביבת פייתון פשוטה בדפדפן, מצוינת גם היא להתחלה מהירה</span></span>
+          <span><strong>OneCompiler</strong><span>סביבת פייתון פשוטה בדפדפן, בלי הרשמה — מצוינת להתחלה מהירה</span></span>
         </a>
         <a class="tool-link" href="https://colab.research.google.com/github/ilanitkay/cs-middle-school/blob/main/python-a/notebooks/ch3.ipynb" target="_blank" rel="noopener">
           <span class="tool-icon">
@@ -217,7 +265,7 @@ check = divisor * quotient + remainder
 
     <div class="worksheet">
       <h2>דף עבודה — תרגול</h2>
-      <p class="worksheet-count">📝 17 שאלות בפרק זה</p>
+      <p class="worksheet-count">📝 19 שאלות בפרק זה</p>
       <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
 
       <div class="wq">
@@ -348,6 +396,33 @@ num2 = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span c
       <div class="wq">
         <div class="wq-head"><span class="wq-num">17</span><span class="wq-type type-write">כתבו תוכנית</span></div>
         <p>כתבו תכנית שקולטת שני מספרים שלמים — מספר לחלוקה ומחלק — מחשבת מנה ושארית, ומבצעת <strong>בדיקת חילוק</strong>: מכפילה את המחלק במנה ומוסיפה את השארית. התכנית תדפיס "התוצאה נכונה" אם הבדיקה שווה למספר המקורי, ואחרת "משהו השתבש".</p>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">18</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code>x = -<span class="tok-num">7</span>
+y = <span class="tok-num">4</span>
+<span class="tok-fn">print</span>(<span class="tok-fn">abs</span>(x))
+<span class="tok-fn">print</span>(<span class="tok-fn">max</span>(x, y))
+<span class="tok-fn">print</span>(<span class="tok-fn">min</span>(x, y))</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>7<br>4<br>-7</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">19</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שקולטת משתמש/ת שני צלעות של משולש ישר-זווית, ומחשבת ומדפיסה את אורך היתר לפי משפט פיתגורס (<code>c = √(a² + b²)</code>). רמז: תצטרכו <code>import math</code> ואת <code>math.sqrt</code>.</p>
+        <details class="answer">
+          <summary>הצג פתרון אפשרי</summary>
+          <div class="answer-body">
+            <pre class="code-block"><code><span class="tok-kw">import</span> math
+
+a = <span class="tok-fn">float</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Enter side a: "</span>))
+b = <span class="tok-fn">float</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Enter side b: "</span>))
+c = math.sqrt(a ** <span class="tok-num">2</span> + b ** <span class="tok-num">2</span>)
+<span class="tok-fn">print</span>(<span class="tok-str">"The hypotenuse is:"</span>, c)</code></pre>
+          </div>
+        </details>
       </div>
     </div>
 
