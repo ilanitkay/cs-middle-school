@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 5: מבני נתונים — tuple, set ותור | Python חלק ב׳</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      </span>
+      <span class="brand-text">מדעי המחשב<span class="brand-sub">חטיבת ביניים · אילנית קיי</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="תפריט">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <nav class="main-nav">
+      <a href="../index.html">בית</a>
+      <a href="../python-a/index.html">פייתון א׳</a>
+      <a href="index.html" class="active">פייתון ב׳</a>
+    </nav>
+  </div>
+</header>
+
+<main class="chapter-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">בית</a>
+      <span class="sep">/</span>
+      <a href="index.html">Python חלק ב׳</a>
+      <span class="sep">/</span>
+      <span>פרק 5</span>
+    </div>
+
+    <div class="chapter-header">
+      <span class="chapter-tag">פרק 5 מתוך 6</span>
+      <h1>מבני נתונים: tuple, set ותור</h1>
+      <span class="chapter-time">⏱ כ-12 שעות לימוד</span>
+    </div>
+
+    <div class="goals-box">
+      <h2>מה נלמד בפרק הזה</h2>
+      <ul>
+        <li>להכיר את הטופל (<code>tuple</code>) ולהבין למה הוא "רשימה שלא ניתן לשנות"</li>
+        <li>להשתמש בקבוצה (<code>set</code>) כאוסף בלי כפילויות ובלי סדר</li>
+        <li>להבין את עקרון התור (<code>Queue</code>) — ראשון נכנס, ראשון יוצא</li>
+        <li>לבחור את מבנה הנתונים המתאים לכל בעיה</li>
+      </ul>
+    </div>
+
+    <div class="lesson-content">
+      <h2>טופל (tuple) — אוסף קבוע</h2>
+      <p><strong>טופל</strong> דומה לרשימה: אוסף מסודר שניגשים אליו לפי אינדקס. ההבדל: טופל <strong>לא ניתן לשינוי</strong> — אחרי שיצרו אותו אי אפשר להוסיף, להסיר או להחליף איברים. משתמשים בו לנתונים שלא אמורים להשתנות: קואורדינטות, תאריך, צבע RGB.</p>
+      <pre class="code-block"><code>point = (<span class="tok-num">3</span>, <span class="tok-num">5</span>)
+<span class="tok-fn">print</span>(point[<span class="tok-num">0</span>])      <span class="tok-com"># 3</span>
+<span class="tok-fn">print</span>(<span class="tok-fn">len</span>(point))    <span class="tok-com"># 2</span>
+
+<span class="tok-com"># point[0] = 9   ← שגיאה! אי אפשר לשנות טופל</span></code></pre>
+
+      <h2>קבוצה (set) — בלי כפילויות</h2>
+      <p><strong>קבוצה</strong> היא אוסף <em>לא מסודר</em> שבו כל ערך מופיע <strong>פעם אחת בלבד</strong>. אין אינדקסים. שימושי כדי להסיר כפילויות, או לבדוק במהירות אם ערך קיים.</p>
+      <pre class="code-block"><code>nums = {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">3</span>, <span class="tok-num">3</span>}
+<span class="tok-fn">print</span>(nums)            <span class="tok-com"># {1, 2, 3}  — הכפילויות נעלמו</span>
+
+nums.add(<span class="tok-num">4</span>)
+nums.discard(<span class="tok-num">1</span>)
+<span class="tok-fn">print</span>(<span class="tok-num">2</span> <span class="tok-kw">in</span> nums)       <span class="tok-com"># True</span>
+
+<span class="tok-com"># הסרת כפילויות מרשימה:</span>
+names = [<span class="tok-str">"a"</span>, <span class="tok-str">"b"</span>, <span class="tok-str">"a"</span>, <span class="tok-str">"c"</span>, <span class="tok-str">"b"</span>]
+unique = <span class="tok-fn">set</span>(names)
+<span class="tok-fn">print</span>(<span class="tok-fn">len</span>(unique))     <span class="tok-com"># 3</span></code></pre>
+
+      <h2>תור (Queue) — ראשון נכנס, ראשון יוצא</h2>
+      <p><strong>תור</strong> מתנהג כמו תור בסופר: מי שנכנס ראשון — יוצא ראשון (<strong>FIFO</strong> — First In, First Out). מוסיפים בסוף, מוציאים מההתחלה. משתמשים בתור לניהול "משימות שממתינות לטיפול" לפי סדר הגעה.</p>
+
+      <figure class="concept-diagram">
+        <svg viewBox="0 0 340 150" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+          <defs>
+            <marker id="arrQ" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto">
+              <path d="M0,0 L9,4.5 L0,9 z" fill="#8a93a8"/>
+            </marker>
+          </defs>
+          <rect x="70" y="55" width="200" height="45" rx="6" fill="#f4f6fa" stroke="#8a93a8" stroke-width="1.5"/>
+          <g direction="ltr">
+            <rect x="80" y="63" width="42" height="29" fill="#eaefff" stroke="#3454d1" stroke-width="1.5"/>
+            <rect x="126" y="63" width="42" height="29" fill="#eaefff" stroke="#3454d1" stroke-width="1.5"/>
+            <rect x="172" y="63" width="42" height="29" fill="#eaefff" stroke="#3454d1" stroke-width="1.5"/>
+            <text x="101" y="83" text-anchor="middle" font-size="13" fill="#1e2433">A</text>
+            <text x="147" y="83" text-anchor="middle" font-size="13" fill="#1e2433">B</text>
+            <text x="193" y="83" text-anchor="middle" font-size="13" fill="#1e2433">C</text>
+          </g>
+          <line x1="300" y1="77" x2="255" y2="77" stroke="#1e9e6b" stroke-width="2" marker-end="url(#arrQ)"/>
+          <text x="300" y="95" text-anchor="middle" font-size="10" fill="#1e9e6b">נכנס בסוף</text>
+          <line x1="60" y1="77" x2="20" y2="77" stroke="#c1502e" stroke-width="2" marker-end="url(#arrQ)"/>
+          <text x="42" y="47" text-anchor="middle" font-size="10" fill="#c1502e">יוצא מהראש</text>
+          <text x="170" y="130" text-anchor="middle" font-size="11" fill="#5b6478">A נכנס ראשון — לכן A ייצא ראשון (FIFO)</text>
+        </svg>
+        <figcaption>בתור, ההוספה בקצה אחד וההוצאה בקצה השני — נשמר סדר ההגעה</figcaption>
+      </figure>
+
+      <p>ב-Python אפשר לממש תור בעזרת רשימה: <code>append</code> להוספה בסוף, ו-<code>pop(0)</code> להוצאה מהראש.</p>
+      <pre class="code-block"><code>queue = []
+queue.append(<span class="tok-str">"A"</span>)      <span class="tok-com"># נכנס</span>
+queue.append(<span class="tok-str">"B"</span>)
+queue.append(<span class="tok-str">"C"</span>)
+
+first = queue.pop(<span class="tok-num">0</span>)   <span class="tok-com"># יוצא "A" — הראשון שנכנס</span>
+<span class="tok-fn">print</span>(first)          <span class="tok-com"># A</span>
+<span class="tok-fn">print</span>(queue)          <span class="tok-com"># ['B', 'C']</span></code></pre>
+      <p>(לתור יעיל יותר קיים גם <code>deque</code> מהמודול <code>collections</code>, אבל לצרכינו רשימה מספיקה.)</p>
+
+      <h2>איזה מבנה לבחור?</h2>
+      <dl class="term-grid">
+        <div><dt>list</dt><dd>אוסף מסודר שצריך לשנות — להוסיף, להסיר, לסדר</dd></div>
+        <div><dt>tuple</dt><dd>אוסף מסודר שאסור שישתנה — קואורדינטה, תאריך</dd></div>
+        <div><dt>set</dt><dd>כשחשוב שלא יהיו כפילויות, והסדר לא משנה</dd></div>
+        <div><dt>Queue</dt><dd>כשצריך לטפל בפריטים לפי סדר הגעה (ראשון נכנס — ראשון יוצא)</dd></div>
+      </dl>
+    </div>
+
+    <div class="key-terms">
+      <h2>מושגי מפתח</h2>
+      <dl class="term-grid">
+        <div><dt>tuple (טופל)</dt><dd>אוסף מסודר שלא ניתן לשינוי אחרי היצירה; נכתב בסוגריים עגולים</dd></div>
+        <div><dt>set (קבוצה)</dt><dd>אוסף לא מסודר בלי כפילויות; נכתב בסוגריים מסולסלים</dd></div>
+        <div><dt>add / discard</dt><dd>הוספה והסרה של איבר מקבוצה</dd></div>
+        <div><dt>Queue (תור)</dt><dd>מבנה FIFO — ההוספה בקצה אחד וההוצאה בקצה השני</dd></div>
+        <div><dt>FIFO</dt><dd>First In, First Out — הראשון שנכנס הוא הראשון שיוצא</dd></div>
+        <div><dt>ניתן לשינוי / לא ניתן לשינוי</dt><dd>list ו-set ניתנים לשינוי; tuple ומחרוזת לא</dd></div>
+      </dl>
+    </div>
+
+    <div class="tools-box">
+      <h2>🛠️ איפה להריץ את הקוד?</h2>
+      <p>מומלץ לתרגל ב-Google Colab — העבודה נשמרת אוטומטית ב-Drive שלכם (File ← Save a copy in Drive):</p>
+      <div class="tool-links">
+        <a class="tool-link" href="https://colab.research.google.com/github/ilanitkay/cs-middle-school/blob/main/python-b/notebooks/ch5.ipynb" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+          </span>
+          <span><strong>מחברת תרגול ל-Colab</strong><span>נפתחת עם שאלות הפרק, מוכנה להרצה ולשמירה</span></span>
+        </a>
+        <a class="tool-link" href="https://onecompiler.com/python" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </span>
+          <span><strong>OneCompiler</strong><span>סביבת פייתון פשוטה בדפדפן, בלי הרשמה</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="tools-box">
+      <h2>📚 חומרי עזר להורדה</h2>
+      <p>מצגות ודפי עבודה מקוריים, להעמקה ולתרגול נוסף.</p>
+      <div class="tool-links">
+        <a class="tool-link" href="materials/list-vs-tuple-slides.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>מצגת: רשימה מול טופל</strong><span>מה ההבדל ומתי בוחרים בכל אחד</span></span>
+        </a>
+        <a class="tool-link" href="materials/queue-slides.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>מצגת: מבנה נתונים תור</strong><span>עקרון FIFO ומימוש בפייתון</span></span>
+        </a>
+        <a class="tool-link" href="materials/queue-worksheet.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>דף עבודה: תור</strong><span>תרגול על מבנה הנתונים תור</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="worksheet">
+      <h2>דף עבודה — תרגול</h2>
+      <p class="worksheet-count">📝 8 שאלות בפרק זה</p>
+      <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code>s = {<span class="tok-num">3</span>, <span class="tok-num">1</span>, <span class="tok-num">3</span>, <span class="tok-num">2</span>, <span class="tok-num">1</span>}
+<span class="tok-fn">print</span>(<span class="tok-fn">len</span>(s))</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>3 (הקבוצה מכילה רק 1, 2, 3 — בלי כפילויות).</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יקרה כשמריצים את השורה האחרונה?</p>
+        <pre class="code-block"><code>t = (<span class="tok-num">10</span>, <span class="tok-num">20</span>, <span class="tok-num">30</span>)
+<span class="tok-fn">print</span>(t[<span class="tok-num">1</span>])
+t[<span class="tok-num">1</span>] = <span class="tok-num">99</span></code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>קודם יודפס 20. השורה האחרונה תיתן שגיאת ריצה — אי אפשר לשנות איבר בטופל.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code>queue = []
+queue.append(<span class="tok-str">"x"</span>)
+queue.append(<span class="tok-str">"y"</span>)
+queue.append(<span class="tok-str">"z"</span>)
+<span class="tok-fn">print</span>(queue.pop(<span class="tok-num">0</span>))
+<span class="tok-fn">print</span>(queue.pop(<span class="tok-num">0</span>))</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><pre class="code-block"><code>x
+y</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-fill">איזה מבנה?</span></div>
+        <p>לכל מקרה, כתבו איזה מבנה נתונים מתאים: (א) רשימת המתנה לרופא לפי סדר הגעה. (ב) קואורדינטת נקודה על מפה. (ג) אוסף כל האותיות השונות שמופיעות במשפט.</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>(א) תור (Queue). (ב) טופל (tuple). (ג) קבוצה (set).</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code>letters = [<span class="tok-str">"a"</span>, <span class="tok-str">"b"</span>, <span class="tok-str">"a"</span>, <span class="tok-str">"c"</span>, <span class="tok-str">"c"</span>, <span class="tok-str">"a"</span>]
+<span class="tok-fn">print</span>(<span class="tok-fn">len</span>(<span class="tok-fn">set</span>(letters)))</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>3 (האותיות השונות הן a, b, c).</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">6</span><span class="wq-type type-trace">נכון / לא נכון</span></div>
+        <p>קבעו נכון או לא נכון: (א) "אפשר לגשת לאיבר בקבוצה לפי אינדקס, כמו ב-set[0]." (ב) "טופל מהיר יותר להגנה מפני שינוי בטעות מאשר רשימה."</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>(א) לא נכון — לקבוצה אין סדר ואין אינדקסים. (ב) נכון — הבחירה בטופל מונעת שינוי בטעות של נתונים שאמורים להישאר קבועים.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">7</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>קלטו משפט מהמשתמש והדפיסו כמה אותיות <strong>שונות</strong> יש בו (התעלמו מרווחים).</p>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code>sentence = <span class="tok-fn">input</span>(<span class="tok-str">"Enter a sentence: "</span>)
+letters = <span class="tok-fn">set</span>()
+<span class="tok-kw">for</span> ch <span class="tok-kw">in</span> sentence:
+    <span class="tok-kw">if</span> ch != <span class="tok-str">" "</span>:
+        letters.add(ch)
+<span class="tok-fn">print</span>(<span class="tok-fn">len</span>(letters))</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">8</span><span class="wq-type type-write">פרויקט קטן — תור הדפסה</span></div>
+        <p>ממשו "תור הדפסה": המשתמש מקליד שמות קבצים עד שמקליד מחרוזת ריקה, כל שם נכנס לתור. אחר כך התכנית מדפיסה <code>"Printing: &lt;name&gt;"</code> עבור כל קובץ, לפי סדר ההכנסה, עד שהתור מתרוקן.</p>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code>queue = []
+
+name = <span class="tok-fn">input</span>(<span class="tok-str">"File name (empty to start printing): "</span>)
+<span class="tok-kw">while</span> name != <span class="tok-str">""</span>:
+    queue.append(name)
+    name = <span class="tok-fn">input</span>(<span class="tok-str">"File name (empty to start printing): "</span>)
+
+<span class="tok-kw">while</span> <span class="tok-fn">len</span>(queue) &gt; <span class="tok-num">0</span>:
+    current = queue.pop(<span class="tok-num">0</span>)
+    <span class="tok-fn">print</span>(<span class="tok-str">"Printing:"</span>, current)</code></pre></div></details>
+      </div>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="ch4.html">
+        <span>
+          <span class="nav-label">הפרק הקודם</span>
+          רשימות (list)
+        </span>
+      </a>
+      <a href="ch6.html">
+        <span>
+          <span class="nav-label">הפרק הבא</span>
+          עבודה עם קבצים
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+
+    <div class="mark-done">
+      <label>
+        <input type="checkbox" data-mark-done="pb-ch5-done">
+        סימנתי שלמדתי את הפרק הזה
+      </label>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>מדעי המחשב לחטיבת הביניים — אילנית קיי</span>
+    <span>מבוסס על תכנית הלימודים של משרד החינוך</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

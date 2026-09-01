@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 1: ביצוע חוזר — לולאות | Python חלק ב׳</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      </span>
+      <span class="brand-text">מדעי המחשב<span class="brand-sub">חטיבת ביניים · אילנית קיי</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="תפריט">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <nav class="main-nav">
+      <a href="../index.html">בית</a>
+      <a href="../python-a/index.html">פייתון א׳</a>
+      <a href="index.html" class="active">פייתון ב׳</a>
+    </nav>
+  </div>
+</header>
+
+<main class="chapter-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">בית</a>
+      <span class="sep">/</span>
+      <a href="index.html">Python חלק ב׳</a>
+      <span class="sep">/</span>
+      <span>פרק 1</span>
+    </div>
+
+    <div class="chapter-header">
+      <span class="chapter-tag">פרק 1 מתוך 6</span>
+      <h1>ביצוע חוזר — לולאות</h1>
+      <span class="chapter-time">⏱ כ-6 שעות לימוד</span>
+    </div>
+
+    <div class="tools-box">
+      <div class="tool-links">
+        <a class="tool-link" href="https://www.youtube.com/watch?v=FjZuMVUqbrc" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+          </span>
+          <span><strong>סרטון: לולאות ובקרת זרימה</strong><span>רענון על הרעיון של חזרה מבוקרת בקוד</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="goals-box">
+      <h2>מה נלמד בפרק הזה</h2>
+      <ul>
+        <li>לזהות מתי מספר החזרות ידוע מראש ומתי הוא תלוי בתנאי</li>
+        <li>לכתוב לולאת <code>for</code> עם <code>range</code>, כולל התחלה, סוף וצעד</li>
+        <li>לכתוב לולאת <code>while</code> עם תנאי עצירה נכון, ולהימנע מלולאה אינסופית</li>
+        <li>לשלב לולאה עם קלט מהמשתמש ועם תבנית צבירה (סכום / מונה)</li>
+      </ul>
+    </div>
+
+    <div class="lesson-content">
+      <h2>שני סוגי לולאות — ומתי כל אחת</h2>
+      <p>לולאה מריצה קטע קוד שוב ושוב. ההבדל המרכזי בין שתי הלולאות ב-Python הוא <strong>איך יודעים מתי לעצור</strong>:</p>
+      <ul>
+        <li><strong>לולאת <code>for</code></strong> — כשמספר החזרות <em>ידוע מראש</em>: "חזור 10 פעמים", "עבור על כל תו במחרוזת".</li>
+        <li><strong>לולאת <code>while</code></strong> — כשמספר החזרות <em>לא ידוע מראש</em> ותלוי בתנאי: "כל עוד המשתמש לא הקליד 0", "כל עוד לא ניחשנו את המספר".</li>
+      </ul>
+
+      <h2>לולאת for ו-range</h2>
+      <p>הפונקציה <code>range</code> מייצרת סדרת מספרים שהלולאה עוברת עליהם. יש לה שלוש צורות:</p>
+      <span class="code-label">דוגמה — שלוש הצורות של range</span>
+      <pre class="code-block"><code><span class="tok-com"># range(stop): מ-0 עד stop (לא כולל)</span>
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">5</span>):
+    <span class="tok-fn">print</span>(i)            <span class="tok-com"># 0 1 2 3 4</span>
+
+<span class="tok-com"># range(start, stop): מ-start עד stop (לא כולל)</span>
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">2</span>, <span class="tok-num">6</span>):
+    <span class="tok-fn">print</span>(i)            <span class="tok-com"># 2 3 4 5</span>
+
+<span class="tok-com"># range(start, stop, step): עם קפיצות</span>
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">0</span>, <span class="tok-num">20</span>, <span class="tok-num">5</span>):
+    <span class="tok-fn">print</span>(i)            <span class="tok-com"># 0 5 10 15</span></code></pre>
+      <p>אפשר גם צעד שלילי כדי לספור אחורה: <code>range(10, 0, -1)</code> נותן 10, 9, 8, ... , 1.</p>
+
+      <h2>לולאת while ותנאי עצירה</h2>
+      <p>לולאת <code>while</code> חוזרת <strong>כל עוד</strong> תנאי מסוים מתקיים. חובה לדאוג שמשהו בגוף הלולאה <em>יקדם</em> את התנאי לכיוון עצירה — אחרת הלולאה תרוץ לנצח (<strong>לולאה אינסופית</strong>).</p>
+      <span class="code-label">דוגמה — קליטת מספרים עד שמכניסים 0</span>
+      <pre class="code-block"><code>total = <span class="tok-num">0</span>
+number = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Enter a number (0 to stop): "</span>))
+
+<span class="tok-kw">while</span> number != <span class="tok-num">0</span>:
+    total = total + number           <span class="tok-com"># צובר את הסכום</span>
+    number = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Enter a number (0 to stop): "</span>))
+
+<span class="tok-fn">print</span>(<span class="tok-str">"Sum:"</span>, total)</code></pre>
+      <p>שימו לב לשתי השורות עם <code>input</code>: אחת <strong>לפני</strong> הלולאה (כדי שיהיה ערך ראשון לבדוק) ואחת <strong>בסוף גוף הלולאה</strong> (כדי לקדם לערך הבא). זו תבנית קבועה בלולאות <code>while</code> שקולטות קלט.</p>
+
+      <figure class="concept-diagram">
+        <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+          <defs>
+            <marker id="arrLoop" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto">
+              <path d="M0,0 L9,4.5 L0,9 z" fill="#8a93a8"/>
+            </marker>
+          </defs>
+
+          <rect x="95" y="10" width="110" height="34" rx="8" fill="#eef1f6" stroke="#8a93a8" stroke-width="1.5"/>
+          <text x="150" y="32" text-anchor="middle" font-size="12" fill="#1e2433">התחלה</text>
+
+          <line x1="150" y1="44" x2="150" y2="66" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrLoop)"/>
+
+          <polygon points="150,70 235,110 150,150 65,110" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+          <text x="150" y="106" text-anchor="middle" font-size="11" fill="#23368f">התנאי</text>
+          <text x="150" y="122" text-anchor="middle" font-size="11" fill="#23368f">מתקיים?</text>
+
+          <line x1="150" y1="150" x2="150" y2="172" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrLoop)"/>
+          <text x="162" y="165" font-size="10" fill="#1e9e6b">כן</text>
+
+          <rect x="80" y="176" width="140" height="38" rx="8" fill="#e7f8f1" stroke="#1e9e6b" stroke-width="2"/>
+          <text x="150" y="199" text-anchor="middle" font-size="11" fill="#146c48">גוף הלולאה רץ</text>
+
+          <path d="M80,195 C20,195 20,110 63,110" fill="none" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrLoop)"/>
+
+          <line x1="237" y1="110" x2="270" y2="110" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrLoop)"/>
+          <text x="253" y="102" font-size="10" fill="#c1502e">לא</text>
+          <rect x="215" y="228" width="80" height="30" rx="8" fill="#eef1f6" stroke="#8a93a8" stroke-width="1.5"/>
+          <text x="255" y="247" text-anchor="middle" font-size="11" fill="#1e2433">המשך התכנית</text>
+          <path d="M285,110 C285,150 275,210 275,226" fill="none" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrLoop)"/>
+        </svg>
+        <figcaption>לולאת while: כל עוד התנאי מתקיים — גוף הלולאה רץ, ואז חוזרים לבדוק שוב. כשהתנאי מפסיק להתקיים — יוצאים.</figcaption>
+      </figure>
+
+      <h2>for או while — אותה משימה, שתי דרכים</h2>
+      <p>הדפסת המספרים 1 עד 5. כאן מספר החזרות ידוע, אז <code>for</code> טבעי יותר — אבל אפשר גם <code>while</code>:</p>
+      <pre class="code-block"><code><span class="tok-com"># עם for</span>
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">1</span>, <span class="tok-num">6</span>):
+    <span class="tok-fn">print</span>(i)
+
+<span class="tok-com"># עם while — צריך לנהל את המונה ידנית</span>
+i = <span class="tok-num">1</span>
+<span class="tok-kw">while</span> i &lt;= <span class="tok-num">5</span>:
+    <span class="tok-fn">print</span>(i)
+    i = i + <span class="tok-num">1</span></code></pre>
+      <p>בגרסת ה-<code>while</code> אנחנו אחראים על שלושה דברים: לאתחל את <code>i</code> לפני הלולאה, לבדוק אותו בתנאי, ולקדם אותו בגוף. אם שוכחים את <code>i = i + 1</code> — נקבל לולאה אינסופית.</p>
+    </div>
+
+    <div class="key-terms">
+      <h2>מושגי מפתח</h2>
+      <dl class="term-grid">
+        <div><dt>לולאת for</dt><dd>לולאה שרצה מספר פעמים ידוע מראש, בדרך כלל עם range</dd></div>
+        <div><dt>range(start, stop, step)</dt><dd>סדרת מספרים מ-start עד stop (לא כולל), בקפיצות של step</dd></div>
+        <div><dt>לולאת while</dt><dd>לולאה שרצה כל עוד תנאי מתקיים; מספר החזרות לא ידוע מראש</dd></div>
+        <div><dt>תנאי עצירה</dt><dd>הביטוי הבוליאני של while; כשהוא הופך ל-False הלולאה נעצרת</dd></div>
+        <div><dt>לולאה אינסופית</dt><dd>לולאה שתנאי העצירה שלה לעולם לא מתקיים, והיא לא נגמרת</dd></div>
+        <div><dt>תבנית צבירה</dt><dd>משתנה שמאותחל לפני הלולאה ומתעדכן בכל חזרה (סכום, מונה)</dd></div>
+      </dl>
+    </div>
+
+    <div class="tools-box">
+      <h2>🛠️ איפה להריץ את הקוד?</h2>
+      <p>מומלץ לתרגל ב-Google Colab — העבודה נשמרת אוטומטית ב-Drive שלכם (File ← Save a copy in Drive):</p>
+      <div class="tool-links">
+        <a class="tool-link" href="https://colab.research.google.com/github/ilanitkay/cs-middle-school/blob/main/python-b/notebooks/ch1.ipynb" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+          </span>
+          <span><strong>מחברת תרגול ל-Colab</strong><span>נפתחת עם שאלות הפרק, מוכנה להרצה ולשמירה</span></span>
+        </a>
+        <a class="tool-link" href="https://onecompiler.com/python" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </span>
+          <span><strong>OneCompiler</strong><span>סביבת פייתון פשוטה בדפדפן, בלי הרשמה</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="tools-box">
+      <h2>📚 חומרי עזר להורדה</h2>
+      <p>מצגות ודפי עבודה מקוריים, להעמקה ולתרגול נוסף.</p>
+      <div class="tool-links">
+        <a class="tool-link" href="materials/for-slides.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>מצגת: לולאת for</strong><span>הסבר מלא עם דוגמאות</span></span>
+        </a>
+        <a class="tool-link" href="materials/while-slides.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>מצגת: לולאת while</strong><span>לולאה מותנית ותנאי עצירה</span></span>
+        </a>
+        <a class="tool-link" href="materials/loops-review.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>דף חזרה: לולאות</strong><span>שאלות תרגול לחזרה</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="worksheet">
+      <h2>דף עבודה — תרגול</h2>
+      <p class="worksheet-count">📝 9 שאלות בפרק זה</p>
+      <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">3</span>, <span class="tok-num">9</span>, <span class="tok-num">2</span>):
+    <span class="tok-fn">print</span>(i)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><pre class="code-block"><code>3
+5
+7</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>כמה פעמים תודפס המילה <code>Hi</code>?</p>
+        <pre class="code-block"><code>n = <span class="tok-num">4</span>
+<span class="tok-kw">while</span> n &gt; <span class="tok-num">0</span>:
+    <span class="tok-fn">print</span>(<span class="tok-str">"Hi"</span>)
+    n = n - <span class="tok-num">1</span></code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>4 פעמים (עבור n = 4, 3, 2, 1; כש-n מגיע ל-0 התנאי לא מתקיים).</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-trace">מצאו את הטעות</span></div>
+        <p>הקוד אמור להדפיס 1 עד 5, אבל הוא לא נגמר. מה חסר?</p>
+        <pre class="code-block"><code>i = <span class="tok-num">1</span>
+<span class="tok-kw">while</span> i &lt;= <span class="tok-num">5</span>:
+    <span class="tok-fn">print</span>(i)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>חסרה השורה <code>i = i + 1</code> בתוך הלולאה. בלעדיה <code>i</code> נשאר 1 לנצח, התנאי תמיד מתקיים, וזו לולאה אינסופית.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס בשורה האחרונה?</p>
+        <pre class="code-block"><code>total = <span class="tok-num">0</span>
+<span class="tok-kw">for</span> k <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">1</span>, <span class="tok-num">5</span>):
+    total = total + k
+<span class="tok-fn">print</span>(total)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>10 (הסכום 1 + 2 + 3 + 4).</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-fill">for או while?</span></div>
+        <p>לכל משימה, כתבו איזו לולאה מתאימה יותר: (א) להדפיס לוח הכפל של 7 (מ-1 עד 10). (ב) לבקש סיסמה מהמשתמש שוב ושוב עד שהיא נכונה.</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>(א) <code>for</code> — מספר החזרות ידוע (10). (ב) <code>while</code> — לא יודעים כמה ניסיונות יידרשו.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">6</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">5</span>, <span class="tok-num">0</span>, <span class="tok-num">-1</span>):
+    <span class="tok-fn">print</span>(i)
+<span class="tok-fn">print</span>(<span class="tok-str">"Go!"</span>)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><pre class="code-block"><code>5
+4
+3
+2
+1
+Go!</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">7</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו לולאה שמדפיסה את כל המספרים הזוגיים בין 2 ל-20 (כולל).</p>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code><span class="tok-kw">for</span> n <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">2</span>, <span class="tok-num">21</span>, <span class="tok-num">2</span>):
+    <span class="tok-fn">print</span>(n)</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">8</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שקולטת מספרים מהמשתמש עד שמקלידים <code>-1</code>, ובסוף מדפיסה כמה מספרים <strong>חיוביים</strong> הוקלדו.</p>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code>count = <span class="tok-num">0</span>
+num = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Enter a number (-1 to stop): "</span>))
+
+<span class="tok-kw">while</span> num != <span class="tok-num">-1</span>:
+    <span class="tok-kw">if</span> num &gt; <span class="tok-num">0</span>:
+        count = count + <span class="tok-num">1</span>
+    num = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Enter a number (-1 to stop): "</span>))
+
+<span class="tok-fn">print</span>(<span class="tok-str">"Positive numbers:"</span>, count)</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">9</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו תכנית שמגרילה מספר סודי בין 1 ל-50 (<code>random.randint(1, 50)</code>), וחוזרת לבקש ניחוש מהמשתמש עד שהוא צודק. בכל ניחוש הדפיסו "Too high" או "Too low", ובסוף כמה ניחושים נדרשו.</p>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code><span class="tok-kw">import</span> random
+
+secret = random.randint(<span class="tok-num">1</span>, <span class="tok-num">50</span>)
+guesses = <span class="tok-num">0</span>
+guess = <span class="tok-num">0</span>
+
+<span class="tok-kw">while</span> guess != secret:
+    guess = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Your guess: "</span>))
+    guesses = guesses + <span class="tok-num">1</span>
+    <span class="tok-kw">if</span> guess &gt; secret:
+        <span class="tok-fn">print</span>(<span class="tok-str">"Too high"</span>)
+    <span class="tok-kw">elif</span> guess &lt; secret:
+        <span class="tok-fn">print</span>(<span class="tok-str">"Too low"</span>)
+
+<span class="tok-fn">print</span>(<span class="tok-str">"Correct! Guesses:"</span>, guesses)</code></pre></div></details>
+      </div>
+    </div>
+
+    <div class="chapter-nav">
+      <span class="nav-empty"></span>
+      <a href="ch2.html">
+        <span>
+          <span class="nav-label">הפרק הבא</span>
+          פונקציות
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+
+    <div class="mark-done">
+      <label>
+        <input type="checkbox" data-mark-done="pb-ch1-done">
+        סימנתי שלמדתי את הפרק הזה
+      </label>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>מדעי המחשב לחטיבת הביניים — אילנית קיי</span>
+    <span>מבוסס על תכנית הלימודים של משרד החינוך</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

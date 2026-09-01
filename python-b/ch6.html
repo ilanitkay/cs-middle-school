@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 6: עבודה עם קבצים | Python חלק ב׳</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      </span>
+      <span class="brand-text">מדעי המחשב<span class="brand-sub">חטיבת ביניים · אילנית קיי</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="תפריט">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <nav class="main-nav">
+      <a href="../index.html">בית</a>
+      <a href="../python-a/index.html">פייתון א׳</a>
+      <a href="index.html" class="active">פייתון ב׳</a>
+    </nav>
+  </div>
+</header>
+
+<main class="chapter-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">בית</a>
+      <span class="sep">/</span>
+      <a href="index.html">Python חלק ב׳</a>
+      <span class="sep">/</span>
+      <span>פרק 6</span>
+    </div>
+
+    <div class="chapter-header">
+      <span class="chapter-tag">פרק 6 מתוך 6</span>
+      <h1>עבודה עם קבצים</h1>
+      <span class="chapter-time">⏱ כ-12 שעות לימוד</span>
+    </div>
+
+    <div class="goals-box">
+      <h2>מה נלמד בפרק הזה</h2>
+      <ul>
+        <li>לפתוח קובץ טקסט עם <code>open</code> ולסגור אותו עם <code>close</code></li>
+        <li>להכיר את מצבי הפתיחה: קריאה (<code>"r"</code>), כתיבה (<code>"w"</code>) והוספה (<code>"a"</code>)</li>
+        <li>לקרוא קובץ שורה-שורה בלולאה, ולנקות תו ירידת שורה עם <code>strip</code></li>
+        <li>לכתוב מידע לקובץ</li>
+        <li>לחבר הכול לפרויקט מסכם שקורא, מעבד ושומר נתונים</li>
+      </ul>
+    </div>
+
+    <div class="lesson-content">
+      <h2>למה בכלל קבצים?</h2>
+      <p>עד עכשיו כל המידע בתכניות שלנו נעלם ברגע שהתכנית נסגרה. <strong>קובץ</strong> מאפשר לשמור מידע על הדיסק, כך שאפשר לקרוא אותו שוב בהרצה הבאה — רשימת משתמשים, תוצאות משחק, טקסט לעיבוד.</p>
+
+      <h2>פתיחה, עבודה, סגירה</h2>
+      <p>העבודה עם קובץ תמיד בשלושה שלבים: <strong>פותחים</strong> את הקובץ ומקבלים "ידית" (משתנה קובץ), <strong>עובדים</strong> איתו (קוראים או כותבים), ו<strong>סוגרים</strong> כדי לשחרר אותו ולוודא שהכול נשמר.</p>
+
+      <figure class="concept-diagram">
+        <svg viewBox="0 0 340 120" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+          <defs>
+            <marker id="arrF" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto">
+              <path d="M0,0 L9,4.5 L0,9 z" fill="#8a93a8"/>
+            </marker>
+          </defs>
+          <rect x="15" y="42" width="90" height="40" rx="9" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+          <text x="60" y="61" text-anchor="middle" font-size="12" fill="#23368f">פתיחה</text>
+          <text x="60" y="76" text-anchor="middle" font-size="10" fill="#5b6478" direction="ltr">open()</text>
+
+          <line x1="107" y1="62" x2="127" y2="62" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrF)"/>
+
+          <rect x="128" y="42" width="90" height="40" rx="9" fill="#fff" stroke="#3454d1" stroke-width="2" stroke-dasharray="5 4"/>
+          <text x="173" y="61" text-anchor="middle" font-size="12" fill="#1e2433">קריאה /</text>
+          <text x="173" y="76" text-anchor="middle" font-size="12" fill="#1e2433">כתיבה</text>
+
+          <line x1="220" y1="62" x2="240" y2="62" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrF)"/>
+
+          <rect x="241" y="42" width="90" height="40" rx="9" fill="#e7f8f1" stroke="#1e9e6b" stroke-width="2"/>
+          <text x="286" y="61" text-anchor="middle" font-size="12" fill="#146c48">סגירה</text>
+          <text x="286" y="76" text-anchor="middle" font-size="10" fill="#5b6478" direction="ltr">close()</text>
+        </svg>
+        <figcaption>שלושת שלבי העבודה עם קובץ — תמיד באותו סדר</figcaption>
+      </figure>
+
+      <h2>מצבי פתיחה</h2>
+      <dl class="term-grid">
+        <div><dt>"r" — קריאה</dt><dd>ברירת המחדל. קוראים מהקובץ. אם הקובץ לא קיים — שגיאה.</dd></div>
+        <div><dt>"w" — כתיבה</dt><dd>יוצר קובץ חדש, או <strong>מוחק את התוכן הקיים</strong> וכותב מחדש.</dd></div>
+        <div><dt>"a" — הוספה</dt><dd>כותב בסוף הקובץ בלי למחוק את מה שכבר בו.</dd></div>
+      </dl>
+
+      <h2>קריאת קובץ שורה-שורה</h2>
+      <p>הדרך הנוחה לקרוא קובץ טקסט היא לעבור עליו בלולאת <code>for</code> — כל חזרה נותנת שורה אחת. לכל שורה יש בסוף תו ירידת שורה (<code>\n</code>), ומסירים אותו עם <code>strip</code>.</p>
+      <pre class="code-block"><code>f = <span class="tok-fn">open</span>(<span class="tok-str">"names.txt"</span>, <span class="tok-str">"r"</span>)
+<span class="tok-kw">for</span> line <span class="tok-kw">in</span> f:
+    clean = line.strip()
+    <span class="tok-fn">print</span>(<span class="tok-str">"Hello,"</span>, clean)
+f.close()</code></pre>
+
+      <h2>כתיבה לקובץ</h2>
+      <pre class="code-block"><code>f = <span class="tok-fn">open</span>(<span class="tok-str">"results.txt"</span>, <span class="tok-str">"w"</span>)
+f.write(<span class="tok-str">"Game 1: 85\n"</span>)
+f.write(<span class="tok-str">"Game 2: 92\n"</span>)
+f.close()
+
+<span class="tok-com"># הוספה בסוף בלי למחוק:</span>
+f = <span class="tok-fn">open</span>(<span class="tok-str">"results.txt"</span>, <span class="tok-str">"a"</span>)
+f.write(<span class="tok-str">"Game 3: 78\n"</span>)
+f.close()</code></pre>
+      <p>שימו לב: <code>write</code> לא מוסיף ירידת שורה לבד — צריך לכתוב <code>\n</code> במפורש בסוף כל שורה.</p>
+
+      <h2>פתיחה בטוחה עם with</h2>
+      <p>קל לשכוח <code>close()</code>. הצורה <code>with</code> סוגרת את הקובץ אוטומטית בסיום הבלוק, גם אם קרתה שגיאה:</p>
+      <pre class="code-block"><code><span class="tok-kw">with</span> <span class="tok-fn">open</span>(<span class="tok-str">"names.txt"</span>, <span class="tok-str">"r"</span>) <span class="tok-kw">as</span> f:
+    <span class="tok-kw">for</span> line <span class="tok-kw">in</span> f:
+        <span class="tok-fn">print</span>(line.strip())
+<span class="tok-com"># כאן הקובץ כבר סגור</span></code></pre>
+    </div>
+
+    <div class="key-terms">
+      <h2>מושגי מפתח</h2>
+      <dl class="term-grid">
+        <div><dt>open</dt><dd>פותח קובץ ומחזיר משתנה קובץ לעבודה איתו</dd></div>
+        <div><dt>close</dt><dd>סוגר את הקובץ ומוודא שכל מה שנכתב אכן נשמר</dd></div>
+        <div><dt>מצב "r" / "w" / "a"</dt><dd>קריאה / כתיבה (מוחק קיים) / הוספה בסוף</dd></div>
+        <div><dt>strip</dt><dd>מסיר רווחים ותו ירידת שורה מתחילת וסוף מחרוזת</dd></div>
+        <div><dt>write</dt><dd>כותב מחרוזת לקובץ; לא מוסיף \n לבד</dd></div>
+        <div><dt>with open(...) as f</dt><dd>פותח קובץ וסוגר אותו אוטומטית בסיום הבלוק</dd></div>
+      </dl>
+    </div>
+
+    <div class="tools-box">
+      <h2>🛠️ איפה להריץ את הקוד?</h2>
+      <p>ב-Colab העבודה נשמרת אוטומטית (File ← Save a copy in Drive), והמחברת כוללת תא שיוצר קבצי תרגול מוכנים:</p>
+      <div class="tool-links">
+        <a class="tool-link" href="https://colab.research.google.com/github/ilanitkay/cs-middle-school/blob/main/python-b/notebooks/ch6.ipynb" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+          </span>
+          <span><strong>מחברת תרגול ל-Colab</strong><span>כוללת תא שיוצר את קבצי הדוגמה names.txt ו-grades.txt</span></span>
+        </a>
+        <a class="tool-link" href="https://www.online-python.com/" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </span>
+          <span><strong>online-python.com</strong><span>מאפשר להוסיף קבצי טקסט לצד התכנית ולעבוד איתם</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="tools-box">
+      <h2>📚 חומרי עזר להורדה</h2>
+      <p>דף עבודה מסכם וחומרי עזר כלליים לפייתון חלק ב׳.</p>
+      <div class="tool-links">
+        <a class="tool-link" href="materials/final-worksheet.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>דף עבודה מסכם</strong><span>שאלות המשלבות את כל נושאי החלק</span></span>
+        </a>
+        <a class="tool-link" href="materials/python-cheatsheet.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>דף עזר לתלמיד — פייתון 3</strong><span>תזכורת תחביר ופעולות נפוצות</span></span>
+        </a>
+        <a class="tool-link" href="materials/python-book.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>חוברת פייתון</strong><span>ספר לימוד לעיון והרחבה</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="worksheet">
+      <h2>דף עבודה — תרגול</h2>
+      <p class="worksheet-count">📝 8 שאלות בפרק זה</p>
+      <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-trace">שאלת הבנה</span></div>
+        <p>מה ההבדל בין פתיחת קובץ במצב <code>"w"</code> לבין מצב <code>"a"</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p><code>"w"</code> מוחק את כל התוכן הקיים בקובץ וכותב מחדש; <code>"a"</code> משאיר את התוכן הקיים ומוסיף בסופו.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-trace">מצאו את הטעות</span></div>
+        <p>הקובץ נכתב, אבל כשפותחים אותו הוא ריק או חסר. מה כנראה חסר בקוד?</p>
+        <pre class="code-block"><code>f = <span class="tok-fn">open</span>(<span class="tok-str">"data.txt"</span>, <span class="tok-str">"w"</span>)
+f.write(<span class="tok-str">"hello"</span>)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>חסר <code>f.close()</code>. בלי לסגור את הקובץ, ייתכן שמה שנכתב לא נשמר לדיסק.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>הקובץ <code>nums.txt</code> מכיל את השורות <code>3</code>, <code>5</code>, <code>2</code>. מה יודפס?</p>
+        <pre class="code-block"><code>total = <span class="tok-num">0</span>
+<span class="tok-kw">with</span> <span class="tok-fn">open</span>(<span class="tok-str">"nums.txt"</span>, <span class="tok-str">"r"</span>) <span class="tok-kw">as</span> f:
+    <span class="tok-kw">for</span> line <span class="tok-kw">in</span> f:
+        total = total + <span class="tok-fn">int</span>(line.strip())
+<span class="tok-fn">print</span>(total)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>10</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-trace">שאלת הבנה</span></div>
+        <p>למה משתמשים ב-<code>line.strip()</code> כשקוראים קובץ שורה-שורה?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>כל שורה שנקראת מהקובץ כוללת בסוף תו ירידת שורה (<code>\n</code>), ולפעמים רווחים. <code>strip</code> מנקה אותם כדי שנוכל לעבוד עם הטקסט "הנקי" — למשל להשוות אותו או להמיר למספר.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-trace">נכון / לא נכון</span></div>
+        <p>קבעו נכון או לא נכון: (א) "<code>write</code> מוסיף ירידת שורה אוטומטית אחרי כל קריאה." (ב) "<code>with open(...)</code> סוגר את הקובץ לבד."</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>(א) לא נכון — צריך לכתוב <code>\n</code> במפורש. (ב) נכון.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">6</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>הקובץ <code>names.txt</code> מכיל שם בכל שורה. כתבו קוד שמדפיס כמה שמות יש בקובץ.</p>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code>count = <span class="tok-num">0</span>
+<span class="tok-kw">with</span> <span class="tok-fn">open</span>(<span class="tok-str">"names.txt"</span>, <span class="tok-str">"r"</span>) <span class="tok-kw">as</span> f:
+    <span class="tok-kw">for</span> line <span class="tok-kw">in</span> f:
+        <span class="tok-kw">if</span> line.strip() != <span class="tok-str">""</span>:
+            count = count + <span class="tok-num">1</span>
+<span class="tok-fn">print</span>(count)</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">7</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>קלטו מהמשתמש שמות עד שמקלידים מחרוזת ריקה, ושמרו כל שם בשורה נפרדת בקובץ <code>guests.txt</code>.</p>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code><span class="tok-kw">with</span> <span class="tok-fn">open</span>(<span class="tok-str">"guests.txt"</span>, <span class="tok-str">"w"</span>) <span class="tok-kw">as</span> f:
+    name = <span class="tok-fn">input</span>(<span class="tok-str">"Name (empty to stop): "</span>)
+    <span class="tok-kw">while</span> name != <span class="tok-str">""</span>:
+        f.write(name + <span class="tok-str">"\n"</span>)
+        name = <span class="tok-fn">input</span>(<span class="tok-str">"Name (empty to stop): "</span>)</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">8</span><span class="wq-type type-write">פרויקט מסכם — ניתוח ציונים</span></div>
+        <p>הקובץ <code>grades.txt</code> מכיל ציון (מספר שלם) בכל שורה. כתבו תכנית ש:</p>
+        <ol class="steps-list">
+          <li>קוראת את כל הציונים לרשימה</li>
+          <li>מחשבת ממוצע, ציון מקסימלי וציון מינימלי</li>
+          <li>סופרת כמה תלמידים מתחת ל-60</li>
+          <li>כותבת את הסיכום לקובץ חדש <code>summary.txt</code></li>
+        </ol>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code>grades = []
+<span class="tok-kw">with</span> <span class="tok-fn">open</span>(<span class="tok-str">"grades.txt"</span>, <span class="tok-str">"r"</span>) <span class="tok-kw">as</span> f:
+    <span class="tok-kw">for</span> line <span class="tok-kw">in</span> f:
+        <span class="tok-kw">if</span> line.strip() != <span class="tok-str">""</span>:
+            grades.append(<span class="tok-fn">int</span>(line.strip()))
+
+average = <span class="tok-fn">sum</span>(grades) / <span class="tok-fn">len</span>(grades)
+
+failing = <span class="tok-num">0</span>
+<span class="tok-kw">for</span> g <span class="tok-kw">in</span> grades:
+    <span class="tok-kw">if</span> g &lt; <span class="tok-num">60</span>:
+        failing = failing + <span class="tok-num">1</span>
+
+<span class="tok-kw">with</span> <span class="tok-fn">open</span>(<span class="tok-str">"summary.txt"</span>, <span class="tok-str">"w"</span>) <span class="tok-kw">as</span> out:
+    out.write(<span class="tok-str">"Average: "</span> + <span class="tok-fn">str</span>(average) + <span class="tok-str">"\n"</span>)
+    out.write(<span class="tok-str">"Max: "</span> + <span class="tok-fn">str</span>(<span class="tok-fn">max</span>(grades)) + <span class="tok-str">"\n"</span>)
+    out.write(<span class="tok-str">"Min: "</span> + <span class="tok-fn">str</span>(<span class="tok-fn">min</span>(grades)) + <span class="tok-str">"\n"</span>)
+    out.write(<span class="tok-str">"Failing: "</span> + <span class="tok-fn">str</span>(failing) + <span class="tok-str">"\n"</span>)</code></pre></div></details>
+      </div>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="ch5.html">
+        <span>
+          <span class="nav-label">הפרק הקודם</span>
+          מבני נתונים: tuple, set ותור
+        </span>
+      </a>
+      <a href="index.html">
+        <span>
+          <span class="nav-label">סיימתם את החלק!</span>
+          חזרה לרשימת הפרקים
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+
+    <div class="mark-done">
+      <label>
+        <input type="checkbox" data-mark-done="pb-ch6-done">
+        סימנתי שלמדתי את הפרק הזה
+      </label>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>מדעי המחשב לחטיבת הביניים — אילנית קיי</span>
+    <span>מבוסס על תכנית הלימודים של משרד החינוך</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

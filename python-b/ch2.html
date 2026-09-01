@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 2: פונקציות | Python חלק ב׳</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      </span>
+      <span class="brand-text">מדעי המחשב<span class="brand-sub">חטיבת ביניים · אילנית קיי</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="תפריט">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <nav class="main-nav">
+      <a href="../index.html">בית</a>
+      <a href="../python-a/index.html">פייתון א׳</a>
+      <a href="index.html" class="active">פייתון ב׳</a>
+    </nav>
+  </div>
+</header>
+
+<main class="chapter-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">בית</a>
+      <span class="sep">/</span>
+      <a href="index.html">Python חלק ב׳</a>
+      <span class="sep">/</span>
+      <span>פרק 2</span>
+    </div>
+
+    <div class="chapter-header">
+      <span class="chapter-tag">פרק 2 מתוך 6</span>
+      <h1>פונקציות</h1>
+      <span class="chapter-time">⏱ כ-6 שעות לימוד</span>
+    </div>
+
+    <div class="tools-box">
+      <div class="tool-links">
+        <a class="tool-link" href="https://www.youtube.com/watch?v=b5VY7dvwROw" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+          </span>
+          <span><strong>סרטון: פונקציות בפייתון</strong><span>הגדרה, זימון ומה קורה בזמן הריצה</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="goals-box">
+      <h2>מה נלמד בפרק הזה</h2>
+      <ul>
+        <li>לפרק בעיה גדולה לתת-משימות, ולתכנן פתרון בשיטת top-down</li>
+        <li>לכתוב פונקציה עם פרמטרים ולזמן אותה עם ערכים שונים</li>
+        <li>להשתמש ב-<code>return</code> כדי שפונקציה תחזיר ערך לשימוש בהמשך התכנית</li>
+        <li>להבין את ההבדל בין משתנה מקומי לגלובלי, ומתי צריך <code>global</code></li>
+      </ul>
+    </div>
+
+    <div class="lesson-content">
+      <h2>לפרק בעיה לתת-משימות</h2>
+      <p>כשבעיה גדולה מדי כדי לפתור אותה "בבת אחת", מפרקים אותה לתת-משימות קטנות שכל אחת מהן קלה לפתרון. לכל תת-משימה כותבים <strong>פונקציה</strong> נפרדת, ואז מחברים את הפונקציות יחד. השיטה הזו נקראת <strong>תכנון top-down</strong> — מלמעלה (הבעיה הכללית) למטה (הפרטים).</p>
+      <p>לדוגמה, "בדוק אם מילה היא פלינדרום" מתפרקת ל: (1) להפוך את המילה, (2) להשוות למקור. כל שלב — פונקציה.</p>
+
+      <h2>פונקציה שמחזירה ערך — return</h2>
+      <p>בחלק א׳ הפונקציות שלנו רק <em>הדפיסו</em> תוצאה. עכשיו נלמד שפונקציה יכולה <strong>להחזיר</strong> ערך בעזרת <code>return</code>, כך שהתכנית תוכל להמשיך לעבוד איתו — לשמור אותו במשתנה, להשתמש בו בחישוב, או להעביר לפונקציה אחרת.</p>
+      <span class="code-label">דוגמה — הפרש בין print ל-return</span>
+      <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">square_print</span>(n):
+    <span class="tok-fn">print</span>(n * n)          <span class="tok-com"># רק מציג — לא מחזיר כלום</span>
+
+<span class="tok-kw">def</span> <span class="tok-fn">square</span>(n):
+    <span class="tok-kw">return</span> n * n           <span class="tok-com"># מחזיר את הערך לקוד שקרא לפונקציה</span>
+
+result = <span class="tok-fn">square</span>(<span class="tok-num">5</span>)         <span class="tok-com"># result מקבל 25</span>
+<span class="tok-fn">print</span>(result + <span class="tok-num">1</span>)          <span class="tok-com"># 26 — אפשר להמשיך לחשב</span>
+
+<span class="tok-fn">square_print</span>(<span class="tok-num">5</span>)           <span class="tok-com"># מדפיס 25, אבל square_print(5) עצמו שווה None</span></code></pre>
+      <p>ברגע ש-Python מגיעה ל-<code>return</code>, הפונקציה מסתיימת מיד והשליטה חוזרת לשורה שקראה לה, עם הערך המוחזר.</p>
+
+      <figure class="concept-diagram">
+        <svg viewBox="0 0 330 220" xmlns="http://www.w3.org/2000/svg" font-family="Consolas, monospace">
+          <defs>
+            <marker id="arrRet" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 z" fill="#8a93a8"/>
+            </marker>
+          </defs>
+
+          <rect x="20" y="20" width="290" height="34" rx="9" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+          <text x="165" y="42" text-anchor="middle" font-size="12" fill="#23368f" direction="ltr">result = square(5)</text>
+
+          <line x1="120" y1="54" x2="120" y2="78" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrRet)"/>
+          <text x="70" y="70" font-size="10" fill="#5b6478" direction="ltr">5</text>
+
+          <rect x="40" y="82" width="250" height="74" rx="9" fill="#fff" stroke="#3454d1" stroke-width="2" stroke-dasharray="5 4"/>
+          <text x="165" y="106" text-anchor="middle" font-size="12" fill="#1e2433" direction="ltr">def square(<tspan fill="#d99400" font-weight="700">n</tspan>):</text>
+          <text x="165" y="132" text-anchor="middle" font-size="12" fill="#1e2433" direction="ltr">return <tspan fill="#d99400" font-weight="700">n</tspan> * <tspan fill="#d99400" font-weight="700">n</tspan></text>
+
+          <line x1="210" y1="156" x2="210" y2="180" stroke="#8a93a8" stroke-width="2" marker-end="url(#arrRet)"/>
+          <text x="228" y="173" font-size="10" fill="#1e9e6b" direction="ltr">25</text>
+
+          <rect x="120" y="184" width="180" height="30" rx="8" fill="#e7f8f1" stroke="#1e9e6b" stroke-width="2"/>
+          <text x="210" y="204" text-anchor="middle" font-size="12" fill="#146c48" direction="ltr">result == 25</text>
+        </svg>
+        <figcaption>הערך 5 נכנס לפרמטר n; הפונקציה מחשבת n * n ומחזירה 25; הערך המוחזר נשמר ב-result</figcaption>
+      </figure>
+
+      <h2>משתנה מקומי לעומת גלובלי</h2>
+      <p>משתנה שנוצר <strong>בתוך</strong> פונקציה הוא <strong>מקומי</strong> — קיים רק בזמן ריצת הפונקציה, ולא נגיש מבחוץ. משתנה שהוגדר <strong>מחוץ</strong> לכל פונקציה הוא <strong>גלובלי</strong>, ואפשר לקרוא את ערכו מכל מקום.</p>
+      <p>כדי ש<em>פונקציה תשנה</em> משתנה גלובלי (ולא רק תקרא אותו), צריך להצהיר עליו עם <code>global</code>:</p>
+      <pre class="code-block"><code>score = <span class="tok-num">0</span>              <span class="tok-com"># משתנה גלובלי</span>
+
+<span class="tok-kw">def</span> <span class="tok-fn">add_point</span>():
+    <span class="tok-kw">global</span> score
+    score = score + <span class="tok-num">1</span>
+
+<span class="tok-fn">add_point</span>()
+<span class="tok-fn">add_point</span>()
+<span class="tok-fn">print</span>(score)          <span class="tok-com"># 2</span></code></pre>
+      <p>בדרך כלל עדיף להעביר מידע לפונקציה דרך <strong>פרמטרים</strong> ולקבל אותו חזרה דרך <strong>return</strong>, ולהשתמש ב-<code>global</code> רק כשאין ברירה — קוד שמסתמך על משתנים גלובליים קשה יותר למעקב.</p>
+    </div>
+
+    <div class="key-terms">
+      <h2>מושגי מפתח</h2>
+      <dl class="term-grid">
+        <div><dt>תת-משימה</dt><dd>חלק קטן ועצמאי של בעיה גדולה, שכותבים לו פונקציה נפרדת</dd></div>
+        <div><dt>תכנון top-down</dt><dd>פירוק בעיה מהכללי לפרטי, שלב אחרי שלב</dd></div>
+        <div><dt>פרמטר</dt><dd>משתנה בהגדרת הפונקציה שמקבל ערך בזמן הזימון</dd></div>
+        <div><dt>return</dt><dd>מילת מפתח שמסיימת את הפונקציה ומחזירה ערך לקוד שקרא לה</dd></div>
+        <div><dt>None</dt><dd>הערך ש"חוזר" מפונקציה שאין בה return</dd></div>
+        <div><dt>משתנה מקומי / גלובלי</dt><dd>מקומי קיים רק בתוך הפונקציה; גלובלי מוגדר מחוץ לכולן ונגיש מכל מקום</dd></div>
+        <div><dt>global</dt><dd>מילת מפתח שמאפשרת לפונקציה לשנות משתנה גלובלי</dd></div>
+      </dl>
+    </div>
+
+    <div class="tools-box">
+      <h2>🛠️ איפה להריץ את הקוד?</h2>
+      <p>מומלץ לתרגל ב-Google Colab — העבודה נשמרת אוטומטית ב-Drive שלכם (File ← Save a copy in Drive):</p>
+      <div class="tool-links">
+        <a class="tool-link" href="https://colab.research.google.com/github/ilanitkay/cs-middle-school/blob/main/python-b/notebooks/ch2.ipynb" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+          </span>
+          <span><strong>מחברת תרגול ל-Colab</strong><span>נפתחת עם שאלות הפרק, מוכנה להרצה ולשמירה</span></span>
+        </a>
+        <a class="tool-link" href="https://onecompiler.com/python" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </span>
+          <span><strong>OneCompiler</strong><span>סביבת פייתון פשוטה בדפדפן, בלי הרשמה</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="tools-box">
+      <h2>📚 חומרי עזר להורדה</h2>
+      <p>מצגות ודפי עבודה מקוריים, להעמקה ולתרגול נוסף.</p>
+      <div class="tool-links">
+        <a class="tool-link" href="materials/functions-slides.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>מצגת: פונקציות בפייתון</strong><span>הסבר מלא עם דוגמאות</span></span>
+        </a>
+        <a class="tool-link" href="materials/functions-worksheet-1.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>דף עבודה: פונקציות</strong><span>תרגול בסיסי</span></span>
+        </a>
+        <a class="tool-link" href="materials/functions-worksheet-2.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>דף עבודה נוסף: פונקציות</strong><span>שאלות מורכבות יותר</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="worksheet">
+      <h2>דף עבודה — תרגול</h2>
+      <p class="worksheet-count">📝 9 שאלות בפרק זה</p>
+      <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">double</span>(x):
+    <span class="tok-kw">return</span> x * <span class="tok-num">2</span>
+
+<span class="tok-fn">print</span>(<span class="tok-fn">double</span>(<span class="tok-num">3</span>) + <span class="tok-fn">double</span>(<span class="tok-num">10</span>))</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>26 (6 + 20).</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס בכל שורה?</p>
+        <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">add</span>(a, b):
+    <span class="tok-fn">print</span>(a + b)
+
+x = <span class="tok-fn">add</span>(<span class="tok-num">2</span>, <span class="tok-num">3</span>)
+<span class="tok-fn">print</span>(x)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><pre class="code-block"><code>5
+None</code></pre><p>הפונקציה מדפיסה 5 אבל אין בה <code>return</code>, לכן <code>x</code> מקבל <code>None</code>.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-trace">מצאו את הטעות</span></div>
+        <p>הפונקציה אמורה להחזיר את הגדול מבין שני מספרים, אבל <code>print(bigger(4, 9))</code> מדפיס <code>None</code>. מדוע?</p>
+        <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">bigger</span>(a, b):
+    <span class="tok-kw">if</span> a &gt; b:
+        <span class="tok-fn">print</span>(a)
+    <span class="tok-kw">else</span>:
+        <span class="tok-fn">print</span>(b)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>הפונקציה <strong>מדפיסה</strong> את הערך במקום <strong>להחזיר</strong> אותו. צריך <code>return a</code> ו-<code>return b</code> במקום <code>print</code>.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">f</span>(n):
+    <span class="tok-kw">if</span> n &lt; <span class="tok-num">0</span>:
+        <span class="tok-kw">return</span> <span class="tok-str">"negative"</span>
+    <span class="tok-kw">return</span> <span class="tok-str">"ok"</span>
+
+<span class="tok-fn">print</span>(<span class="tok-fn">f</span>(<span class="tok-num">-3</span>))
+<span class="tok-fn">print</span>(<span class="tok-fn">f</span>(<span class="tok-num">7</span>))</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><pre class="code-block"><code>negative
+ok</code></pre><p>עבור <code>-3</code> ה-<code>return</code> הראשון רץ והפונקציה נעצרת שם.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code>count = <span class="tok-num">10</span>
+
+<span class="tok-kw">def</span> <span class="tok-fn">reset</span>():
+    count = <span class="tok-num">0</span>
+
+<span class="tok-fn">reset</span>()
+<span class="tok-fn">print</span>(count)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>10. בלי <code>global count</code>, ההשמה בתוך <code>reset</code> יוצרת משתנה מקומי חדש בשם count, וה-count הגלובלי לא משתנה.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">6</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">add_tax</span>(price):
+    <span class="tok-kw">return</span> price + price * <span class="tok-num">0.17</span>
+
+<span class="tok-fn">print</span>(<span class="tok-fn">add_tax</span>(<span class="tok-num">100</span>))</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>117.0</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">7</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו פונקציה <code>is_even(n)</code> שמחזירה <code>True</code> אם <code>n</code> זוגי ו-<code>False</code> אחרת. השתמשו בה כדי להדפיס את כל המספרים הזוגיים מ-1 עד 20.</p>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">is_even</span>(n):
+    <span class="tok-kw">return</span> n % <span class="tok-num">2</span> == <span class="tok-num">0</span>
+
+<span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">1</span>, <span class="tok-num">21</span>):
+    <span class="tok-kw">if</span> <span class="tok-fn">is_even</span>(i):
+        <span class="tok-fn">print</span>(i)</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">8</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו פונקציה <code>average(a, b, c)</code> שמחזירה את הממוצע של שלושה מספרים. קראו לה עם 3 מספרים שהמשתמש מקליד, והדפיסו את התוצאה.</p>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">average</span>(a, b, c):
+    <span class="tok-kw">return</span> (a + b + c) / <span class="tok-num">3</span>
+
+x = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"First: "</span>))
+y = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Second: "</span>))
+z = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Third: "</span>))
+<span class="tok-fn">print</span>(<span class="tok-str">"Average:"</span>, <span class="tok-fn">average</span>(x, y, z))</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">9</span><span class="wq-type type-write">פירוק לתת-משימות</span></div>
+        <p>כתבו פונקציה <code>reverse_word(word)</code> שמחזירה מחרוזת הפוכה, ופונקציה <code>is_palindrome(word)</code> שמשתמשת בה ומחזירה <code>True</code>/<code>False</code>. הדפיסו בדיקה עבור <code>"level"</code> ועבור <code>"python"</code>.</p>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">reverse_word</span>(word):
+    <span class="tok-kw">return</span> word[::<span class="tok-num">-1</span>]
+
+<span class="tok-kw">def</span> <span class="tok-fn">is_palindrome</span>(word):
+    <span class="tok-kw">return</span> word == <span class="tok-fn">reverse_word</span>(word)
+
+<span class="tok-fn">print</span>(<span class="tok-fn">is_palindrome</span>(<span class="tok-str">"level"</span>))    <span class="tok-com"># True</span>
+<span class="tok-fn">print</span>(<span class="tok-fn">is_palindrome</span>(<span class="tok-str">"python"</span>))   <span class="tok-com"># False</span></code></pre><p>הערה: את <code>[::-1]</code> נלמד לעומק בפרק המחרוזות הבא.</p></div></details>
+      </div>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="ch1.html">
+        <span>
+          <span class="nav-label">הפרק הקודם</span>
+          ביצוע חוזר — לולאות
+        </span>
+      </a>
+      <a href="ch3.html">
+        <span>
+          <span class="nav-label">הפרק הבא</span>
+          מחרוזות (str)
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+
+    <div class="mark-done">
+      <label>
+        <input type="checkbox" data-mark-done="pb-ch2-done">
+        סימנתי שלמדתי את הפרק הזה
+      </label>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>מדעי המחשב לחטיבת הביניים — אילנית קיי</span>
+    <span>מבוסס על תכנית הלימודים של משרד החינוך</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

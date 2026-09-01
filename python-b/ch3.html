@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 3: מחרוזות (str) | Python חלק ב׳</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      </span>
+      <span class="brand-text">מדעי המחשב<span class="brand-sub">חטיבת ביניים · אילנית קיי</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="תפריט">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <nav class="main-nav">
+      <a href="../index.html">בית</a>
+      <a href="../python-a/index.html">פייתון א׳</a>
+      <a href="index.html" class="active">פייתון ב׳</a>
+    </nav>
+  </div>
+</header>
+
+<main class="chapter-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">בית</a>
+      <span class="sep">/</span>
+      <a href="index.html">Python חלק ב׳</a>
+      <span class="sep">/</span>
+      <span>פרק 3</span>
+    </div>
+
+    <div class="chapter-header">
+      <span class="chapter-tag">פרק 3 מתוך 6</span>
+      <h1>מחרוזות (str)</h1>
+      <span class="chapter-time">⏱ כ-6 שעות לימוד</span>
+    </div>
+
+    <div class="goals-box">
+      <h2>מה נלמד בפרק הזה</h2>
+      <ul>
+        <li>לגשת לתו בודד לפי אינדקס, כולל אינדקסים שליליים</li>
+        <li>לחתוך תת-מחרוזת עם slicing בצורה <code>[start:end:step]</code></li>
+        <li>להשתמש באופרטורים <code>+</code> ו-<code>*</code> ובאופרטור <code>in</code> על מחרוזות</li>
+        <li>להכיר פעולות מובנות: <code>upper</code>, <code>lower</code>, <code>find</code>, <code>replace</code>, <code>split</code>, <code>join</code>, <code>count</code></li>
+        <li>לעבור על תווי מחרוזת בלולאת <code>for</code></li>
+      </ul>
+    </div>
+
+    <div class="lesson-content">
+      <h2>אינדקסים — גישה לתו בודד</h2>
+      <p>כל תו במחרוזת יושב במקום ממוספר. הספירה מתחילה מ-<strong>0</strong> משמאל. אפשר גם לספור מהסוף אחורה עם מספרים <strong>שליליים</strong>: <code>-1</code> הוא התו האחרון.</p>
+
+      <figure class="concept-diagram">
+        <svg viewBox="0 0 360 150" xmlns="http://www.w3.org/2000/svg" font-family="Consolas, monospace">
+          <g direction="ltr">
+            <rect x="20" y="45" width="45" height="45" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+            <rect x="65" y="45" width="45" height="45" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+            <rect x="110" y="45" width="45" height="45" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+            <rect x="155" y="45" width="45" height="45" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+            <rect x="200" y="45" width="45" height="45" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+            <rect x="245" y="45" width="45" height="45" fill="#eaefff" stroke="#3454d1" stroke-width="2"/>
+            <text x="42" y="75" text-anchor="middle" font-size="18" fill="#1e2433">P</text>
+            <text x="87" y="75" text-anchor="middle" font-size="18" fill="#1e2433">y</text>
+            <text x="132" y="75" text-anchor="middle" font-size="18" fill="#1e2433">t</text>
+            <text x="177" y="75" text-anchor="middle" font-size="18" fill="#1e2433">h</text>
+            <text x="222" y="75" text-anchor="middle" font-size="18" fill="#1e2433">o</text>
+            <text x="267" y="75" text-anchor="middle" font-size="18" fill="#1e2433">n</text>
+
+            <text x="42" y="35" text-anchor="middle" font-size="12" fill="#3454d1">0</text>
+            <text x="87" y="35" text-anchor="middle" font-size="12" fill="#3454d1">1</text>
+            <text x="132" y="35" text-anchor="middle" font-size="12" fill="#3454d1">2</text>
+            <text x="177" y="35" text-anchor="middle" font-size="12" fill="#3454d1">3</text>
+            <text x="222" y="35" text-anchor="middle" font-size="12" fill="#3454d1">4</text>
+            <text x="267" y="35" text-anchor="middle" font-size="12" fill="#3454d1">5</text>
+
+            <text x="42" y="112" text-anchor="middle" font-size="12" fill="#c1502e">-6</text>
+            <text x="87" y="112" text-anchor="middle" font-size="12" fill="#c1502e">-5</text>
+            <text x="132" y="112" text-anchor="middle" font-size="12" fill="#c1502e">-4</text>
+            <text x="177" y="112" text-anchor="middle" font-size="12" fill="#c1502e">-3</text>
+            <text x="222" y="112" text-anchor="middle" font-size="12" fill="#c1502e">-2</text>
+            <text x="267" y="112" text-anchor="middle" font-size="12" fill="#c1502e">-1</text>
+          </g>
+          <text x="180" y="138" text-anchor="middle" font-size="11" fill="#5b6478">אינדקס חיובי סופר מההתחלה, אינדקס שלילי סופר מהסוף</text>
+        </svg>
+        <figcaption>למחרוזת "Python": <code>s[0]</code> הוא 'P', <code>s[-1]</code> הוא 'n', <code>s[-2]</code> הוא 'o'</figcaption>
+      </figure>
+
+      <pre class="code-block"><code>s = <span class="tok-str">"Python"</span>
+<span class="tok-fn">print</span>(s[<span class="tok-num">0</span>])       <span class="tok-com"># P</span>
+<span class="tok-fn">print</span>(s[<span class="tok-num">-1</span>])      <span class="tok-com"># n</span>
+<span class="tok-fn">print</span>(<span class="tok-fn">len</span>(s))     <span class="tok-com"># 6</span></code></pre>
+
+      <h2>Slicing — חיתוך תת-מחרוזת</h2>
+      <p>הצורה <code>s[start:end:step]</code> מחזירה חלק מהמחרוזת: מ-<code>start</code> ועד <code>end</code> <strong>לא כולל</strong>, בקפיצות של <code>step</code>. כל חלק הוא רשות — <code>s[2:]</code>, <code>s[:4]</code>, <code>s[::2]</code>.</p>
+      <pre class="code-block"><code>s = <span class="tok-str">"programming"</span>
+<span class="tok-fn">print</span>(s[<span class="tok-num">0</span>:<span class="tok-num">4</span>])     <span class="tok-com"># prog</span>
+<span class="tok-fn">print</span>(s[<span class="tok-num">4</span>:])      <span class="tok-com"># ramming</span>
+<span class="tok-fn">print</span>(s[::<span class="tok-num">2</span>])     <span class="tok-com"># pormig</span>
+<span class="tok-fn">print</span>(s[::<span class="tok-num">-1</span>])    <span class="tok-com"># gnimmargorp  (מחרוזת הפוכה)</span></code></pre>
+
+      <h2>אופרטורים על מחרוזות</h2>
+      <pre class="code-block"><code><span class="tok-fn">print</span>(<span class="tok-str">"ab"</span> + <span class="tok-str">"cd"</span>)      <span class="tok-com"># abcd  (שרשור)</span>
+<span class="tok-fn">print</span>(<span class="tok-str">"ha"</span> * <span class="tok-num">3</span>)         <span class="tok-com"># hahaha  (שכפול)</span>
+<span class="tok-fn">print</span>(<span class="tok-str">"y"</span> <span class="tok-kw">in</span> <span class="tok-str">"Python"</span>)   <span class="tok-com"># True  (בדיקת הכלה)</span></code></pre>
+
+      <h2>פעולות מובנות</h2>
+      <p>למחרוזת יש פעולות מובנות שקוראים להן עם נקודה: <code>text.upper()</code>. הן <strong>מחזירות מחרוזת חדשה</strong> ולא משנות את המקור (מחרוזת ב-Python לא ניתנת לשינוי).</p>
+      <pre class="code-block"><code>t = <span class="tok-str">"Hello World"</span>
+<span class="tok-fn">print</span>(t.upper())          <span class="tok-com"># HELLO WORLD</span>
+<span class="tok-fn">print</span>(t.lower())          <span class="tok-com"># hello world</span>
+<span class="tok-fn">print</span>(t.find(<span class="tok-str">"World"</span>))    <span class="tok-com"># 6   (האינדקס שבו מתחיל; -1 אם לא נמצא)</span>
+<span class="tok-fn">print</span>(t.replace(<span class="tok-str">"World"</span>, <span class="tok-str">"Python"</span>))   <span class="tok-com"># Hello Python</span>
+<span class="tok-fn">print</span>(t.count(<span class="tok-str">"l"</span>))       <span class="tok-com"># 3</span>
+<span class="tok-fn">print</span>(t.split(<span class="tok-str">" "</span>))      <span class="tok-com"># ['Hello', 'World']</span>
+<span class="tok-fn">print</span>(<span class="tok-str">"-"</span>.join([<span class="tok-str">"a"</span>, <span class="tok-str">"b"</span>, <span class="tok-str">"c"</span>]))   <span class="tok-com"># a-b-c</span></code></pre>
+
+      <h2>מעבר על תווים בלולאה</h2>
+      <p>לולאת <code>for</code> יכולה לעבור ישירות על תווי מחרוזת:</p>
+      <pre class="code-block"><code>word = <span class="tok-str">"radar"</span>
+count = <span class="tok-num">0</span>
+<span class="tok-kw">for</span> ch <span class="tok-kw">in</span> word:
+    <span class="tok-kw">if</span> ch == <span class="tok-str">"r"</span>:
+        count = count + <span class="tok-num">1</span>
+<span class="tok-fn">print</span>(count)              <span class="tok-com"># 2</span></code></pre>
+    </div>
+
+    <div class="key-terms">
+      <h2>מושגי מפתח</h2>
+      <dl class="term-grid">
+        <div><dt>אינדקס</dt><dd>מספר המיקום של תו במחרוזת; מתחיל מ-0, ושלילי סופר מהסוף</dd></div>
+        <div><dt>slicing</dt><dd>חיתוך תת-מחרוזת בצורה [start:end:step]; end לא נכלל</dd></div>
+        <div><dt>len</dt><dd>פונקציה שמחזירה את מספר התווים במחרוזת</dd></div>
+        <div><dt>in</dt><dd>אופרטור שבודק אם תת-מחרוזת מופיעה בתוך מחרוזת</dd></div>
+        <div><dt>find</dt><dd>מחזיר את האינדקס של המופע הראשון, או -1 אם לא נמצא</dd></div>
+        <div><dt>split / join</dt><dd>split מפצל מחרוזת לרשימה; join מחבר רשימה למחרוזת אחת</dd></div>
+        <div><dt>מחרוזת לא ניתנת לשינוי</dt><dd>פעולות כמו replace מחזירות מחרוזת חדשה, לא משנות את המקור</dd></div>
+      </dl>
+    </div>
+
+    <div class="tools-box">
+      <h2>🛠️ איפה להריץ את הקוד?</h2>
+      <p>מומלץ לתרגל ב-Google Colab — העבודה נשמרת אוטומטית ב-Drive שלכם (File ← Save a copy in Drive):</p>
+      <div class="tool-links">
+        <a class="tool-link" href="https://colab.research.google.com/github/ilanitkay/cs-middle-school/blob/main/python-b/notebooks/ch3.ipynb" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+          </span>
+          <span><strong>מחברת תרגול ל-Colab</strong><span>נפתחת עם שאלות הפרק, מוכנה להרצה ולשמירה</span></span>
+        </a>
+        <a class="tool-link" href="https://onecompiler.com/python" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </span>
+          <span><strong>OneCompiler</strong><span>סביבת פייתון פשוטה בדפדפן, בלי הרשמה</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="tools-box">
+      <h2>📚 חומרי עזר להורדה</h2>
+      <p>מצגות ודפי עבודה מקוריים, להעמקה ולתרגול נוסף.</p>
+      <div class="tool-links">
+        <a class="tool-link" href="materials/strings-slides.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>מצגת: מחרוזות</strong><span>אינדקסים, slicing ופעולות מובנות</span></span>
+        </a>
+        <a class="tool-link" href="materials/strings-worksheet.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>דף עבודה: מחרוזות</strong><span>תרגול מקיף</span></span>
+        </a>
+        <a class="tool-link" href="materials/strings-mafmar-questions.pdf" target="_blank" rel="noopener">
+          <span class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span><strong>שאלות ממבחני מפמ״ר</strong><span>מקבץ שאלות מחרוזות ממבחנים קודמים</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="worksheet">
+      <h2>דף עבודה — תרגול</h2>
+      <p class="worksheet-count">📝 9 שאלות בפרק זה</p>
+      <p class="worksheet-intro">שאלות בסגנון בחינות המפמ״ר. נסו לענות בעצמכם לפני שבודקים את התשובה.</p>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">1</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>נתון <code>s = "computer"</code>. מה יודפס?</p>
+        <pre class="code-block"><code><span class="tok-fn">print</span>(s[<span class="tok-num">0</span>])
+<span class="tok-fn">print</span>(s[<span class="tok-num">-1</span>])
+<span class="tok-fn">print</span>(<span class="tok-fn">len</span>(s))</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><pre class="code-block"><code>c
+r
+8</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">2</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>נתון <code>s = "abcdef"</code>. מה יחזירו: (א) <code>s[1:4]</code> (ב) <code>s[:3]</code> (ג) <code>s[::-1]</code>?</p>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p>(א) <code>bcd</code> &nbsp; (ב) <code>abc</code> &nbsp; (ג) <code>fedcba</code></p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">3</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code>t = <span class="tok-str">"banana"</span>
+<span class="tok-fn">print</span>(t.count(<span class="tok-str">"a"</span>))
+<span class="tok-fn">print</span>(t.find(<span class="tok-str">"n"</span>))
+<span class="tok-fn">print</span>(t.replace(<span class="tok-str">"a"</span>, <span class="tok-str">"o"</span>))</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><pre class="code-block"><code>3
+2
+bonono</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">4</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code>name = <span class="tok-str">"Dana"</span>
+<span class="tok-fn">print</span>(name.upper() + <span class="tok-str">"!"</span> * <span class="tok-num">3</span>)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p><code>DANA!!!</code></p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">5</span><span class="wq-type type-trace">עקבו אחר הקוד</span></div>
+        <p>מה יודפס?</p>
+        <pre class="code-block"><code>sentence = <span class="tok-str">"one two three"</span>
+words = sentence.split(<span class="tok-str">" "</span>)
+<span class="tok-fn">print</span>(<span class="tok-fn">len</span>(words))
+<span class="tok-fn">print</span>(words[<span class="tok-num">1</span>])</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><pre class="code-block"><code>3
+two</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">6</span><span class="wq-type type-trace">מצאו את הטעות</span></div>
+        <p>הקוד אמור להפוך את המחרוזת לאותיות גדולות, אבל ההדפסה מציגה <code>hello</code>. מדוע?</p>
+        <pre class="code-block"><code>s = <span class="tok-str">"hello"</span>
+s.upper()
+<span class="tok-fn">print</span>(s)</code></pre>
+        <details class="answer"><summary>הצג תשובה</summary><div class="answer-body"><p><code>upper()</code> מחזירה מחרוזת חדשה ולא משנה את <code>s</code>. צריך <code>s = s.upper()</code>.</p></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">7</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>קלטו מחרוזת מהמשתמש והדפיסו כמה אותיות <code>"e"</code> יש בה — פעם אחת עם לולאה על התווים, ופעם אחת עם <code>count</code>.</p>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code>text = <span class="tok-fn">input</span>(<span class="tok-str">"Enter text: "</span>)
+
+count = <span class="tok-num">0</span>
+<span class="tok-kw">for</span> ch <span class="tok-kw">in</span> text:
+    <span class="tok-kw">if</span> ch == <span class="tok-str">"e"</span>:
+        count = count + <span class="tok-num">1</span>
+<span class="tok-fn">print</span>(count)
+
+<span class="tok-fn">print</span>(text.count(<span class="tok-str">"e"</span>))</code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">8</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>כתבו פונקציה <code>is_palindrome(word)</code> שמחזירה <code>True</code> אם המילה נקראת אותו דבר משני הכיוונים. השתמשו ב-slicing.</p>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code><span class="tok-kw">def</span> <span class="tok-fn">is_palindrome</span>(word):
+    <span class="tok-kw">return</span> word == word[::<span class="tok-num">-1</span>]
+
+<span class="tok-fn">print</span>(<span class="tok-fn">is_palindrome</span>(<span class="tok-str">"level"</span>))   <span class="tok-com"># True</span>
+<span class="tok-fn">print</span>(<span class="tok-fn">is_palindrome</span>(<span class="tok-str">"hello"</span>))   <span class="tok-com"># False</span></code></pre></div></details>
+      </div>
+
+      <div class="wq">
+        <div class="wq-head"><span class="wq-num">9</span><span class="wq-type type-write">כתבו תוכנית</span></div>
+        <p>קלטו שם מלא (שם פרטי רווח שם משפחה). הדפיסו את ראשי התיבות, למשל <code>"Dana Levi"</code> ← <code>"D.L."</code></p>
+        <details class="answer"><summary>הצג פתרון אפשרי</summary><div class="answer-body"><pre class="code-block"><code>full = <span class="tok-fn">input</span>(<span class="tok-str">"Full name: "</span>)
+parts = full.split(<span class="tok-str">" "</span>)
+<span class="tok-fn">print</span>(parts[<span class="tok-num">0</span>][<span class="tok-num">0</span>] + <span class="tok-str">"."</span> + parts[<span class="tok-num">1</span>][<span class="tok-num">0</span>] + <span class="tok-str">"."</span>)</code></pre></div></details>
+      </div>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="ch2.html">
+        <span>
+          <span class="nav-label">הפרק הקודם</span>
+          פונקציות
+        </span>
+      </a>
+      <a href="ch4.html">
+        <span>
+          <span class="nav-label">הפרק הבא</span>
+          רשימות (list)
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+
+    <div class="mark-done">
+      <label>
+        <input type="checkbox" data-mark-done="pb-ch3-done">
+        סימנתי שלמדתי את הפרק הזה
+      </label>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>מדעי המחשב לחטיבת הביניים — אילנית קיי</span>
+    <span>מבוסס על תכנית הלימודים של משרד החינוך</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
