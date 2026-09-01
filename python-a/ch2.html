@@ -57,11 +57,12 @@
       <p>Turtle היא ספרייה מובנית ב-Python שמדמה "צב" עם עט הצמוד אליו: כל תזוזה של הצב משאירה קו על המסך. זו דרך מצוינת להתחיל עם גרפיקה, כי אפשר "לחשוב" כמו הצב — לאן פונים, כמה צעדים הולכים.</p>
 
       <h3>יצירת משטח עבודה ודמות</h3>
-      <pre class="code-block"><code><span class="tok-kw">import</span> turtle
+      <pre class="code-block"><code><span class="tok-kw">import</span> turtle           <span class="tok-com"># טעינת הספרייה</span>
 
 wn = turtle.Screen()      <span class="tok-com"># יצירת חלון (משטח ציור)</span>
 player = turtle.Turtle()  <span class="tok-com"># יצירת הצב שיצייר</span>
 player.shape(<span class="tok-str">"turtle"</span>)     <span class="tok-com"># עיצוב הדמות כצורת צב</span></code></pre>
+      <p>ארבע השורות האלה הן ה"פתיחה" של <strong>כל</strong> תכנית Turtle — בלעדיהן שם המשתנה <code>player</code> עדיין לא קיים, והתכנית תיפול בשגיאה. בכל דוגמה בהמשך הפרק, נניח שהשורות האלה כבר רצו לפניה.</p>
 
       <p>בדיוק כמו שבסקראץ' יש למשטח הציור גודל קבוע — גם ב-Turtle יש גודל ברירת מחדל למשטח הציור: <strong>400×300 פיקסלים</strong>. הצב מתחיל תמיד <strong>במרכז המשטח בדיוק</strong>, פונה ימינה. אפשר לשנות את הגודל הזה, וגם לקבוע צבעים:</p>
       <pre class="code-block"><code>wn.setup(width=<span class="tok-num">600</span>, height=<span class="tok-num">400</span>)  <span class="tok-com"># קובע גודל מדויק לחלון, בפיקסלים</span>
@@ -84,9 +85,13 @@ player.color(<span class="tok-str">"red"</span>)                 <span class="to
 
       <h3>פקודות תנועה בסיסיות</h3>
       <p>הפקודות הנפוצות ביותר: <code>forward(n)</code> מזיזה את הצב n צעדים קדימה, <code>left(angle)</code> ו-<code>right(angle)</code> מסובבות אותו בזווית נתונה (במעלות).</p>
-      <pre class="code-block"><code>player.forward(<span class="tok-num">100</span>)  <span class="tok-com"># 100 צעדים קדימה</span>
+      <pre class="code-block"><code><span class="tok-kw">import</span> turtle
+player = turtle.Turtle()
+
+player.forward(<span class="tok-num">100</span>)  <span class="tok-com"># 100 צעדים קדימה</span>
 player.left(<span class="tok-num">90</span>)     <span class="tok-com"># סיבוב שמאלה ב-90 מעלות</span>
 player.forward(<span class="tok-num">50</span>)
+
 turtle.mainloop()      <span class="tok-com"># משאיר את חלון הציור פתוח</span></code></pre>
 
       <figure class="concept-diagram">
