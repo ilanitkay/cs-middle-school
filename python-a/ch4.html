@@ -245,16 +245,16 @@
 
       <div class="wq">
         <div class="wq-head"><span class="wq-num">7</span><span class="wq-type type-trace">מצאו את הטעות</span></div>
-        <p>קטע הקוד הבא נועד להדפיס "prize!" רק לתלמיד/ה עם ציון בין 90 ל-100 (כולל 90 וכולל 100), ובכל מקרה אחר להדפיס "no prize". אבל נפלה בו טעות לוגית. מהי הטעות, וכיצד יש לתקנה?</p>
+        <p>קטע הקוד הבא נועד להדפיס "Prize!" רק לתלמיד/ה עם ציון בין 90 ל-100 (כולל 90 וכולל 100), ובכל מקרה אחר להדפיס "No prize". אבל נפלה בו טעות לוגית. מהי הטעות, וכיצד יש לתקנה?</p>
         <pre class="code-block"><code>grade = <span class="tok-fn">int</span>(<span class="tok-fn">input</span>(<span class="tok-str">"Grade: "</span>))
 <span class="tok-kw">if</span> grade &gt; <span class="tok-num">90</span> <span class="tok-kw">or</span> grade &lt;= <span class="tok-num">100</span>:
-    <span class="tok-fn">print</span>(<span class="tok-str">"prize!"</span>)
+    <span class="tok-fn">print</span>(<span class="tok-str">"Prize!"</span>)
 <span class="tok-kw">else</span>:
-    <span class="tok-fn">print</span>(<span class="tok-str">"no prize"</span>)</code></pre>
+    <span class="tok-fn">print</span>(<span class="tok-str">"No prize"</span>)</code></pre>
         <details class="answer">
           <summary>הצג תשובה</summary>
           <div class="answer-body">
-            <p>הטעות היא השימוש ב-<code>or</code> במקום <code>and</code>. כרגע כל ציון (למשל 50) מקיים לפחות תנאי אחד (50 &lt;= 100), ולכן תמיד יודפס "prize!" — טעות נפוצה שנראית "הגיונית" אך הופכת את התנאי לתמיד אמת. בנוסף, <code>grade &gt; 90</code> לא כולל את הציון 90 עצמו, ולכן צריך <code>&gt;=</code>. התיקון:</p>
+            <p>הטעות היא השימוש ב-<code>or</code> במקום <code>and</code>. כרגע כל ציון (למשל 50) מקיים לפחות תנאי אחד (50 &lt;= 100), ולכן תמיד יודפס "Prize!" — טעות נפוצה שנראית "הגיונית" אך הופכת את התנאי לתמיד אמת. בנוסף, <code>grade &gt; 90</code> לא כולל את הציון 90 עצמו, ולכן צריך <code>&gt;=</code>. התיקון:</p>
             <pre class="code-block"><code><span class="tok-kw">if</span> grade &gt;= <span class="tok-num">90</span> <span class="tok-kw">and</span> grade &lt;= <span class="tok-num">100</span>:</code></pre>
           </div>
         </details>
